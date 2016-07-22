@@ -1,0 +1,41 @@
+
+// requires //
+
+const express = require ( 'express' );
+const mongoose = require( 'mongoose' );
+const { json } = require( 'body-parser' );
+const { urlencoded } = require ( 'body-parser' );
+const MR = require( './server/masterRoutes' );
+
+// setup app //
+
+const app = express();
+
+// ports and URI //
+
+const port = process.env.PORT || 8888;
+const mongoURI = 'mongodb://localhost:27017/recruiterBot';
+
+// app pre-processors //
+
+app.use( urlencoded( { extended: true } ) );
+app.use( json() );
+app.use( express.static( `${ __dirname }/public`) );
+
+// use Master Routes //
+
+MR( app );
+
+// mongoose connection //
+
+mongoose.set( `debug`, true );
+mongoose.connect( mongoURI );
+mongoose.connection.once( `open`, () => {
+	console.log( `connected to Mongo DB at ${ mongoURI }` );
+} );
+
+// express conneciton //
+
+app.listen( port, function(){
+  console.log( `Express listening to port ${ port }` );
+} )
