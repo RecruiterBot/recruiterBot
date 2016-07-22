@@ -1,29 +1,41 @@
+
+// requires //
+
 const express = require ( 'express' );
-const bodyParser = require ( 'body-parser' );
+const mongoose = require( 'mongoose' );
+const { json } = require( 'body-parser' );
+const { urlencoded } = require ( 'body-parser' );
+const MR = require( './server/masterRoutes' );
+
+// setup app //
 
 const app = express();
+
+// ports and URI //
+
 const port = process.env.PORT || 8888;
+const mongoURI = 'mongodb://localhost:27017/recruiterBot';
 
-app.use( bodyParser.urlencoded( { extended: true } ) )
+// app pre-processors //
 
-app.get( '/',function( req,res ){
-  res.status( 200 ).send( 'Hello World' );
-} )
+app.use( urlencoded( { extended: true } ) );
+app.use( json() );
+app.use( express.static( `${ __dirname }/public`) );
+
+// use Master Routes //
+
+MR( app );
+
+// mongoose connection //
+
+mongoose.set( `debug`, true );
+mongoose.connect( mongoURI );
+mongoose.connection.once( `open`, () => {
+	console.log( `connected to Mongo DB at ${ mongoURI }` );
+} );
+
+// express conneciton //
 
 app.listen( port, function(){
-  console.log( 'Listening on '+ port );
-} )
-
-
-app.post('/hello', function( req, res, next ){
-  const username = req.body.user_name;
-  const botPayload = {
-    text: 'Hello' + username + " welcome to the dm3_recruiterbot channel! Its the best! :)"
-  }
-
-	if(  userName !== 'slackbot'){
-	  return res.status( 200 ).json( botpayload );
-	} else {
-	  res.status( 200 ).end();
-	}
+  console.log( `Express listening to port ${ port }` );
 } )
