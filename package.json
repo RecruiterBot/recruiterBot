@@ -2,17 +2,20 @@
   "name": "slackBot",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "sophie.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./server/smart_sophie/smart_sophie.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "botkit": "^0.2.2",
     "express": "^4.14.0",
     "mongoose": "^4.5.5",
-    "request": "^2.73.0"
+    "request": "^2.73.0",
+    "witbot": "^2.1.0"
   }
 }
