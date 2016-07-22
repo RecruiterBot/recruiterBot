@@ -2,10 +2,10 @@
   "name": "slackBot",
   "version": "1.0.0",
   "description": "",
-  "main": "sophie.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./server/smart_sophie/smart_sophie.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
+
   },
   "keywords": [],
   "author": "",
