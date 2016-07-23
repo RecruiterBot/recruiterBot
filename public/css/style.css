@@ -80,6 +80,7 @@ body{
 	font-weight: 200;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	cursor: pointer;
 }
 .dashboard .header-tabs a:hover{
 	background-color: #00A6F1;
@@ -130,7 +131,7 @@ body{
 	border-radius: 0px;
 }
 
-.add-student-box{
+.student-jumbotron .add-student-box{
 	overflow: auto;
 	border: 1px solid green;
 	background-color: black;
@@ -140,7 +141,7 @@ body{
 	flex-flow: column;
 	justify-content: center;*/
 }
-.add-student-box .auth-box{
+.student-jumbotron .add-student-box .auth-box{
 	overflow: auto;
 	border: 1px solid red;
 	display: flex;
@@ -150,13 +151,13 @@ body{
 	padding-top: 50px;
 	padding-bottom: 50px;
 }
-.add-student-box .form-title{
+.student-jumbotron .add-student-box .form-title{
 	display: flex;
 	flex-flow: row;
 	justify-content: center;
 	margin-bottom: 50px;
 }
-.add-student-box .form-title a{
+.student-jumbotron .add-student-box .form-title a{
 	font-size: 25px;
 	font-family: "Raleway";
 	font-weight: 200;
@@ -167,30 +168,38 @@ body{
 	color: black;
 	cursor: pointer;
 	color: white;
-	/*border: 1px solid lightgray;*/
 }
 
-.add-student-box .new-student p, .authentication .login p{
+.student-jumbotron .add-student-box .new-student p{
 	font-family: "Raleway";
 	font-size: 30px;
 	margin-top: 40px;
 	margin-bottom: 40px;
 	color: lightgray;
 }
-.add-student-box form input, .add-student-box form button{
+.student-jumbotron .add-student-box .form h1{
+	font-family: "Raleway";
+	font-weight: 200;
+	color: #404040;
+}
+.student-jumbotron .add-student-box form input, .add-student-box form button, .add-student-box form span{
 	border-radius: 0px;
 	font-family: "Raleway";
 	font-weight: 500;
 }
-.add-student-box form input{
+.student-jumbotron .add-student-box form input{
 	padding: 20px;
 	color: #00A6F1;
 }
-.add-student-box form button{
+.student-jumbotron .add-student-box form button{
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-
+.student-jumbotron .add-student-box .form span{
+	border-radius: 0px;
+	background-color: #00A6F1; 
+	color: white;
+}
 
 
 
