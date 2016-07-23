@@ -4,12 +4,12 @@
 		<!-- <navigation-dir></navigation-dir> -->
 
 		<div class="header-tabs col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<a href="#" class="text-center col-lg-4 col-md-4 col-sm-12 col-xs-12">Dashboard</a>
-			<a href="#" class="bordered text-center col-lg-4 col-md-4 col-sm-12 col-xs-12"><span class="glyphicon glyphicon-plus"></span> Student</a>
-			<a href="#" class="text-center col-lg-4 col-md-4 col-sm-12 col-xs-12"><span class="glyphicon glyphicon-plus"></span> Admin</a>
+			<a ng-click="showDashboardView()" class="text-center col-lg-4 col-md-4 col-sm-12 col-xs-12">Dashboard</a>
+			<a ng-click="showStudentView()" class="bordered text-center col-lg-4 col-md-4 col-sm-12 col-xs-12"><span class="glyphicon glyphicon-plus"></span> Student</a>
+			<a ng-click="showAdminView()" class="text-center col-lg-4 col-md-4 col-sm-12 col-xs-12"><span class="glyphicon glyphicon-plus"></span> Admin</a>
 		</div>
 
-		<div class="dashboard-jumbotron col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="dashboard-jumbotron col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="showDashboard">
 
 			<div class="student-thumbnail col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="student col-lg-10 col-md-10 col-sm-10 col-xs-12">
@@ -63,41 +63,94 @@
 
 		</div>
 
-		<div class="student-jumbotron col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="student-jumbotron col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="showStudent">
 			<div class="add-student-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
 				<div class="form-title col-lg-10 col-lg-offset-1">
 					<a class="col-lg-6 text-center new-student">New Student Form</a>
 				</div>
 
-				<div class="signup">
+				<div class="form">
 					<form class="col-lg-10 col-lg-offset-1">
-					
-						<div class="form-group col-lg-6">
-		<!-- 	    		<label for="exampleInputEmail1">First Name</label>
-		 -->				<input ng-model="newUser.firstName" type="text" class="form-control" id="exampleInputEmail1" placeholder="First Name">
+						
+						<div class="personal-info">
+							<h1 class="page-header">Personal Information</h1>
+							<div class="form-group col-lg-6">
+							<input type="text" class="form-control" id="exampleInputEmail1" placeholder="First Name">
+							</div>
+							<div class="form-group col-lg-6">
+							    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Last Name">
+							</div>
+			 				<div class="form-group col-lg-12">
+							    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+							</div>
+						    <div class="form-group col-lg-4">
+							    <span class="input-group-addon">City</span>
+							    <input type="email" class="form-control text-center" id="exampleInputEmail1">
+							</div>
+							<div class="form-group col-lg-4">
+							    <span class="input-group-addon">State</span>
+							    <input class="awesomplete form-control text-center"  list="selectedState" ng-model="selectedState" />
+								<datalist id="selectedState">
+									<option ng-repeat="state in states">{{state}}</option>
+								</datalist>
+							</div>
+							<div class="form-group col-lg-4">
+							    <span class="input-group-addon">Zip Code</span>
+							    <input type="email" class="form-control text-center" id="exampleInputEmail1">
+							</div>
 						</div>
-						<div class="form-group col-lg-6">
-			    			<!-- <label for="exampleInputEmail1">Last Name</label> -->
-						    <input ng-model="newUser.lastName" type="text" class="form-control" id="exampleInputEmail1" placeholder="Last Name">
+
+						<div class="devmtn-association">
+							<h1 class="page-header">Association With DevMountain</h1>
+							<div class="form-group col-lg-6">
+							    <span class="input-group-addon">DevMountain Student</span>
+							    <input class="awesomplete form-control text-center"  list="devmtnStudent" />
+								<datalist id="devmtnStudent">
+									<option>Yes</option>
+									<option>No</option>
+								</datalist>
+							</div>
+							<div class="form-group col-lg-6">
+							    <span class="input-group-addon">DevMountain Campus</span>
+							    <input class="awesomplete form-control text-center"  list="devmtnCampus"/>
+								<datalist id="devmtnCampus">
+									<option>Provo, UT</option>
+									<option>Salt Lake City, UT</option>
+									<option>Dallas, TX</option>
+								</datalist>
+							</div>
 						</div>
-		 				<div class="form-group col-lg-12">
-			    			<!-- <label for="exampleInputEmail1">Email</label> -->
-						    <input ng-model="newUser.email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+
+						<div class="skills">
+							<h1 class="page-header">Skills</h1>
+							<div class="form-group col-lg-4">
+							    <span class="input-group-addon">Skills</span>
+							    <input class="awesomplete form-control text-center"  list="selectedSkill" ng-model="selectedSkill" />
+								<datalist id="selectedSkill">
+									<option ng-repeat="skill in skills">{{skill}}</option>
+								</datalist>
+							</div>
 						</div>
-					    <div class="form-group col-lg-12">
-					    	<!-- <label for="exampleInputPassword1">Password</label> -->
-					    	<input ng-model="newUser.password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-					    </div>
-						<button ng-click="signUp(newUser)" type="submit" class="btn btn-success col-lg-6 col-lg-offset-3">Get Started</button>
+
+
+
+
+
+
+
+
+
+						<button type="submit" class="btn btn-success col-lg-6 col-lg-offset-3">Add Student</button>
+
 					</form>
 				</div>
 
 			</div>
 		</div>
 
-		<div class="admin-jumbotron">
-			
+		<div class="admin-jumbotron" ng-show="showAdmin">
+			<h1>Need to complete!</h1>
 		</div>
 
 	</div>
