@@ -182,7 +182,7 @@ body{
 	font-weight: 200;
 	color: #404040;
 }
-.student-jumbotron .add-student-box form input, .add-student-box form button, .add-student-box form span{
+.student-jumbotron .add-student-box form input, .add-student-box form a, .add-student-box .add-student, .add-student-box form span{
 	border-radius: 0px;
 	font-family: "Raleway";
 	font-weight: 500;
@@ -191,17 +191,49 @@ body{
 	padding: 20px;
 	color: #00A6F1;
 }
-.student-jumbotron .add-student-box form button{
-	padding-top: 10px;
-	padding-bottom: 10px;
+.student-jumbotron .add-student-box .add-student{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-top: 50px;
 }
-.student-jumbotron .add-student-box .form span{
+.student-jumbotron .add-student-box .form .form-headers{
 	border-radius: 0px;
 	background-color: #00A6F1; 
 	color: white;
 }
-
-
+.student-jumbotron .add-student-box .skills a{
+	border-radius: 0px;
+}
+.student-jumbotron .skills-chosen{
+	overflow: auto;
+	background-color: rgb(255,255,255, 0.9);
+}
+.student-jumbotron .skills-chosen a{
+	margin: 2.5px;
+}
+.student-jumbotron  .links label{
+	font-family: "Raleway";
+	font-weight: 300;
+	color: white;
+	text-align: right;
+}
+.admin-jumbotron h1{
+	font-family: "Raleway";
+	font-weight: 200;
+	color: #404040;
+}
+.admin-jumbotron input, .admin-jumbotron button{
+	font-family: "Raleway";
+	font-weight: 200;
+	border-radius: 0px;
+}
+.admin-jumbotron input{
+	color: #00A6F1;
+	font-weight: 400;
+}
+.admin-jumbotron button{
+	color: white;
+}
 
 
 
