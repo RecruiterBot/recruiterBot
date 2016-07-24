@@ -96,7 +96,7 @@ body{
 	justify-content: space-around;
 	padding-top: 15px;
 	padding-bottom: 15px;
-	border-top: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
 }
 .dashboard .dashboard-jumbotron .student{
 	display: flex;
@@ -133,23 +133,9 @@ body{
 
 .student-jumbotron .add-student-box{
 	overflow: auto;
-	border: 1px solid green;
-	background-color: black;
-	padding-top: 75px;
+	background-color: #0d0d0d;
+	padding-top: 25px;
 	padding-bottom: 75px;
-	/*display: flex;
-	flex-flow: column;
-	justify-content: center;*/
-}
-.student-jumbotron .add-student-box .auth-box{
-	overflow: auto;
-	border: 1px solid red;
-	display: flex;
-	flex-flow: column;
-	justify-content: flex-start;
-	background-color: black;
-	padding-top: 50px;
-	padding-bottom: 50px;
 }
 .student-jumbotron .add-student-box .form-title{
 	display: flex;
@@ -217,11 +203,6 @@ body{
 	color: white;
 	text-align: right;
 }
-.admin-jumbotron h1{
-	font-family: "Raleway";
-	font-weight: 200;
-	color: #404040;
-}
 .admin-jumbotron input, .admin-jumbotron button{
 	font-family: "Raleway";
 	font-weight: 200;
@@ -234,7 +215,12 @@ body{
 .admin-jumbotron button{
 	color: white;
 }
+.dashboard-jumbotron .jumbotron-headers, .student-jumbotron .jumbotron-headers, .admin-jumbotron .jumbotron-headers{
+	font-family: "Raleway";
+	font-weight: 200;
+	color: #404040;
 
+}
 
 
 
