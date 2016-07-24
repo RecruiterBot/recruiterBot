@@ -66,14 +66,14 @@
 		<div class="student-jumbotron col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="showStudent">
 			<div class="add-student-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-				<div class="form-title col-lg-10 col-lg-offset-1">
+				<div class="form-title col-lg-12">
 					<a class="col-lg-6 text-center new-student">New Student Form</a>
 				</div>
 
 				<div class="form">
 					<form class="col-lg-10 col-lg-offset-1">
 						
-						<div class="personal-info">
+						<div class="personal-info col-lg-12">
 							<h1 class="page-header">Personal Information</h1>
 							<div class="form-group col-lg-6">
 							<input type="text" class="form-control" id="exampleInputEmail1" placeholder="First Name">
@@ -85,35 +85,35 @@
 							    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
 							</div>
 						    <div class="form-group col-lg-4">
-							    <span class="input-group-addon">City</span>
-							    <input type="email" class="form-control text-center" id="exampleInputEmail1">
+							    <span class="input-group-addon form-headers">City</span>
+							    <input type="email" class="form-control text-center" id="exampleInputEmail1" placeholder="e.g., Dallas">
 							</div>
 							<div class="form-group col-lg-4">
-							    <span class="input-group-addon">State</span>
-							    <input class="awesomplete form-control text-center"  list="selectedState" ng-model="selectedState" />
+							    <span class="input-group-addon form-headers">State</span>
+							    <input class="awesomplete form-control text-center"  list="selectedState" ng-model="selectedState" placeholder="e.g., Texas"/>
 								<datalist id="selectedState">
 									<option ng-repeat="state in states">{{state}}</option>
 								</datalist>
 							</div>
 							<div class="form-group col-lg-4">
-							    <span class="input-group-addon">Zip Code</span>
-							    <input type="email" class="form-control text-center" id="exampleInputEmail1">
+							    <span class="input-group-addon form-headers">Zip Code</span>
+							    <input type="email" class="form-control text-center" id="exampleInputEmail1" placeholder="e.g., 02149">
 							</div>
 						</div>
 
-						<div class="devmtn-association">
+						<div class="devmtn-association col-lg-12">
 							<h1 class="page-header">Association With DevMountain</h1>
 							<div class="form-group col-lg-6">
-							    <span class="input-group-addon">DevMountain Student</span>
-							    <input class="awesomplete form-control text-center"  list="devmtnStudent" />
+							    <span class="input-group-addon form-headers">DevMountain Student</span>
+							    <input class="awesomplete form-control text-center"  list="devmtnStudent" placeholder="Yes/No"/>
 								<datalist id="devmtnStudent">
 									<option>Yes</option>
 									<option>No</option>
 								</datalist>
 							</div>
 							<div class="form-group col-lg-6">
-							    <span class="input-group-addon">DevMountain Campus</span>
-							    <input class="awesomplete form-control text-center"  list="devmtnCampus"/>
+							    <span class="input-group-addon form-headers" >DevMountain Campus</span>
+							    <input class="awesomplete form-control text-center"  list="devmtnCampus" placeholder="e.g., Dallas, TX"/>
 								<datalist id="devmtnCampus">
 									<option>Provo, UT</option>
 									<option>Salt Lake City, UT</option>
@@ -122,26 +122,49 @@
 							</div>
 						</div>
 
-						<div class="skills">
+						<div class="skills col-lg-12">
 							<h1 class="page-header">Skills</h1>
-							<div class="form-group col-lg-4">
-							    <span class="input-group-addon">Skills</span>
-							    <input class="awesomplete form-control text-center"  list="selectedSkill" ng-model="selectedSkill" />
+							<div class="form-group col-lg-6 col-lg-offset-3">
+							    <span class="input-group-addon form-headers">What are you top skills?</span>
+							    <input class="awesomplete form-control text-center" list="selectedSkill" ng-model="selectedSkill" placeholder="e.g., JavaScript"/>
 								<datalist id="selectedSkill">
 									<option ng-repeat="skill in skills">{{skill}}</option>
 								</datalist>
+								<a class="btn btn-block btn-success" ng-show="selectedSkill.length" ng-click="addToSkillsBox(selectedSkill)">
+									<i class="fa fa-plus" aria-hidden="true"></i>
+								</a>
+								<div class="skills-chosen" >
+									<a ng-repeat="skill in selectedSkills" class="btn btn-sm btn-primary btn-danger">{{skill}}<i ng-click="removeSkill(skill)" class="fa fa-times fa-lg btn" aria-hidden="true"></i></a>
+								</div>
 							</div>
 						</div>
 
+						<div class="links col-lg-12">
+							<h1 class="page-header">Links</h1>
+							<form class="form-horizontal">
+								<div class="form-group">
+								    <label for="inputEmail3" class="col-sm-2 control-label">LinkedIn</label>
+								    <div class="col-sm-10">
+								      <input type="url" class="form-control" id="inputEmail3" placeholder="Paste your LinkedIn url">
+								    </div>
+								</div>
+								<div class="form-group">
+								    <label for="inputEmail3" class="col-sm-2 control-label">GitHub</label>
+								    <div class="col-sm-10">
+								      <input type="url" class="form-control" id="inputEmail3" placeholder="Paste your GitHub url">
+								    </div>
+								</div>
+								<div class="form-group">
+								    <label for="inputEmail3" class="col-sm-2 control-label">Personal Website</label>
+								    <div class="col-sm-10">
+								      <input type="url" class="form-control" id="inputEmail3" placeholder="Paste your personal website url">
+								    </div>
+								</div>
+							</form>
+							
+						</div>
 
-
-
-
-
-
-
-
-						<button type="submit" class="btn btn-success col-lg-6 col-lg-offset-3">Add Student</button>
+						<a type="submit" class="btn btn-success col-lg-6 col-lg-offset-3 add-student"> Add Student </a>
 
 					</form>
 				</div>
@@ -150,8 +173,35 @@
 		</div>
 
 		<div class="admin-jumbotron" ng-show="showAdmin">
-			<h1>Need to complete!</h1>
+			<h1 class="page-header">Admins</h1>
+			<div class="well">
+				<form>
+					<div class="form-group">
+					    <label for="exampleInputEmail1">Register Administrator</label>
+					    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required>
+					</div>
+				  <button type="submit" class="btn btn-danger">Add Admin</button>
+				</form>
+			</div>
+			<hr>
+
 		</div>
 
 	</div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
