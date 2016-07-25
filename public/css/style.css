@@ -70,6 +70,10 @@ body{
 	justify-content: flex-start;
 	margin-top: 15px;
 	margin-bottom: 15px;
+	/*border-bottom: 1px solid lightgray;*/
+}
+.dashboard .border-underneath{
+	border-bottom: 1px solid lightgray;
 }
 .dashboard .header-tabs a{
 	text-decoration: none;
@@ -96,6 +100,56 @@ body{
 .dashboard .header-tabs .bordered{
 	border-left: 1px solid lightgray;
 	border-right: 1px solid lightgray;
+}
+.dashboard .filter-sort-buttons{
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-end;
+}
+.dashboard .filter-sort-buttons a, .dashboard .filter-sort-buttons p{
+	padding: 5px;
+	font-family: "Raleway";
+	font-size: 20px;
+	font-weight: 400;
+}
+.dashboard .filter-sort-buttons p{
+	color: lightgray;
+}
+.dashboard .filter-sort-buttons a{
+	text-decoration: none;
+	cursor: pointer;
+	color: gray;
+}
+.dashboard .filter-sort-buttons a:hover{
+	color: black;
+}
+.dashboard .filter-sort{
+	background-color: #00A6F1;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.dashboard .filter-sort i{
+	color: gray;
+}
+.dashboard .filter-sort i:hover{
+	cursor: pointer;
+	color: black;
+}
+.dashboard .filter-sort h1{
+	margin: 0px;
+	font-family: "Raleway";
+	font-weight: 500;
+}
+.dashboard .filter-sort label{
+	font-family: "Raleway";
+	font-weight: 500;
+}
+.dashboard .filter-sort input{
+	border-radius: 0px;
+}
+.dashboard .filter-sort .form{
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 .dashboard .dashboard-jumbotron .student-thumbnail{
 	display: flex;
@@ -158,12 +212,11 @@ body{
 .dashboard .dashboard-jumbotron .admin-actions{
 	display: flex;
 	flex-flow: column;
-	justify-content: center;
+	justify-content: flex-start;
 }
 .dashboard .dashboard-jumbotron .admin-actions a{
 	border-radius: 0px;
 }
-
 .student-jumbotron .add-student-box{
 	overflow: auto;
 	background-color: #0d0d0d;
@@ -199,7 +252,7 @@ body{
 .student-jumbotron .add-student-box .form h1{
 	font-family: "Raleway";
 	font-weight: 200;
-	color: #404040;
+	color: rgba(154, 149, 149, 0.84);
 }
 .student-jumbotron .add-student-box form input, .add-student-box form a, .add-student-box .add-student, .add-student-box form span{
 	border-radius: 0px;
