@@ -68,7 +68,6 @@ body{
 	display: flex;
 	flex-flow: row;
 	justify-content: flex-start;
-	border: 1px solid black;
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
@@ -86,9 +85,17 @@ body{
 	background-color: #00A6F1;
 	color: white;
 }
+.dashboard .header-tabs .devmtn-tab {
+	background-color: #00A6F1;
+	color: white;
+}
+.dashboard .header-tabs .regular-tab {
+	background-color: white;
+	color: #00A6F1;
+}
 .dashboard .header-tabs .bordered{
-	border-left: 1px solid black;
-	border-right: 1px solid black;
+	border-left: 1px solid lightgray;
+	border-right: 1px solid lightgray;
 }
 .dashboard .dashboard-jumbotron .student-thumbnail{
 	display: flex;
@@ -96,7 +103,33 @@ body{
 	justify-content: space-around;
 	padding-top: 15px;
 	padding-bottom: 15px;
+	/*border-bottom: 1px solid lightgray;*/
+}
+.dashboard .dashboard-jumbotron .student-moreinfo{
+	cursor: pointer;
+}
+.dashboard .dashboard-jumbotron .more-info {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+.dashboard .dashboard-jumbotron .more-info h3, p{
+	font-family: "Raleway";
+}
+.dashboard .dashboard-jumbotron .more-info h3{
+	font-weight: 500;
+	color: black;
+	/*margin-bottom: 0px;*/
 	border-bottom: 1px solid lightgray;
+}
+.dashboard .dashboard-jumbotron .more-info p{
+	color: gray;
+	margin: 0px;
+	font-weight: 400;
+	font-style: 17.5
+}
+.dashboard .dashboard-jumbotron .more-info .details, .dashboard .dashboard-jumbotron .more-info .contact{
+	/*border-left: 2.5px solid lightgray;*/
 }
 .dashboard .dashboard-jumbotron .student{
 	display: flex;
@@ -125,7 +158,7 @@ body{
 .dashboard .dashboard-jumbotron .admin-actions{
 	display: flex;
 	flex-flow: column;
-	justify-content: space-around;
+	justify-content: center;
 }
 .dashboard .dashboard-jumbotron .admin-actions a{
 	border-radius: 0px;
@@ -219,8 +252,54 @@ body{
 	font-family: "Raleway";
 	font-weight: 200;
 	color: #404040;
-
 }
+.dashboard-jumbotron .edit-profile{
+	background-color: lightgray;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.dashboard-jumbotron .edit-profile span{
+	background-color: #00A6F1;
+	color: white;
+}
+.dashboard-jumbotron .edit-profile input, .dashboard-jumbotron .edit-profile a{
+	border-radius: 0px;
+}
+.dashboard-jumbotron .edit-profile a{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.dashboard-jumbotron .edit-profile h1{
+	font-family: "Raleway";
+	font-weight: 200;
+}
+.dashboard-jumbotron .edit-profile .hide-times{
+	cursor: pointer;
+	color: gray;
+}
+.dashboard-jumbotron .edit-profile .hide-times:hover{
+	color: black;
+}
+.dashboard-jumbotron, .student-jumbotron, .admin-jumbotron{
+	margin-bottom: 50px;
+}
+.edit-profile .skills a{
+	border-radius: 0px;
+}
+.edit-profile .skills-chosen{
+	overflow: auto;
+	background-color: rgb(255,255,255, 0.9);
+}
+.edit-profile .skills-chosen a{
+	margin: 2.5px;
+}
+
+
+
+
+
 
 
 

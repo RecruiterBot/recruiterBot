@@ -6,5 +6,9 @@ angular.module('recruiterBot')
 			// return $http.put(`/api/admin/email`, newAdmin);
 		}
 
+		this.createStudent = (newAdmin)=>{
+			console.log(newAdmin);
+			// return $http.post(`/api/students`, newAdmin);
+		}
 // end of dashboardService		
 	})
