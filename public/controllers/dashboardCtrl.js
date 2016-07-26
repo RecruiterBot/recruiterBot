@@ -101,13 +101,17 @@ angular.module('recruiterBot')
 			dashboardService.createStudent(newStudent)
 			.then((response)=>{
 				console.log(response);
+				$scope.newStudent = "";
+				$scope.selectedSkills = [];
+				getStudents();
+				$scope.showDashboardView();
 			})
 
 			// clear all input fields
-			$scope.newStudent = "";
-			$scope.selectedSkills = [];
-			getStudents();
-			$scope.showDashboardView();
+			// $scope.newStudent = "";
+			// $scope.selectedSkills = [];
+			// getStudents();
+			// $scope.showDashboardView();
 		}
 
 		// ///////////////////////////////////// admin-jumbotron /////////////////////////////////////////////////
@@ -143,7 +147,6 @@ angular.module('recruiterBot')
 		}
 
 		let convertAddressToArray = (address)=>{
-			console.log(">>>>>>", address);
 			let AddressToArray = [];
 			if ((address.location) && (address.location.city) && (address.location.state) && (address.location.zip)) {
 				AddressToArray.push(address.location);
@@ -155,19 +158,28 @@ angular.module('recruiterBot')
 		}
 
 		let convertToReadableData = (allStudents)=>{
-			for (var i = 0; i < allStudents.length; i++) {
+			for (let i = 0; i < allStudents.length; i++) {
 				if (allStudents[i].devMountain === true) {
 					allStudents[i].devMountain = "Yes";
 				}else{
 					allStudents[i].devMountain = "No";
 				}
-				switch(allStudents[i].yearsExperience){
-					case 1: allStudents[i].yearsExperience = "0-1 years";
-					case 2: allStudents[i].yearsExperience = "1-2 years";
-					case 3: allStudents[i].yearsExperience = "2-3 years";
-					case 4: allStudents[i].yearsExperience = "3-4 years";
-					case 5: allStudents[i].yearsExperience = "5+ years";
+			
+				if (allStudents[i].yearsExperience === 1) {
+					allStudents[i].yearsExperience = "0-1 years";
+				}else if (allStudents[i].yearsExperience === 2) {
+					allStudents[i].yearsExperience = "1-2 years";
 				}
+				else if (allStudents[i].yearsExperience === 3) {
+					allStudents[i].yearsExperience = "2-3 years";
+				}
+				else if (allStudents[i].yearsExperience === 4) {
+					allStudents[i].yearsExperience = "3-4 years";
+				}
+				else if (allStudents[i].yearsExperience === 5) {
+					allStudents[i].yearsExperience = "5+ years";
+				}
+
 				let skillsToString = "";
 				for(let prop in allStudents[i].skills){
 					skillsToString = skillsToString + prop + ", ";
