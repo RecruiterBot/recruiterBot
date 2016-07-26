@@ -5,9 +5,9 @@ module.exports = ( Botkit, app, mongoURI ) => {
     storage: botkit_mongo_storage
   } );
 
-  const bot = controller.spawn({
+  const bot = controller.spawn( {
     token: require( '../sophiebot/config' ).token,
-  })
+  } )
 
   controller.hears( [ 'find all students' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
     controller.storage.students.all( ( err, allStudents ) => {
@@ -15,9 +15,37 @@ module.exports = ( Botkit, app, mongoURI ) => {
         console.log( 'err', err )
       }
       console.log( 'students', allStudents )
-        bot.reply( message, {
-          'text': 'I found ' + allStudents[ 0 ].name.firstName + ' ' + allStudents[ 0 ].name.lastName
+      createAttachment = ( arr ) => {
+        const reply = [];
+        arr.forEach( value => {
+          reply.push( {
+            "attachments": [
+              {
+                "fallback": value.name.firstName + " " + value.name.lastName,
+                "title": "<" + value.linkedIn + "|" + value.name.firstName + " " + value.name.lastName + ">",
+                "fields": [
+                  {
+                    "title": "eMail address",
+                    "value": value.email,
+                    "short": true
+                  }
+                  ,
+                  {
+                    "title": "Years experience",
+                    "value": value.yearsExperience.toString(),
+                    "short": true
+                  }
+                ]
+              }
+            ]
+          } )
         } )
+        return reply;
+      }
+      const attachment = createAttachment( allStudents );
+      for (var i = 0; i < attachment.length; i++) {
+        bot.reply( message, attachment[i] )
+      }
     } )
   } )
 

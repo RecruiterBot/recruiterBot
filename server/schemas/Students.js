@@ -14,7 +14,7 @@ const Students = new mongoose.Schema( {
 	personalWebsite: { type: String },
 	skills: {},
 	campus: { type: String },
-	yearsExperience: { type: Number }
+	yearsExperience: { type: Number, required: true }
 
 } );
 
