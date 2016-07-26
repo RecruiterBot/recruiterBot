@@ -6,6 +6,8 @@ const mongoose = require( 'mongoose' );
 const { json } = require( 'body-parser' );
 const { urlencoded } = require ( 'body-parser' );
 const MR = require( './server/masterRoutes' );
+const Sophie = require( './server/ctrls/sophieCtrl' );
+const Botkit = require( 'botkit' )
 
 // setup app //
 
@@ -25,6 +27,7 @@ app.use( express.static( `${ __dirname }/public`) );
 // use Master Routes //
 
 MR( app );
+Sophie( Botkit, app, mongoURI );
 
 // mongoose connection //
 
