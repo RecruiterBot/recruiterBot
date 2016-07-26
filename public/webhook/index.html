@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Incoming Slack Message</title>
+  </head>
+  <body>
+<input type="text" name="message" id="message">
+<button onclick="sendToSlack()">Send to Slack</button>
+
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<script>
+  function sendToSlack(){
+    var setting = {
+      url: "https://hooks.slack.com/services/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"
+      method: 'POST',
+      datatype: "application/x-www-form-urlencoded",
+      data:{
+        "payload": JSON.stringify({text:$(#message).val()})
+      }
+    }
+$.ajax(settings).done(function(response){
+  console.log(response)
+})
+  }
+</script>
+  </body>
+</html>

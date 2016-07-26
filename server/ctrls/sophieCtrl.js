@@ -5,9 +5,9 @@ module.exports = ( Botkit, app, mongoURI ) => {
     storage: botkit_mongo_storage
   } );
 
-  const bot = controller.spawn({
+  const bot = controller.spawn( {
     token: require( '../sophiebot/config' ).token,
-  })
+  } )
 
   controller.hears( [ 'find all students' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
     controller.storage.students.all( ( err, allStudents ) => {
@@ -15,9 +15,125 @@ module.exports = ( Botkit, app, mongoURI ) => {
         console.log( 'err', err )
       }
       console.log( 'students', allStudents )
-        bot.reply( message, {
-          'text': 'I found ' + allStudents[ 0 ].name.firstName + ' ' + allStudents[ 0 ].name.lastName
+
+    // function to build the attachment
+      
+      createAttachment = ( arr ) => {
+        const reply = [];
+        arr.forEach( value => {
+
+    //create skills as string
+
+          const skills = Object.keys( value.skills ).join(", ");
+
+    //function to build and format the websites and assign title link website.
+
+          const formatWebsites = ( obj ) => {
+            const formatted = [];
+            if( obj.gitHub ){
+              formatted.push( "gitHub: " + obj.gitHub );
+              value.link = obj.gitHub;
+            }
+            if( obj.linkedIn ){
+              formatted.push( "linkedIn: " + obj.linkedIn );
+              value.link = obj.linkedIn;
+            }
+            if( obj.personalWebsite ){
+              formatted.push( "personal Website: " + obj.personalWebsite );
+              value.link = obj.personalWebsite;
+            }
+            return formatted.join("\n");
+          }
+
+    //create websites
+
+          const websites = formatWebsites( value );
+
+    //function for formating locations
+
+        const createLocations = ( arr ) => {
+          const locs = [];
+          arr.forEach( loc => {
+            locs.push( loc.city + ", " + loc.state );
+          } );
+          return locs.join( "\n" )
+        }
+
+    //create locations
+
+        const locations = createLocations( value.locations );
+
+    //identify sponsored
+
+          if( value.devMountain ){
+              value.sponsored = ":star: *_Sponsored_*:  ";
+            }
+            else{
+              value.sponsored = "";
+            }
+
+
+    //format the attachment reply
+
+        const messageContent = {
+            "attachments": [
+              {
+                "fallback": value.name.firstName + " " + value.name.lastName,
+                "pretext": "<" + value.link + "|" + value.sponsored + value.name.firstName + " " + value.name.lastName + ">",
+                "mrkdwn_in" : [ "pretext" ],
+                "fields": [
+                  {
+                    "title": "eMail address",
+                    "value": value.email,
+                    "short": true
+                  },
+                  {
+                    "title": "Years experience:",
+                    "value": value.yearsExperience.toString(),
+                    "short": true
+                  },
+                  {
+                    "title": "Locations: ",
+                    "value": locations,
+                    "short": true
+                  },
+                  {
+                    "title": "Skills:",
+                    "value": skills,
+                    "short": true
+                  },
+                  {
+                    "title": "Websites:",
+                    "value": websites + "\n"
+                  }
+                ]
+              }
+            ]
+          };
+
+    // arrange responses
+
+
+            if( value.devMountain ){
+              reply.unshift( messageContent )
+            }
+            else{
+              reply.push( messageContent )
+            }
+
         } )
+        return reply;
+      }
+
+  // create the attachment
+
+      const attachment = createAttachment( allStudents );
+
+  // loop through the attachment and send a reply
+      
+      for (var i = 0; i < attachment.length; i++) {
+        bot.reply( message, attachment[i] )
+      }
     } )
   } )
 
