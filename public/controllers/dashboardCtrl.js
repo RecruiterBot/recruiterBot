@@ -10,7 +10,7 @@ angular.module('recruiterBot')
 		$scope.showDashboard = true;
 		$scope.showStudent = false;
 		$scope.showAdmin = false;
-		$scope.showEditStudentProfile = false;
+		// $scope.showEditStudentProfile = false;
 		$scope.showFilter = false;
 
 		// //////////////////////////////// header-tabs ////////////////////////////////////////////////////////////
@@ -38,11 +38,21 @@ angular.module('recruiterBot')
 		}
 
 		// //////////////////////////////// dashboard-jumbotron ///////////////////////////////////////////////////
-		$scope.editStudentProfile = ()=>{
-			$scope.showEditStudentProfile = true;
-		}
-		$scope.hideEditStudentProfile = ()=>{
-			$scope.showEditStudentProfile = false;
+		// $scope.editStudentProfile = ()=>{
+		// 	$scope.showEditStudentProfile = true;
+		// }
+		// $scope.hideEditStudentProfile = ()=>{
+		// 	$scope.showEditStudentProfile = false;
+		// }
+		let getStudents = ()=>{
+			dashboardService.getStudents()
+			.then((response)=>{
+				console.log(response);
+				let allStudents = response.data;
+				allStudents = convertToReadableData(allStudents);
+				console.log(allStudents);
+				$scope.students = allStudents;
+			})
 		}
 
 
@@ -69,13 +79,15 @@ angular.module('recruiterBot')
 
 		// creates a new student by using New Student Form
 		$scope.createStudent = (newStudent)=>{
-
 			// change 'devMountain' property to boolean
 			if (newStudent['devMountain'] === "Yes") {
 				newStudent['devMountain'] = true;
 			}else{
 				newStudent['devMountain'] = false;
 			}
+			newStudent.yearsExperience = convertYearsExperienceToNumber(newStudent.yearsExperience);
+			newStudent.address = convertAddressToArray(newStudent.address);
+
 
 			// format newStudent object to json format
 			let studentSkills = {};
@@ -84,15 +96,18 @@ angular.module('recruiterBot')
 			}
 			newStudent.skills = studentSkills;
 
+			console.log(newStudent);
 			// send formatted newStudent object to dashboardService
 			dashboardService.createStudent(newStudent)
-			// .then((response)=>{
-			// 	console.log(response);
-			// })
+			.then((response)=>{
+				console.log(response);
+			})
 
 			// clear all input fields
 			$scope.newStudent = "";
 			$scope.selectedSkills = [];
+			getStudents();
+			$scope.showDashboardView();
 		}
 
 		// ///////////////////////////////////// admin-jumbotron /////////////////////////////////////////////////
@@ -113,6 +128,58 @@ angular.module('recruiterBot')
 
 
 
+
+
+
+		// local functions
+		let convertYearsExperienceToNumber = (yearsExperience)=>{
+			switch(yearsExperience){
+				case "0-1 years": return 1;
+				case "1-2 years": return 2;
+				case "2-3 years": return 3;
+				case "3-4 years": return 4;
+				case "5+ years": return 5;
+			}
+		}
+
+		let convertAddressToArray = (address)=>{
+			console.log(">>>>>>", address);
+			let AddressToArray = [];
+			if ((address.location) && (address.location.city) && (address.location.state) && (address.location.zip)) {
+				AddressToArray.push(address.location);
+			}
+			if ((address.location1) && (address.location1.city) && (address.location1.state) && (address.location1.zip)) {
+				AddressToArray.push(address.location1);
+			}
+			return AddressToArray;
+		}
+
+		let convertToReadableData = (allStudents)=>{
+			for (var i = 0; i < allStudents.length; i++) {
+				if (allStudents[i].devMountain === true) {
+					allStudents[i].devMountain = "Yes";
+				}else{
+					allStudents[i].devMountain = "No";
+				}
+				switch(allStudents[i].yearsExperience){
+					case 1: allStudents[i].yearsExperience = "0-1 years";
+					case 2: allStudents[i].yearsExperience = "1-2 years";
+					case 3: allStudents[i].yearsExperience = "2-3 years";
+					case 4: allStudents[i].yearsExperience = "3-4 years";
+					case 5: allStudents[i].yearsExperience = "5+ years";
+				}
+				let skillsToString = "";
+				for(let prop in allStudents[i].skills){
+					skillsToString = skillsToString + prop + ", ";
+				}
+				allStudents[i].skills = skillsToString.substr(0, skillsToString.length-2);
+			}
+			return allStudents;
+		}
+
+
+
+		getStudents();
 
 
 // end of dashboardCtrl		

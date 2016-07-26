@@ -5,9 +5,10 @@ const location = require( './location' );
 const Students = new mongoose.Schema( {
 
 	name,
-	location: [ location ],
+	address: [ location ],
 	email: { type: String, required: true },
 	devMountain: { type: Boolean, required: true },
+	gitHub: { type: String },
 	linkedIn: { type: String },
 	personalWebsite: { type: String },
 	skills: {},
