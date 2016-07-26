@@ -12,7 +12,6 @@ const Students = new mongoose.Schema( {
 	devMountain: { type: Boolean, required: true },
 	gitHub: { type: String },
 	linkedIn: { type: String },
-	gitHubUrl: { type: String },
 	personalWebsite: { type: String },
 	skills: {},
 	campus: { type: String },
