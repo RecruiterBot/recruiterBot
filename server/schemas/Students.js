@@ -9,6 +9,7 @@ const Students = new mongoose.Schema( {
 	email: { type: String, required: true },
 	devMountain: { type: Boolean, required: true },
 	linkedIn: { type: String },
+	gitHubUrl: { type: String },
 	personalWebsite: { type: String },
 	skills: {},
 	campus: { type: String },

@@ -1,4 +1,7 @@
 node_modules
-public/css/bootstrap
 public/videos/*
 public/img/NSP.JPG
+public/css/awesomplete/
+public/css/bootstrap/
+public/css/font-awesome/
+public/css/animate.css
