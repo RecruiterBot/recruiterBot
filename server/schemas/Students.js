@@ -1,10 +1,12 @@
 const mongoose = require( 'mongoose' );
-const name = require( './name' );
 const location = require( './location' );
 
 const Students = new mongoose.Schema( {
 
-	name,
+	name:{
+		firstName: { type: String, required: true },
+		lastName: {  type: String, required: true} 
+	},
 	address: [ location ],
 	email: { type: String, required: true },
 	devMountain: { type: Boolean, required: true },

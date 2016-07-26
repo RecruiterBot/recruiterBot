@@ -1,4 +1,3 @@
-
 // requires //
 
 const express = require ( 'express' );
@@ -20,9 +19,9 @@ const mongoURI = 'mongodb://localhost:27017/recruiterBot';
 
 // app pre-processors //
 
-app.use( urlencoded( { extended: true } ) );
+app.use( urlencoded( { extended: true } ) ); //
 app.use( json() );
-app.use( express.static( `${ __dirname }/public`) );
+app.use( express.static( `${ __dirname }/public`) );// public contains static assets and these are getting served up to express middleware
 
 // use Master Routes //
 
@@ -32,7 +31,7 @@ Sophie( Botkit, app, mongoURI );
 // mongoose connection //
 
 mongoose.set( `debug`, true );
-mongoose.connect( mongoURI );
+mongoose.connect( mongoURI ); // currently only sending to local storage
 mongoose.connection.once( `open`, () => {
 	console.log( `connected to Mongo DB at ${ mongoURI }` );
 } );
