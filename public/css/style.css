@@ -68,9 +68,12 @@ body{
 	display: flex;
 	flex-flow: row;
 	justify-content: flex-start;
-	border: 1px solid black;
 	margin-top: 15px;
 	margin-bottom: 15px;
+	/*border-bottom: 1px solid lightgray;*/
+}
+.dashboard .border-underneath{
+	border-bottom: 1px solid lightgray;
 }
 .dashboard .header-tabs a{
 	text-decoration: none;
@@ -80,14 +83,73 @@ body{
 	font-weight: 200;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	cursor: pointer;
 }
 .dashboard .header-tabs a:hover{
 	background-color: #00A6F1;
 	color: white;
 }
+.dashboard .header-tabs .devmtn-tab {
+	background-color: #00A6F1;
+	color: white;
+}
+.dashboard .header-tabs .regular-tab {
+	background-color: white;
+	color: #00A6F1;
+}
 .dashboard .header-tabs .bordered{
-	border-left: 1px solid black;
-	border-right: 1px solid black;
+	border-left: 1px solid lightgray;
+	border-right: 1px solid lightgray;
+}
+.dashboard .filter-sort-buttons{
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-end;
+}
+.dashboard .filter-sort-buttons a, .dashboard .filter-sort-buttons p{
+	padding: 5px;
+	font-family: "Raleway";
+	font-size: 20px;
+	font-weight: 400;
+}
+.dashboard .filter-sort-buttons p{
+	color: lightgray;
+}
+.dashboard .filter-sort-buttons a{
+	text-decoration: none;
+	cursor: pointer;
+	color: gray;
+}
+.dashboard .filter-sort-buttons a:hover{
+	color: black;
+}
+.dashboard .filter-sort{
+	background-color: #00A6F1;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.dashboard .filter-sort i{
+	color: gray;
+}
+.dashboard .filter-sort i:hover{
+	cursor: pointer;
+	color: black;
+}
+.dashboard .filter-sort h1{
+	margin: 0px;
+	font-family: "Raleway";
+	font-weight: 500;
+}
+.dashboard .filter-sort label{
+	font-family: "Raleway";
+	font-weight: 500;
+}
+.dashboard .filter-sort input{
+	border-radius: 0px;
+}
+.dashboard .filter-sort .form{
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 .dashboard .dashboard-jumbotron .student-thumbnail{
 	display: flex;
@@ -95,7 +157,33 @@ body{
 	justify-content: space-around;
 	padding-top: 15px;
 	padding-bottom: 15px;
-	border-top: 1px solid lightgray;
+	/*border-bottom: 1px solid lightgray;*/
+}
+.dashboard .dashboard-jumbotron .student-moreinfo{
+	cursor: pointer;
+}
+.dashboard .dashboard-jumbotron .more-info {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+.dashboard .dashboard-jumbotron .more-info h3, p{
+	font-family: "Raleway";
+}
+.dashboard .dashboard-jumbotron .more-info h3{
+	font-weight: 500;
+	color: black;
+	/*margin-bottom: 0px;*/
+	border-bottom: 1px solid lightgray;
+}
+.dashboard .dashboard-jumbotron .more-info p{
+	color: gray;
+	margin: 0px;
+	font-weight: 400;
+	font-style: 17.5
+}
+.dashboard .dashboard-jumbotron .more-info .details, .dashboard .dashboard-jumbotron .more-info .contact{
+	/*border-left: 2.5px solid lightgray;*/
 }
 .dashboard .dashboard-jumbotron .student{
 	display: flex;
@@ -124,39 +212,24 @@ body{
 .dashboard .dashboard-jumbotron .admin-actions{
 	display: flex;
 	flex-flow: column;
-	justify-content: space-around;
+	justify-content: flex-start;
 }
 .dashboard .dashboard-jumbotron .admin-actions a{
 	border-radius: 0px;
 }
-
-.add-student-box{
+.student-jumbotron .add-student-box{
 	overflow: auto;
-	border: 1px solid green;
-	background-color: black;
-	padding-top: 75px;
+	background-color: #0d0d0d;
+	padding-top: 25px;
 	padding-bottom: 75px;
-	/*display: flex;
-	flex-flow: column;
-	justify-content: center;*/
 }
-.add-student-box .auth-box{
-	overflow: auto;
-	border: 1px solid red;
-	display: flex;
-	flex-flow: column;
-	justify-content: flex-start;
-	background-color: black;
-	padding-top: 50px;
-	padding-bottom: 50px;
-}
-.add-student-box .form-title{
+.student-jumbotron .add-student-box .form-title{
 	display: flex;
 	flex-flow: row;
 	justify-content: center;
 	margin-bottom: 50px;
 }
-.add-student-box .form-title a{
+.student-jumbotron .add-student-box .form-title a{
 	font-size: 25px;
 	font-family: "Raleway";
 	font-weight: 200;
@@ -167,29 +240,115 @@ body{
 	color: black;
 	cursor: pointer;
 	color: white;
-	/*border: 1px solid lightgray;*/
 }
 
-.add-student-box .new-student p, .authentication .login p{
+.student-jumbotron .add-student-box .new-student p{
 	font-family: "Raleway";
 	font-size: 30px;
 	margin-top: 40px;
 	margin-bottom: 40px;
 	color: lightgray;
 }
-.add-student-box form input, .add-student-box form button{
+.student-jumbotron .add-student-box .form h1{
+	font-family: "Raleway";
+	font-weight: 200;
+	color: rgba(154, 149, 149, 0.84);
+}
+.student-jumbotron .add-student-box form input, .add-student-box form a, .add-student-box .add-student, .add-student-box form span{
 	border-radius: 0px;
 	font-family: "Raleway";
 	font-weight: 500;
 }
-.add-student-box form input{
+.student-jumbotron .add-student-box form input{
 	padding: 20px;
 	color: #00A6F1;
 }
-.add-student-box form button{
+.student-jumbotron .add-student-box .add-student{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-top: 50px;
+}
+.student-jumbotron .add-student-box .form .form-headers{
+	border-radius: 0px;
+	background-color: #00A6F1; 
+	color: white;
+}
+.student-jumbotron .add-student-box .skills a{
+	border-radius: 0px;
+}
+.student-jumbotron .skills-chosen{
+	overflow: auto;
+	background-color: rgb(255,255,255, 0.9);
+}
+.student-jumbotron .skills-chosen a{
+	margin: 2.5px;
+}
+.student-jumbotron  .links label{
+	font-family: "Raleway";
+	font-weight: 300;
+	color: white;
+	text-align: right;
+}
+.admin-jumbotron input, .admin-jumbotron button{
+	font-family: "Raleway";
+	font-weight: 200;
+	border-radius: 0px;
+}
+.admin-jumbotron input{
+	color: #00A6F1;
+	font-weight: 400;
+}
+.admin-jumbotron button{
+	color: white;
+}
+.dashboard-jumbotron .jumbotron-headers, .student-jumbotron .jumbotron-headers, .admin-jumbotron .jumbotron-headers{
+	font-family: "Raleway";
+	font-weight: 200;
+	color: #404040;
+}
+.dashboard-jumbotron .edit-profile{
+	background-color: lightgray;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+.dashboard-jumbotron .edit-profile span{
+	background-color: #00A6F1;
+	color: white;
+}
+.dashboard-jumbotron .edit-profile input, .dashboard-jumbotron .edit-profile a{
+	border-radius: 0px;
+}
+.dashboard-jumbotron .edit-profile a{
 	padding-top: 10px;
 	padding-bottom: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
+.dashboard-jumbotron .edit-profile h1{
+	font-family: "Raleway";
+	font-weight: 200;
+}
+.dashboard-jumbotron .edit-profile .hide-times{
+	cursor: pointer;
+	color: gray;
+}
+.dashboard-jumbotron .edit-profile .hide-times:hover{
+	color: black;
+}
+.dashboard-jumbotron, .student-jumbotron, .admin-jumbotron{
+	margin-bottom: 50px;
+}
+.edit-profile .skills a{
+	border-radius: 0px;
+}
+.edit-profile .skills-chosen{
+	overflow: auto;
+	background-color: rgb(255,255,255, 0.9);
+}
+.edit-profile .skills-chosen a{
+	margin: 2.5px;
+}
+
 
 
 
