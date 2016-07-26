@@ -61,7 +61,7 @@ module.exports = ( Botkit, app, mongoURI ) => {
 
     //create locations
 
-        const locations = createLocations( value.address );
+        const locations = createLocations( value.locations );
 
     //identify sponsored
 
