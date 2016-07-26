@@ -32,7 +32,7 @@ module.exports = ( Botkit, app, mongoURI ) => {
       bot.reply( message, 'Ok, excellent, here is what you need.' )
     }
     else {
-      bot.reply( message, "I only speak a few phrases right now, try me out late." );
+      bot.reply( message, "I only speak a few phrases right now, try me out later." );
     }
   } );
 
