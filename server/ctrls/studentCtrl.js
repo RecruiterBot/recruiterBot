@@ -1,5 +1,5 @@
 const Student = require( '../schemas/Students' );
-
+b            
 module.exports = {
 
 	getStudents( req, res ) {
