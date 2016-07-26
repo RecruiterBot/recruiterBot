@@ -18,6 +18,7 @@ module.exports = ( Botkit, app, mongoURI ) => {
       createAttachment = ( arr ) => {
         const reply = [];
         arr.forEach( value => {
+          const skills = Object.keys( value.skills ).join(", ")
           reply.push( {
             "attachments": [
               {
@@ -34,6 +35,10 @@ module.exports = ( Botkit, app, mongoURI ) => {
                     "title": "Years experience",
                     "value": value.yearsExperience.toString(),
                     "short": true
+                  },
+                  {
+                    "title": "Skills",
+                    "value": skills
                   }
                 ]
               }
