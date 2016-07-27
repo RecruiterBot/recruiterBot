@@ -51,8 +51,16 @@ angular.module('recruiterBot')
 			})
 		}
 
-		$scope.updateStudentById = (updateStudent)=>{
-			console.log(updateStudent);
+		// $scope.updateStudentById = (updateStudent)=>{
+		// 	console.log(updateStudent);
+		// }
+
+		$scope.deleteStudent = (studentId)=>{
+			console.log(studentId);
+			dashboardService.deleteStudent(studentId)
+			.then((response)=>{
+				getStudents();
+			})
 		}
 
 
@@ -111,42 +119,56 @@ angular.module('recruiterBot')
 			let alertMessage = "Please enter the following:\n";
 			let alertMessageDetails = alertMessage;
 			let counter = 1;
-			let requiredField = 1;
+
 			console.log(newStudent);
+
 			if (!newStudent) {
 				return alert("Please fill out the form");
 			}
-			if (!newStudent.name.firstName) {
-				alertMessageDetails = alertMessageDetails + counter + ". First Name\n";
+			if (!newStudent.name || !newStudent.name.firstName) {
+				alertMessageDetails = alertMessageDetails + counter + ". First Name (i.e., 'Jackie')\n";
 				counter++;
 			}
-			requiredField++;
-			if (!newStudent.name.lastName) {
-				alertMessageDetails = alertMessageDetails + counter + ". Last Name\n";
-				counter++;
-			}
-			requiredField++;
-			if (!newStudent.email) {
-				alertMessageDetails = alertMessageDetails + counter + ". Email\n";
-				counter++;
-			}
-			requiredField++;
 			
-			if (!newStudent.devMountain ) {
-				alertMessageDetails = alertMessageDetails + counter + ". DevMountain Student\n";
+			if (!newStudent.name || !newStudent.name.lastName) {
+				alertMessageDetails = alertMessageDetails + counter + ". Last Name (i.e., 'Robinson')\n";
 				counter++;
 			}
-			requiredField++;
-			if (!newStudent.campus ) {
-				alertMessageDetails = alertMessageDetails + counter + ". DevMountain Campus\n";
+			
+			if (!newStudent.email || (newStudent.email.split('').indexOf('@') === -1)) {
+				alertMessageDetails = alertMessageDetails + counter + ". Email (i.e., 'jrobinson@gmail.com')\n";
 				counter++;
 			}
-			requiredField++;
-			if ((counter > 1) && (counter !== requiredField)) {
+			
+			if ($scope.selectedLocations.length === 0) {
+				alertMessageDetails = alertMessageDetails + counter + ". Location (at least 1 location)\n";
+				counter++;
+			}
+			
+			if (!newStudent.devMountain) {
+				alertMessageDetails = alertMessageDetails + counter + ". DevMountain Student (Yes/No)\n";
+				counter++;
+			}
+			
+			// if (!newStudent.campus ) {
+			// 	alertMessageDetails = alertMessageDetails + counter + ". DevMountain Campus\n";
+			// 	counter++;
+			// }
+			if (!newStudent.yearsExperience ) {
+				alertMessageDetails = alertMessageDetails + counter + ". Years of Experience\n";
+				counter++;
+			}
+			
+			if (counter > 1) {
 				return alert(alertMessageDetails);
 			}
-		
-
+			
+			// string formatters
+			newStudent.name.firstName = stringTrimmer(newStudent.name.firstName);
+			newStudent.name.lastName = stringTrimmer(newStudent.name.lastName);
+			newStudent.name.firstName = capitalizeFirstLetterOfWords(newStudent.name.firstName);
+			newStudent.name.lastName = capitalizeFirstLetterOfWords(newStudent.name.lastName);
+			newStudent.email = newStudent.email.trim();
 
 
 			// change 'devMountain' property to boolean
@@ -247,6 +269,21 @@ angular.module('recruiterBot')
 			}
 			return allStudents;
 		}
+
+		let capitalizeFirstLetterOfWords = (str)=>{
+			let strToArray = str.split(" ");
+			let toReturn = "";
+			for (let i = 0; i < strToArray.length; i++) {
+				toReturn = toReturn + (strToArray[i].charAt(0).toUpperCase() + strToArray[i].slice(1)) + " ";
+			}
+			return toReturn.substr(0, toReturn.length-1);
+		}
+		let stringTrimmer = (str)=>{
+			str = str.replace(/\s+/g, " ");
+			return str;
+		}
+
+
 
 
 

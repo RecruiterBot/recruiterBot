@@ -32,6 +32,7 @@ module.exports = {
 
 	deleteStudent( req, res ) {
 		Student.findByIdAndRemove( req.params.id, ( err, deletedStudent ) => {
+			console.log(">>>>>", deletedStudent);
 			if ( err ) {
 				return res.status( 500 ).json( err );
 			}

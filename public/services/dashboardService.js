@@ -16,5 +16,10 @@ angular.module('recruiterBot')
 		this.getStudents = ()=>{
 			return $http.get(`/api/students`)
 		}
+
+		this.deleteStudent = (studentId)=>{
+			console.log(studentId);
+			return $http.delete(`/api/students/${studentId}`)
+		}
 // end of dashboardService		
 	})
