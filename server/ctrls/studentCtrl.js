@@ -7,12 +7,12 @@ module.exports = {
 			if ( err ) {
 				return res.status( 500 ).json( err );
 			}
-			console.log( students );
 			return res.status( 200 ).json( students );
 		} )
 	},
 
 	updateStudentById( req, res ) {
+		console.log("BODY", req.body);
 		Student.findByIdAndUpdate( req.params.id, req.body, { new: true }, ( err, student ) => {
 			if ( err ) {
 				return res.status( 500 ).json( err );
