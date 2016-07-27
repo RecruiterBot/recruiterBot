@@ -6,8 +6,6 @@ const location = new mongoose.Schema( {
 
 	state: { type: String, required: true },
 
-	zip: { type: String, minLength: 5, maxLength: 9 }
-
 } );
 
 module.exports = location;

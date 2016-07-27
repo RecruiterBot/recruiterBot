@@ -7,12 +7,11 @@ const Students = new mongoose.Schema( {
 		firstName: { type: String, required: true },
 		lastName: {  type: String, required: true} 
 	},
-	address: [ location ],
+	locations: [ location ],
 	email: { type: String, required: true },
 	devMountain: { type: Boolean, required: true },
 	gitHub: { type: String },
 	linkedIn: { type: String },
-	gitHubUrl: { type: String },
 	personalWebsite: { type: String },
 	skills: {},
 	campus: { type: String },
