@@ -47,7 +47,8 @@
 						<div class="student-info">
 						<!-- ng-class="showEditStudentProfile ? 'red' : 'green'" -->
 							<h3>{{student.name.firstName}} {{student.name.lastName}}</h3>
-							<p><strong>Location:</strong> {{student.locations}}</span></p>
+							<p><strong>Location:</strong> <span ng-repeat="location in student.locations">
+							<i class="fa fa-chevron-circle-right" aria-hidden="true"></i> {{location.city}} (<em>{{location.state}}</em>) &nbsp;</span> </p>
 							<p><strong>DevMountain:</strong> {{student.devMountain}}</p>
 							<p><strong>Years of Experience:</strong> {{student.yearsExperience}}</p>
 						</div>
@@ -67,8 +68,8 @@
 				<div ng-show="collapsedMoreInfo" class="well more-info col-lg-10 col-lg-offset-1 animated fadeIn">
 					<div class="details col-lg-6">
 						<h3>Details</h3>
-						<p><strong>DevMountain Campus:</strong> {{student.campus}}</p>
-						<p ng-hide={{!student.skills}}><strong>Skills:</strong> {{student.skills}}</p>
+						<p ng-hide={{!student.skills}}><strong>DevMountain Campus:</strong> {{student.campus}}</p>
+						<p ng-hide={{!student.skills}}><strong>Skills:</strong><span ng-repeat="skill in student.skills"> <i class="fa fa-chevron-circle-right" aria-hidden="true"></i> {{skill}} &nbsp;</span></p>
 					</div>
 					<div class="contact col-lg-6">
 						<h3>Contact</h3>
@@ -97,23 +98,25 @@
 				 				<div class="form-group col-lg-12">
 								    <input ng-model="student.email" type="text" class="form-control" id="exampleInputEmail1" placeholder="Email" required>
 								</div>
-								<h1 class="page-header">Locations</h1>
-								<div class="form-group col-lg-6">
-								    <span class="input-group-addon form-headers">City</span>
-								    <input type="text" ng-model="selectedCity" class="form-control" id="exampleInputEmail1" placeholder="Dallas" required>
-								</div>
-								<div class="form-group col-lg-6">
-								    <span class="input-group-addon form-headers">State</span>
-								    <input class="awesomplete form-control text-center" list="selectedState" ng-model="selectedState" placeholder="e.g., Texas" required/>
-									<datalist id="selectedState">
-										<option ng-repeat="state in states">{{state}}</option>
-									</datalist>
-								</div>
-								<a class="btn btn-block btn-success col-lg-12" ng-show="selectedState.length && selectedCity.length" ng-click="addLocationToLocationBox(selectedCity, selectedState)">
-									<i class="fa fa-plus" aria-hidden="true"></i>
-								</a>
-								<div class="skills-chosen col-lg-12" >
-									<a ng-repeat="location in selectedLocations" class="btn btn-sm btn-primary btn-danger">{{location.city}}, {{location.state}}<i ng-click="removeLocation(location)" class="fa fa-times fa-lg btn" aria-hidden="true"></i></a>
+								<div>
+									<h1 class="page-header">Locations</h1>
+									<div class="form-group col-lg-6">
+									    <span class="input-group-addon form-headers">City</span>
+									    <input type="text" ng-model="updatedCity" class="form-control" id="exampleInputEmail1" placeholder="Dallas" required>
+									</div>
+									<div class="form-group col-lg-6">
+									    <span class="input-group-addon form-headers">State</span>
+									    <input class="awesomplete form-control text-center" list="selectedState" ng-model="updatedState" placeholder="e.g., Texas" required/>
+										<datalist id="updatedState">
+											<option ng-repeat="state in states">{{state}}</option>
+										</datalist>
+									</div>
+									<a class="btn btn-block btn-success col-lg-12" ng-show="updatedState.length && updatedCity.length" ng-click="addUpdatedLocationToLocationBox(student._id, updatedCity, updatedState)">
+										<i class="fa fa-plus" aria-hidden="true"></i>
+									</a>
+									<div class="skills-chosen col-lg-12" >
+										<a ng-repeat="location in student.locations" class="btn btn-sm btn-primary btn-danger">{{location.city}}, {{location.state}}<i ng-click="removeUpdatedLocation(student._id, location._id)" class="fa fa-times fa-lg btn" aria-hidden="true"></i></a>
+									</div>
 								</div>
 							</div>
 
@@ -121,7 +124,7 @@
 								<h1 class="page-header">Association With DevMountain</h1>
 								<div class="form-group col-lg-6">
 								    <span class="input-group-addon form-headers">DevMountain Student</span>
-								    <input ng-model="updateStudent.devMountain" class="awesomplete form-control text-center"  list="devmtnStudent" placeholder="Yes/No"/>
+								    <input ng-model="student.devMountain" class="awesomplete form-control text-center"  list="devmtnStudent" placeholder="Yes/No"/>
 									<datalist id="devmtnStudent">
 										<option>Yes</option>
 										<option>No</option>
@@ -129,7 +132,7 @@
 								</div>
 								<div class="form-group col-lg-6">
 								    <span class="input-group-addon form-headers" >DevMountain Campus</span>
-								    <input ng-model="updateStudent.campus" class="awesomplete form-control text-center"  list="devmtnCampus" placeholder="e.g., Dallas, TX"/>
+								    <input ng-model="student.campus" class="awesomplete form-control text-center"  list="devmtnCampus" placeholder="e.g., Dallas, TX"/>
 									<datalist id="devmtnCampus">
 										<option>Provo, UT</option>
 										<option>Salt Lake City, UT</option>
@@ -143,19 +146,19 @@
 								<div class="form-group col-lg-8">
 								    <span class="input-group-addon form-headers">What are you top skills?</span>
 								    <input class="awesomplete form-control text-center" list="selectedSkill" ng-model="updateSelectedSkill" placeholder="e.g., JavaScript"/>
-									<datalist id="selectedSkill">
+									<datalist id="updateSelectedSkill">
 										<option ng-repeat="skill in skills">{{skill}}</option>
 									</datalist>
-									<a class="btn btn-block btn-success" ng-show="selectedSkill.length" ng-click="addToSkillsBox(selectedSkill)">
+									<a class="btn btn-block btn-success" ng-show="updateSelectedSkill.length" ng-click="addToUpdatedSkillsBox(student._id, updateSelectedSkill)">
 										<i class="fa fa-plus" aria-hidden="true"></i>
 									</a>
 									<div class="skills-chosen" >
-										<a ng-repeat="skill in selectedSkills" class="btn btn-sm btn-primary btn-danger">{{skill}}<i ng-click="removeSkill(skill)" class="fa fa-times fa-lg btn" aria-hidden="true"></i></a>
+										<a ng-repeat="skill in student.skills" class="btn btn-sm btn-primary btn-danger">{{skill}}<i ng-click="removeUpdatedSkill(student._id, skill)" class="fa fa-times fa-lg btn" aria-hidden="true"></i></a>
 									</div>
 								</div>
 								<div class="form-group col-lg-4">
 								    <span class="input-group-addon form-headers" >Years of experience</span>
-								    <input ng-model="updateStudent.yearsExperience" class="awesomplete form-control text-center"  list="yearsExperience" placeholder="e.g., 2-3 years" required/>
+								    <input ng-model="student.yearsExperience" class="awesomplete form-control text-center"  list="yearsExperience" placeholder="e.g., 2-3 years" required/>
 									<datalist id="yearsExperience">
 										<option>0-1 years</option>
 										<option>1-2 years</option>
@@ -173,19 +176,19 @@
 									<div class="form-group">
 									    <label for="inputEmail3" class="col-sm-2 control-label">LinkedIn</label>
 									    <div class="col-sm-10">
-									      <input ng-model="updateStudent.linkedIn" type="text" class="form-control" id="inputEmail3" placeholder="Paste your LinkedIn url">
+									      <input ng-model="student.linkedIn" type="text" class="form-control" id="inputEmail3" placeholder="Paste your LinkedIn url">
 									    </div>
 									</div>
 									<div class="form-group">
 									    <label for="inputEmail3" class="col-sm-2 control-label">GitHub</label>
 									    <div class="col-sm-10">
-									      <input ng-model="updateStudent.gitHub" type="text" class="form-control" id="inputEmail3" placeholder="Paste your GitHub url">
+									      <input ng-model="student.gitHub" type="text" class="form-control" id="inputEmail3" placeholder="Paste your GitHub url">
 									    </div>
 									</div>
 									<div class="form-group">
 									    <label for="inputEmail3" class="col-sm-2 control-label">Personal Website</label>
 									    <div class="col-sm-10">
-									      <input ng-model="updateStudent.personalWebsite" type="text" class="form-control" id="inputEmail3" placeholder="Paste your personal website url">
+									      <input ng-model="student.personalWebsite" type="text" class="form-control" id="inputEmail3" placeholder="Paste your personal website url">
 									    </div>
 									</div>
 								</form>
