@@ -6,6 +6,7 @@ const location = new mongoose.Schema( {
 
 	state: { type: String, required: true },
 
+
 } );
 
 module.exports = location;
