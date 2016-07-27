@@ -15,7 +15,7 @@ const app = express();
 // ports and URI //
 
 const port = process.env.PORT || 8888;
-const mongoURI = 'mongodb://localhost:27017/recruiterBot';
+const mongoURI = 'mongodb://Student:devmountain@ds031965.mlab.com:31965/recruiterbotdb';
 
 // app pre-processors //
 
