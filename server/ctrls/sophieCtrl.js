@@ -37,39 +37,39 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
 
 
 
-  controller.hears( [ 'fill a position', 'looking for a dev' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
-    const locQuestion = `In which city and state is the position located?`;
-    const skillQuestion = `What skills does the ideal candidate possess?`;
-    const expQuestion = `How many years experience does the ideal candidate need?`;
+  // controller.hears( [ 'fill a position', 'looking for a dev' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
+  //   const locQuestion = `In which city and state is the position located?`;
+  //   const skillQuestion = `What skills does the ideal candidate possess?`;
+  //   const expQuestion = `How many years experience does the ideal candidate need?`;
 
-    askLocation = ( response, convo ) => {
-      convo.ask( locQuestion, ( response, convo ) => {
-        convo.say(`looking for candidates in ${ response.text }` );
-        askSkills( response, convo );
-        convo.next();
-      } );
-    }
-    askSkills = ( response, convo ) => {
-      convo.ask( skillQuestion, ( response, convo ) => {
-        convo.say( `looking for candidates with experience in ${ response.text }` );
-        askYearsExperience( response, convo );
-        convo.next();
-      } );
-    }
-    askYearsExperience = ( response, convo ) => {
-      convo.ask( expQuestion, ( response, convo ) => {
-        convo.say( `looking for candidates with ${ response.text } years experience` );
-        convo.next();
-        convo.on( 'end', ( convo ) => {
-          if ( convo.status === `completed` ){
-            const res = convo.extractResponses();
-            console.log( 'res', res );
-          }
-        } )
-      } )
-    }
-    bot.startConversation( message, askLocation );
-  } )
+  //   askLocation = ( response, convo ) => {
+  //     convo.ask( locQuestion, ( response, convo ) => {
+  //       convo.say(`looking for candidates in ${ response.text }` );
+  //       askSkills( response, convo );
+  //       convo.next();
+  //     } );
+  //   }
+  //   askSkills = ( response, convo ) => {
+  //     convo.ask( skillQuestion, ( response, convo ) => {
+  //       convo.say( `looking for candidates with experience in ${ response.text }` );
+  //       askYearsExperience( response, convo );
+  //       convo.next();
+  //     } );
+  //   }
+  //   askYearsExperience = ( response, convo ) => {
+  //     convo.ask( expQuestion, ( response, convo ) => {
+  //       convo.say( `looking for candidates with ${ response.text } years experience` );
+  //       convo.next();
+  //       convo.on( 'end', ( convo ) => {
+  //         if ( convo.status === `completed` ){
+  //           const res = convo.extractResponses();
+  //           console.log( 'res', res );
+  //         }
+  //       } )
+  //     } )
+  //   }
+  //   bot.startConversation( message, askLocation );
+  // } )
     // function to build the attachment
       
       createAttachment = ( arr ) => {
@@ -184,22 +184,22 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
         return reply;
       }
 
-  controller.hears( [ 'find all students' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
-    controller.storage.students.all( ( err, allStudents ) => {
-      if ( err ) {
-        console.log( 'err', err )
-      }
+  // controller.hears( [ 'find all students' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
+  //   controller.storage.students.all( ( err, allStudents ) => {
+  //     if ( err ) {
+  //       console.log( 'err', err )
+  //     }
 
-  // create the attachment
+  // // create the attachment
 
-      const attachment = createAttachment( allStudents );
+  //     const attachment = createAttachment( allStudents );
 
-  // loop through the attachment and send a reply
+  // // loop through the attachment and send a reply
       
-      for (var i = 0; i < attachment.length; i++) {
-        console.log( 'attachment', attachment[i].attachments[0].pretext )
-        bot.reply( message, attachment[i] )
-      }
+  //     for (var i = 0; i < attachment.length; i++) {
+  //       console.log( 'attachment', attachment[i].attachments[0].pretext )
+  //       bot.reply( message, attachment[i] )
+  //     }
 
       
       // let i = 0;
@@ -210,8 +210,8 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
       //   }, 300 )
       // }
       // while ( i < attachment.length );
-    } )
-  } )
+    // } )
+  // } )
 
   controller.hears( ["sophie", "I need a web developer", "good ones", /^.{0.}sophie.{0.}$/ ], [ "direct_message", "ambient" ], ( bot, message ) => {
     if( message.text === "sophie" ){
