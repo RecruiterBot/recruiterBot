@@ -196,18 +196,20 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
 
   // loop through the attachment and send a reply
       
-      // for (var i = 0; i < attachment.length; i++) {
-      //   console.log( 'attachment', attachment[i].attachments[0].pretext )
-      //   bot.reply( message, attachment[i] )
-      // }
-      let i = 0;
-      do {
-        setTimeout( () => {
-          bot.reply( message, attachment[ i ] );
-          i++;
-        }, 300 )
+      for (var i = 0; i < attachment.length; i++) {
+        console.log( 'attachment', attachment[i].attachments[0].pretext )
+        bot.reply( message, attachment[i] )
       }
-      while ( i < attachment.length );
+
+      
+      // let i = 0;
+      // do {
+      //   setTimeout( () => {
+      //     bot.reply( message, attachment[ i ] );
+      //     i++;
+      //   }, 300 )
+      // }
+      // while ( i < attachment.length );
     } )
   } )
 
