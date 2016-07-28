@@ -8,6 +8,10 @@
 			<a ng-click="showStudentView()" ng-class="showStudent ? 'devmtn-tab' : 'regular-tab'" class="bordered text-center col-lg-4 col-md-4 col-sm-12 col-xs-12 border-underneath"><span class="glyphicon glyphicon-plus"></span> Student</a>
 			<a ng-click="showAdminView()" ng-class="showAdmin ? 'devmtn-tab' : 'regular-tab'" class="text-center col-lg-4 col-md-4 col-sm-12 col-xs-12 border-underneath"><span class="glyphicon glyphicon-plus"></span> Admin</a>
 		</div>
+		
+		<div class="admin-ctrl col-md-12 col-sm-12 col-xs-12">
+			<a ng-click="logout()" class="btn btn-block logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+		</div>
 
 		<div class="dashboard-jumbotron col-lg-12 col-md-12 col-sm-12 col-xs-12 animated slideInUp" ng-show="showDashboard">
 			<h1 class="page-header jumbotron-headers">Dashboard</h1>
@@ -62,13 +66,10 @@
 				</div>
 
 
-
-
-
 				<div ng-show="collapsedMoreInfo" class="well more-info col-lg-10 col-lg-offset-1 animated fadeIn">
 					<div class="details col-lg-6">
 						<h3>Details</h3>
-						<p ng-hide={{!student.skills}}><strong>DevMountain Campus:</strong> {{student.campus}}</p>
+						<p ng-hide={{!student.campus}}><strong>DevMountain Campus:</strong> {{student.campus}}</p>
 						<p ng-hide={{!student.skills}}><strong>Skills:</strong><span ng-repeat="skill in student.skills"> <i class="fa fa-chevron-circle-right" aria-hidden="true"></i> {{skill}} &nbsp;</span></p>
 					</div>
 					<div class="contact col-lg-6">

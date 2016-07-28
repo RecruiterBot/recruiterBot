@@ -217,12 +217,12 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
         console.log( 'err', err )
       }
 
-  // create the attachment
+      // create the attachment
 
       const attachment = createAttachment( allStudents );
       // console.log( 'attachment', attachment )
 
-  // loop through the attachment and send a reply
+  // // loop through the attachment and send a reply
       
       for (var i = 0; i < attachment.length; i++) {
         bot.reply( message, attachment[i] )
