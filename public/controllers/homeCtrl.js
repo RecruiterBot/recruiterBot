@@ -3,9 +3,9 @@ angular.module('recruiterBot')
 		
 		$scope.login = (admin)=>{
 			homeService.login(admin)
-			.then((response)=>{
-				console.log(response);
-			})
+			// .then((response)=>{
+			// 	console.log(response);
+			// })
 		}
 
 // end of homeCtrl		
