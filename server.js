@@ -2,6 +2,7 @@
 
 const express = require ( 'express' );
 const mongoose = require( 'mongoose' );
+const session = require('express-session');
 const { json } = require( 'body-parser' );
 const { urlencoded } = require ( 'body-parser' );
 const MR = require( './server/masterRoutes' );
@@ -20,6 +21,11 @@ const mongoURI = 'mongodb://localhost:27017/recruiterBot';
 // app pre-processors //
 
 app.use( urlencoded( { extended: true } ) ); //
+app.use( session({
+	secret: 'jdjfgfdg-dfgdgskfg-dfgfdgj643Y7Z-nasdsmcfhajsb4-zayN',
+	resave: true,
+	saveUninitialized: true	
+}) )
 app.use( json() );
 app.use( express.static( `${ __dirname }/public`) );// public contains static assets and these are getting served up to express middleware
 

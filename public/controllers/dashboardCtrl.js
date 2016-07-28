@@ -62,7 +62,7 @@ angular.module('recruiterBot')
 			}
 			dashboardService.updateStudentById(updatedStudent)
 			.then((response)=>{
-				console.log(response);
+				getStudents();
 			})
 		}
 
