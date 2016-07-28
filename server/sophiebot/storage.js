@@ -24,6 +24,10 @@ module.exports =  config  => {
 			all( cb ) {
 				Students.find( {}, cb )
 			}
+			// ,
+			// getByLocation( location, cb ){
+			// 	Students.findOne( { "location.city": { location.city }, "location.state": { location.state } }, data, cb );
+			// }
 		},
 		teams: {
             get ( id, cb ) {

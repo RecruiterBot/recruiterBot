@@ -7,6 +7,7 @@ const { urlencoded } = require ( 'body-parser' );
 const MR = require( './server/masterRoutes' );
 const Sophie = require( './server/ctrls/sophieCtrl' );
 const Botkit = require( 'botkit' )
+const ApiaiBotkit = require( 'api-ai-botkit' )
 
 // setup app //
 
@@ -15,7 +16,7 @@ const app = express();
 // ports and URI //
 
 const port = process.env.PORT || 8888;
-const mongoURI = 'mongodb://localhost:27017/recruiterBot';
+const mongoURI = 'mongodb://Student:devmountain@ds031965.mlab.com:31965/recruiterbotdb';
 
 // app pre-processors //
 
@@ -26,7 +27,7 @@ app.use( express.static( `${ __dirname }/public`) );// public contains static as
 // use Master Routes //
 
 MR( app );
-Sophie( Botkit, app, mongoURI );
+Sophie( ApiaiBotkit, Botkit, app, mongoURI );
 
 // mongoose connection //
 
