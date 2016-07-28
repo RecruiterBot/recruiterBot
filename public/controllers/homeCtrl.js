@@ -2,6 +2,7 @@ angular.module('recruiterBot')
 	.controller('homeCtrl', function($scope, homeService){
 		
 		$scope.login = (admin)=>{
+			console.log(admin);
 			homeService.login(admin)
 			// .then((response)=>{
 			// 	console.log(response);
