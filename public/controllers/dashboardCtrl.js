@@ -39,11 +39,13 @@ angular.module('recruiterBot')
 		}
 
 		// //////////////////////////////// dashboard-jumbotron ///////////////////////////////////////////////////
-	
+		$scope.students;
 		let getStudents = ()=>{
 			dashboardService.getStudents()
 			.then((response)=>{
-				console.log(response);
+				// console.log(response);
+				let data = response.data;
+				console.log(data);
 				let allStudents = response.data;
 				allStudents = convertToReadableData(allStudents);
 				console.log(allStudents);
@@ -51,8 +53,78 @@ angular.module('recruiterBot')
 			})
 		}
 
-		$scope.updateStudentById = (updateStudent)=>{
-			console.log(updateStudent);
+		$scope.updateStudentById = (updatedStudent)=>{
+			updatedStudent.yearsExperience = convertYearsExperienceToNumber(updatedStudent.yearsExperience);
+			if (updatedStudent['devMountain'] === "Yes") {
+				updatedStudent['devMountain'] = true;
+			}else{
+				updatedStudent['devMountain'] = false;
+			}
+			dashboardService.updateStudentById(updatedStudent)
+			.then((response)=>{
+				getStudents();
+			})
+		}
+
+		$scope.deleteStudent = (studentId)=>{
+			dashboardService.deleteStudent(studentId)
+			.then((response)=>{
+				getStudents();
+			})
+		}
+
+		$scope.removeUpdatedSkill = (studentId, skill)=>{
+			for (var i = 0; i < $scope.students.length; i++) {
+				if ($scope.students[i]._id === studentId) {
+					console.log($scope.students[i].skills);
+					delete $scope.students[i].skills[skill];
+					console.log($scope.students[i].skills);
+				}
+			}
+		}
+
+		$scope.addToUpdatedSkillsBox = (studentId, selectedSkill)=>{
+			for (var i = 0; i < $scope.students.length; i++) {
+				if ($scope.students[i]._id === studentId){
+					$scope.students[i].skills[selectedSkill] = selectedSkill;
+				}
+			}
+		}
+
+		$scope.removeUpdatedLocation = (studentId, locationId)=>{
+			for (var i = 0; i < $scope.students.length; i++) {
+				if ($scope.students[i]._id === studentId) {
+					for (var j = 0; j < $scope.students[i].locations.length; j++) {
+						if ($scope.students[i].locations[j]._id === locationId) {
+							$scope.students[i].locations.splice(j, 1);
+						}
+					}
+				}
+			}
+		}
+
+		$scope.addUpdatedLocationToLocationBox = (studentId, updatedCity, updatedState)=>{
+			for (var i = 0; i < $scope.students.length; i++) {
+				if ($scope.students[i]._id === studentId) {
+					let isAlreadyInLocationBox = false;
+					for (var j = 0; j < $scope.students[i].locations.length; j++) {
+						if ($scope.students[i].locations[j].city === updatedCity && 
+							$scope.students[i].locations[j].state === updatedState) {
+
+							isAlreadyInLocationBox = true;
+						}	
+					}
+					if (isAlreadyInLocationBox === false) {
+							$scope.students[i].locations.push(
+							{
+								city: updatedCity,
+								state: updatedState
+							}
+						)
+					}
+					
+				}
+			}
 		}
 
 
@@ -76,7 +148,6 @@ angular.module('recruiterBot')
 			let skillIndex = $scope.selectedSkills.indexOf(skill);
 			$scope.selectedSkills.splice(skillIndex, 1);
 		}
-
 
 
 
@@ -111,42 +182,56 @@ angular.module('recruiterBot')
 			let alertMessage = "Please enter the following:\n";
 			let alertMessageDetails = alertMessage;
 			let counter = 1;
-			let requiredField = 1;
+
 			console.log(newStudent);
+
 			if (!newStudent) {
 				return alert("Please fill out the form");
 			}
-			if (!newStudent.name.firstName) {
-				alertMessageDetails = alertMessageDetails + counter + ". First Name\n";
+			if (!newStudent.name || !newStudent.name.firstName) {
+				alertMessageDetails = alertMessageDetails + counter + ". First Name (i.e., 'Jackie')\n";
 				counter++;
 			}
-			requiredField++;
-			if (!newStudent.name.lastName) {
-				alertMessageDetails = alertMessageDetails + counter + ". Last Name\n";
-				counter++;
-			}
-			requiredField++;
-			if (!newStudent.email) {
-				alertMessageDetails = alertMessageDetails + counter + ". Email\n";
-				counter++;
-			}
-			requiredField++;
 			
-			if (!newStudent.devMountain ) {
-				alertMessageDetails = alertMessageDetails + counter + ". DevMountain Student\n";
+			if (!newStudent.name || !newStudent.name.lastName) {
+				alertMessageDetails = alertMessageDetails + counter + ". Last Name (i.e., 'Robinson')\n";
 				counter++;
 			}
-			requiredField++;
-			if (!newStudent.campus ) {
-				alertMessageDetails = alertMessageDetails + counter + ". DevMountain Campus\n";
+			
+			if (!newStudent.email || (newStudent.email.split('').indexOf('@') === -1)) {
+				alertMessageDetails = alertMessageDetails + counter + ". Email (i.e., 'jrobinson@gmail.com')\n";
 				counter++;
 			}
-			requiredField++;
-			if ((counter > 1) && (counter !== requiredField)) {
+			
+			if ($scope.selectedLocations.length === 0) {
+				alertMessageDetails = alertMessageDetails + counter + ". Location (at least 1 location)\n";
+				counter++;
+			}
+			
+			if (!newStudent.devMountain) {
+				alertMessageDetails = alertMessageDetails + counter + ". DevMountain Student (Yes/No)\n";
+				counter++;
+			}
+			
+			// if (!newStudent.campus ) {
+			// 	alertMessageDetails = alertMessageDetails + counter + ". DevMountain Campus\n";
+			// 	counter++;
+			// }
+			if (!newStudent.yearsExperience ) {
+				alertMessageDetails = alertMessageDetails + counter + ". Years of Experience\n";
+				counter++;
+			}
+			
+			if (counter > 1) {
 				return alert(alertMessageDetails);
 			}
-		
-
+			
+			// string formatters
+			newStudent.name.firstName = stringTrimmer(newStudent.name.firstName);
+			newStudent.name.lastName = stringTrimmer(newStudent.name.lastName);
+			newStudent.name.firstName = capitalizeFirstLetterOfWords(newStudent.name.firstName);
+			newStudent.name.lastName = capitalizeFirstLetterOfWords(newStudent.name.lastName);
+			newStudent.email = newStudent.email.trim();
 
 
 			// change 'devMountain' property to boolean
@@ -161,7 +246,7 @@ angular.module('recruiterBot')
 			// format newStudent object to json format
 			let studentSkills = {};
 			for (let i = 0; i < $scope.selectedSkills.length; i++) {
-				studentSkills[$scope.selectedSkills[i]] = true;
+				studentSkills[$scope.selectedSkills[i]] = $scope.selectedSkills[i];
 			}
 			newStudent.skills = studentSkills;
 			newStudent.locations = $scope.selectedLocations;
@@ -234,19 +319,34 @@ angular.module('recruiterBot')
 				else if (allStudents[i].yearsExperience === 5) {
 					allStudents[i].yearsExperience = "5+ years";
 				}
-				if (allStudents[ i ].skills) {
-					allStudents[ i ].skills = Object.keys( allStudents[ i ].skills ).join( ", " );
-				}
+				// if (allStudents[ i ].skills) {
+				// 	allStudents[ i ].skills = Object.keys( allStudents[ i ].skills ).join( ", " );
+				// }
 				
 
-				let locationsToString = "";
-				for (let j = 0; j < allStudents[ i ].locations.length; j++) {
-					locationsToString = locationsToString + allStudents[ i ].locations[j].city + " (" + allStudents[ i ].locations[j].state + ")" + ", ";
-				}
-				allStudents[ i ].locations = locationsToString.substr(0, locationsToString.length-2);
+				// let locationsToString = "";
+				// for (let j = 0; j < allStudents[ i ].locations.length; j++) {
+				// 	locationsToString = locationsToString + allStudents[ i ].locations[j].city + " (" + allStudents[ i ].locations[j].state + ")" + ", ";
+				// }
+				// allStudents[ i ].locations = locationsToString.substr(0, locationsToString.length-2);
 			}
 			return allStudents;
 		}
+
+		let capitalizeFirstLetterOfWords = (str)=>{
+			let strToArray = str.split(" ");
+			let toReturn = "";
+			for (let i = 0; i < strToArray.length; i++) {
+				toReturn = toReturn + (strToArray[i].charAt(0).toUpperCase() + strToArray[i].slice(1)) + " ";
+			}
+			return toReturn.substr(0, toReturn.length-1);
+		}
+		let stringTrimmer = (str)=>{
+			str = str.replace(/\s+/g, " ");
+			return str;
+		}
+
+
 
 
 
