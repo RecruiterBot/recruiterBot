@@ -1,7 +1,7 @@
 angular.module('recruiterBot')
 	.service('homeService', function($http){
 		
-		this.adminVerified = true;
+		this.adminVerified = false;
 
 		this.login = (admin)=>{
 			console.log(admin);
