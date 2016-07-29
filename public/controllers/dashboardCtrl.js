@@ -301,13 +301,17 @@ angular.module('recruiterBot')
 
 		// updates email for a new admin
 		$scope.updateEmail = (newAdmin)=>{
-			console.log(newAdmin);
-			dashboardService.updateEmail(newAdmin)
-			// .then((response)=>{
-			// 	console.log(response);
-			// })
+
+			if (confirm(`Authorize '${newAdmin.email}' as admin?`) == true) {
+		         dashboardService.updateEmail(newAdmin)
+				.then((response)=>{
+					console.log(response);
+					$scope.newAdmin = "";
+				})
+		    }
 		}
 
+		
 
 
 

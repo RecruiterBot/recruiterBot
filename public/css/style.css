@@ -367,6 +367,13 @@ body{
 	background-color: #cc0000;
 	color: white;
 }
+.well{
+	background: #1a1a1a;
+}
+.well h3{
+	color: #00A6F1 !important;
+}
+
 
 
 
