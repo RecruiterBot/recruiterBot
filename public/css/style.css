@@ -354,7 +354,19 @@ body{
 	font-weight: 300;
 	font-size: 17.5px;
 }
-
+.logout{
+	font-family: "Raleway";
+	font-size: 17.5;
+	cursor: pointer;
+	color: black;
+	border-radius: 0px;
+	padding: 10px;
+	background-color: lightgray;
+}
+.logout:hover{
+	background-color: #cc0000;
+	color: white;
+}
 
 
 

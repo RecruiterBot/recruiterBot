@@ -1,0 +1,4306 @@
+/*****************************************************************************
+ * MongoLab base skin overrides
+ *****************************************************************************/
+html#MongoDBInc {
+    background: #f5f6f7;
+}
+
+#MongoDBInc #header .logo a {
+    background-image: url("/css/images/mongodb-logo-215x56.png") !important;
+}
+
+#MongoDBInc #header .links a.login, #MongoDBInc #header .links a.login:hover, #MongoDBInc #header .links a.login:active {
+    background:#5e4931; box-shadow:none;
+}
+
+#MongoDBInc #header #docPortalLink {
+    display:none;
+}
+
+#MongoDBInc #header #createTicketLink {
+    display:inline !important;
+}
+
+#MongoDBInc #preFooterBar {
+    border-top:4px solid #ebebeb; background: #f5f6f7;
+}
+
+/*****************************************************************************
+ * GENERAL - Background Colors
+ *****************************************************************************/
+#body {
+    background-color: #1b242c;
+}
+
+#MongoDBInc #body {
+    background-color: #ffffff;
+}
+
+#header {
+    background-color: #2e3843; /* fallback color if gradients are not supported */
+    background: linear-gradient(to bottom, #2e3843 0%, #424d56 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+#MongoDBInc #header {
+    background: #3a2918;
+}
+
+/*****************************************************************************
+ * Home - #homeLanding
+ *****************************************************************************/
+
+/* Hide SnapEngage widget on /home */
+#homeLanding #SnapABug_Button {
+    display: none;
+}
+
+#homeLanding #body {
+    background-color: #1b242c;
+    background-image: radial-gradient(circle closest-corner at 50% 0 , rgba(50, 89, 111, 0.4), rgba(50, 89, 111, 0) 450px);
+}
+
+#MongoDBInc #homeLanding #body {
+    background: white;
+}
+
+#homeLanding #body #colWrapper #mainCol {
+    width: 1100px;
+}
+
+#homeLanding .message.success strong {
+    color:#4cbf7c;
+}
+
+#homeLanding div.section h2 {
+    color: white;
+    padding-top: 30px;
+    border-top: 1px solid #3f4a51;
+}
+
+#MongoDBInc #homeLanding div.section h2 {
+    color: #494747;
+}
+
+#homeLanding div.section:first-child h2 {
+    padding-top: 0;
+    border: none;
+}
+
+#homeLanding #homeDescription {
+    float: left;
+    color: #999;
+}
+
+#homeLanding #subscriptionButtons {
+    
+}
+
+#homeLanding table.mainTable {
+    margin-top: 10px;
+    white-space: nowrap;
+}
+
+#homeLanding table.mainTable tr.spacer td {
+    background-color: transparent;
+    height: 20px;
+}
+
+#homeLanding table.mainTable tr.deploymentsSectionHeader td {
+    padding: 0;
+}
+
+#homeLanding table.mainTable tr.deploymentsSectionHeader td,
+#homeLanding table.mainTable th {
+    background-color: black;
+}
+
+#MongoDBInc #homeLanding table.mainTable tr.deploymentsSectionHeader td,
+#MongoDBInc #homeLanding table.mainTable th {
+    background-color: #ebebed;
+}
+
+#homeLanding table.mainTable tr.deploymentsSectionHeader .sectionHeaderContent {
+    background-color: #141d24;
+    background-color: transparent;
+    height: 36px;
+    margin-bottom: -2px;
+}
+
+#homeLanding table.mainTable tr.deploymentsSectionHeader .heading {
+    font-size: 1.2em;
+    float: left;
+    height: 24px;
+    padding-bottom: 0;
+    padding-top: 8px;
+    margin-left: 10px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+#homeLanding table.mainTable tr.deploymentsSectionHeader .description {
+    float: left;
+    height: 24px;
+    padding-top: 10px;
+    color: #999;
+    margin: 0px 0px 0px 18px;
+}
+
+#MongoDBInc #homeLanding table.mainTable tr.deploymentsSectionHeader .description {
+    color: #6f6763;
+}
+
+#homeLanding table.mainTable tr.headers {
+    height: 22px;
+}
+
+#homeLanding table.mainTable tr.subscriptionRow {
+    height: 35px;
+    -webkit-transition-property: height;
+    -moz-transition-property: height;
+    -ms-transition-property: height;
+    -o-transition-property: height;
+    transition-property: height;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -ms-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+#homeLanding table.mainTable tr.subscriptionRow .expanderIcon {
+    font-size: 10px;
+}
+
+#homeLanding table.mainTable tr.subscriptionRow.subscriptionStatus-maintenance,
+#homeLanding table.mainTable tr.subscriptionRow.subscriptionStatus-building,
+#homeLanding table.mainTable tr.subscriptionRow.showDetail {
+    height: 85px;
+}
+
+#homeLanding table.mainTable td {
+    padding: 0;
+}
+
+#homeLanding table.mainTable tr.link td,
+#homeLanding table.mainTable td a,
+#homeLanding table.mainTable th {
+    padding: 9px 15px 0px 15px;
+}
+
+#homeLanding table.mainTable tr.subscriptionRow td {
+    vertical-align: top;
+    overflow: hidden;
+}
+
+#homeLanding table.mainTable tr.subscriptionRow:hover>td,
+#homeLanding table.mainTable tr.subscriptionRow:hover .statsDetail {
+    background-color: #565e65;
+}
+
+#MongoDBInc #homeLanding table.mainTable tr.subscriptionRow:hover>td,
+#MongoDBInc #homeLanding table.mainTable tr.subscriptionRow:hover .statsDetail {
+    background-color: #f5f6f7;
+}
+
+#homeLanding table.mainTable th {
+    text-transform: uppercase;
+    font-size: 0.7em;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: #8c969d;
+}
+
+#MongoDBInc #homeLanding table.mainTable th {
+    font-weight: bold;
+}
+
+#homeLanding table.mainTable th.nameCol {
+    padding-left: 28px;
+}
+
+#homeLanding table.mainTable th.ramCol, th.sizeCol, th.fileSizeCol {
+    text-align: right;
+}
+
+#homeLanding table.mainTable .linkCol a {
+    display: block;
+    height: 24px;
+}
+
+#homeLanding table.mainTable .numberValue * {
+    text-align: right;
+}
+
+#homeLanding table.mainTable .naValue,
+#homeLanding table.mainTable .unableToCalculateValue {
+    color: #a1a6a9;
+    text-align: right;
+}
+
+#homeLanding table.mainTable .naValue:after {
+    content: "-";
+}
+
+#homeLanding table.mainTable .unableToCalculateValue:after {
+    content: "not calculating";
+    font-style: italic;
+}
+
+#homeLanding table.mainTable .ramCol .naValue {
+    text-align: right;
+}
+
+#homeLanding table.mainTable .ramCol .naValue:after {
+    content: "shared";
+}
+
+#homeLanding table.mainTable td.infoCol {
+    border-left: solid 1px #586065;
+}
+
+#MongoDBInc #homeLanding table.mainTable td.infoCol {
+    border-left: none;
+}
+
+#homeLanding table.mainTable tr:hover td.infoCol {
+    border-left-color: #787e84;
+}
+
+#homeLanding table.mainTable td.primaryCol {
+    background-color: #434c53;
+}
+
+#MongoDBInc #homeLanding table.mainTable td.primaryCol {
+    background-color: white;
+}
+
+#homeLanding table.mainTable td.infoCol {
+    background-color: #2e383f;
+}
+
+#MongoDBInc #homeLanding table.mainTable td.infoCol {
+    background-color: white;
+}
+
+#homeLanding table.mainTable td.nameCol {
+    max-width: 420px;
+    width: 420px;
+}
+
+#homeLanding table.mainTable td.nameCol a {
+    padding-left: 4px;
+}
+
+#homeLanding table.mainTable .editCol {
+    width: 16px;
+    padding: 6px 8px 0px 15px;
+}
+
+#homeLanding table.mainTable td.telemetryCol {
+    width: 60px;
+}
+
+#homeLanding table.mainTable .editCol a {
+    padding-right: 8px;
+}
+
+#homeLanding table.mainTable .editButton {
+    height: 20px;
+    width: 20px;
+    background: url("/css/images/button_edit-name.png") no-repeat center;
+    margin-top: -2px;
+    cursor: pointer;
+}
+
+#homeLanding table.mainTable .statusIcon {
+    background: no-repeat center;
+    height: 45px;
+    margin-top: -6px;
+    margin-bottom: -4px;
+}
+
+#homeLanding table.mainTable .statusCol {
+    width: 24px;
+    height: 24px;
+}
+
+#homeLanding table.mainTable .statusCol a {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 8px;
+}
+
+#homeLanding table.mainTable .statusDetail .feedback a {
+    display: inline;
+    padding: 0;
+}
+
+#homeLanding table.mainTable .statusDetail .label {
+    font-weight: bold;
+    text-transform: none;
+}
+
+#homeLanding table.mainTable .subscriptionStatus-loading .statusIcon {
+    background-image: url("/css/images/status_loading.gif");
+}
+
+#MongoDBInc #homeLanding table.mainTable .subscriptionStatus-loading .statusIcon {
+    background-image: url("/css/images/status_loading_white-background.png");
+}
+
+#homeLanding table.mainTable .subscriptionStatus-loading .statusDetail .label {
+    color: #a1a6a9;
+}
+#homeLanding table.mainTable .subscriptionStatus-loading .statusDetail .label:after {
+    content: "Loading..."
+}
+
+#homeLanding table.mainTable .subscriptionStatus-ok .statusIcon {
+    background-image: url("/css/images/status_ok.png");
+}
+
+#MongoDBInc #homeLanding table.mainTable .subscriptionStatus-ok .statusIcon {
+    background-image: url("/css/images/status_ok_white-background.png");
+}
+
+#homeLanding table.mainTable .subscriptionStatus-ok .statusDetail .label {
+    color: #4cbf7c;
+}
+#homeLanding table.mainTable .subscriptionStatus-ok .statusDetail .label:after {
+    content: "Ok: "
+}
+
+#homeLanding table.mainTable .subscriptionStatus-warning .statusDetail .label {
+    color: #e0b226;
+}
+#homeLanding table.mainTable .subscriptionStatus-warning .statusIcon {
+    background-image: url("/css/images/status_warning.png");
+}
+#MongoDBInc #homeLanding table.mainTable .subscriptionStatus-warning .statusIcon {
+    background-image: url("/css/images/status_warning_white-background.png");
+}
+
+#homeLanding table.mainTable .subscriptionStatus-warning .statusDetail .label:after {
+    content: "Warning: "
+}
+
+#homeLanding table.mainTable .subscriptionStatus-error .statusDetail .label {
+    color: #ef5a46;
+}
+#homeLanding table.mainTable .subscriptionStatus-error .statusIcon {
+    background-image: url("/css/images/status_error.png");
+}
+#MongodbInc #homeLanding table.mainTable .subscriptionStatus-error .statusIcon {
+    background-image: url("/css/images/status_error_white-background.png");
+}
+#homeLanding table.mainTable .subscriptionStatus-error .statusDetail .label:after {
+    content: "Error: "
+}
+
+#homeLanding table.mainTable .subscriptionStatus-building .statusDetail .label {
+    color: #31abed;
+}
+#homeLanding table.mainTable .subscriptionStatus-building .statusIcon {
+    background-image: url("/css/images/status_building.png");
+}
+#MongoDBInc #homeLanding table.mainTable .subscriptionStatus-building .statusIcon {
+    background-image: url("/css/images/status_building_white-background.png");
+}
+#homeLanding table.mainTable .subscriptionStatus-building a {
+    pointer-events: none;
+    cursor: default;
+}
+
+#homeLanding table.mainTable .subscriptionStatus-building .statusDetail .label:after {
+    content: "Progress: "
+}
+
+#homeLanding table.mainTable .subscriptionStatus-maintenance .statusDetail .label {
+    color: #31abed;
+}
+#homeLanding table.mainTable .subscriptionStatus-maintenance .statusIcon {
+    background-image: url("/css/images/status_maintenance.png");
+}
+#MongoDBInc #homeLanding table.mainTable .subscriptionStatus-maintenance .statusIcon {
+    background-image: url("/css/images/status_maintenance.png");
+}
+#homeLanding table.mainTable .subscriptionStatus-maintenance .statusDetail .label:after {
+    content: "Maintenance: "
+}
+
+#homeLanding table.mainTable .headers .expanderCol {
+    padding-top: 3px;
+}
+
+#homeLanding table.mainTable .headers .expanderCol .expanderIcon {
+    font-size: 10px;
+    color: #888;
+}
+
+#homeLanding table.mainTable .expanderCol {
+    max-width: 2px;
+    padding-top: 12px;
+    padding-right: 7px;
+    padding-left: 10px;
+}
+
+#homeLanding table.mainTable .expanderCol .expanderIcon {
+    color: #a1a6a9;
+    display: block;
+    -webkit-transition-property: all;
+    -moz-transition-property: all;
+    -ms-transition-property: all;
+    -o-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -ms-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+#homeLanding table.mainTable .subscriptionStatus-maintenance .expanderCol .expanderIcon,
+#homeLanding table.mainTable .subscriptionStatus-building .expanderCol .expanderIcon,
+#homeLanding table.mainTable .showDetail .expanderCol .expanderIcon {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+#homeLanding table.mainTable .statusDetailContent {
+    max-height: 32px;
+    overflow: hidden;
+}
+
+#homeLanding table.mainTable .statusDetailContent:after {
+    content: ""
+}
+
+#homeLanding table.mainTable .statusDetail {
+    color: #a1a6a9;
+    padding-top: 6px;
+    font-size: 0.9em;
+    height: 0px;
+    white-space: normal;
+    overflow: hidden;
+    -webkit-transition-property: all;
+    -moz-transition-property: all;
+    -ms-transition-property: all;
+    -o-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -ms-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+#MongoDBInc #homeLanding table.mainTable .statusDetail {
+    color: #494747;
+}
+
+#homeLanding table.mainTable .subscriptionStatus-maintenance .statusDetail,
+#homeLanding table.mainTable .subscriptionStatus-building .statusDetail,
+#homeLanding table.mainTable .showDetail .statusDetail {
+    display: block;
+    overflow: visible;
+}
+
+#homeLanding table.mainTable .tooltip {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+    position: fixed;
+    background-color: rgba(0,0,0,0.85);
+    border-left: 4px solid #58afd9;
+    -webkit-transition-property: opacity;
+    -moz-transition-property: opacity;
+    -ms-transition-property: opacity;
+    -o-transition-property: opacity;
+    transition-property: opacity;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -ms-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+#homeLanding table.mainTable td:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    -moz-transition-delay: 0.2s;
+    -webkit-transition-delay: 0.2s;
+    -o-transition-delay: 0.2s;
+    -ms-transition-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+
+#homeLanding table.mainTable .tooltip tr {
+    height: 24px;
+}
+
+#homeLanding table.mainTable .tooltip td {
+    text-align: center;
+}
+
+#homeLanding table.mainTable .tooltip th,
+#homeLanding table.mainTable .tooltip td {
+    background-color: inherit;
+    color: inherit;
+    padding: 0px 10px;
+}
+
+#homeLanding table.mainTable .statsDetail {
+    color: #C9CCCD;
+    text-transform: none;
+    font-size: 10.5px;
+    height: 0px;
+    white-space: normal;
+    position: absolute;
+    overflow: hidden;
+    width: 595px;
+    padding: 0;
+    margin: 0;
+    line-height: 20px;
+    background-color: #2e383f;
+    -webkit-transition-property: height, padding, margin;
+    -moz-transition-property: height, padding, margin;
+    -ms-transition-property: height, padding, margin;
+    -o-transition-property: height, padding, margin;
+    transition-property: height, padding, margin;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -ms-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+#homeLanding table.mainTable .statsDetail label {
+    text-transform: uppercase;
+}
+
+#homeLanding table.mainTable .statsDetail .volumeType {
+    display: none;
+}
+
+#MongoDBInc #homeLanding table.mainTable .statsDetail {
+    color: #494747;
+    background-color: white;
+}
+
+#homeLanding table.mainTable .subscriptionStatus-maintenance .statsDetail,
+#homeLanding table.mainTable .subscriptionStatus-building .statsDetail,
+#homeLanding table.mainTable .showDetail .statsDetail {
+    height: 30px;
+    padding: 6px 0 16px 0;
+    margin-top: 8px;
+}
+
+#homeLanding table.mainTable .statsDetail>label {
+    font-weight: bold;
+    font-size: 10px;
+    color: #c9cccd;
+}
+
+#MongoDBInc #homeLanding table.mainTable .statsDetail>label {
+    font-weight: normal;
+    color: #494747;
+}
+
+#homeLanding table.mainTable .statsDetail>span {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+#homeLanding table.mainTable .idCol {
+}
+
+#homeLanding .telemetryMenuContainer {
+    position: absolute;
+    width: 51px;
+}
+
+#homeLanding .telemetryButton {
+    width: 40px;
+    height: 24px;
+    display: block;
+    cursor: pointer;
+    margin-left: 9px;
+    margin-top: 4px;
+    border: 1px solid #586065;
+    border-radius: 3px;
+}
+
+#MongoDBInc #homeLanding .telemetryButton {
+    border: 1px solid #ebebed;
+}
+
+#homeLanding table.mainTable tr:hover .telemetryButton {
+    border: 1px solid #787e84;
+}
+
+#homeLanding .telemetryButton:hover {
+    border-color: white;
+    background-color: #434c53;
+}
+
+#MongoDBInc #homeLanding .telemetryButton:hover {
+    border-color: #ebebed;
+    background-color: #ebebed;
+}
+
+#homeLanding .telemetryButton span.charts {
+    padding-left: 0;
+    width: 24px;
+    height: 18px;
+    top: 3px;
+    left: 6px;
+}
+
+#homeLanding .telemetryButton span.charts:before {
+    color: #c9cccd;
+    font-size: 15px;
+}
+
+#homeLanding .telemetryButton span.caret {
+    position: relative;
+    top: 3px;
+}
+
+#homeLanding .telemetryButton span.caret:before {
+    color: #c9cccd;
+    content: "\25BE";
+}
+
+#homeLanding .deployment-incident-indicator,
+#homeLanding .server-incident-indicator {
+    display: none;
+}
+#homeLanding .subscriptionRow.has-open-incidents .deployment-incident-indicator,
+#homeLanding .subscriptionRow.has-open-incidents .telemetryLink.has-open-incidents .server-incident-indicator {
+    display: inherit;
+}
+
+#homeLanding .telemetryMenu {
+    display: none;
+    position: absolute;
+    background-color: #434c53;
+    right: 0;
+    margin: 4px 0 0 0;
+    padding: 5px 2px;
+    border: 1px solid gray;
+    border-radius: 3px;
+    z-index: 200;
+}
+
+#MongoDBInc #homeLanding .telemetryMenu {
+    background-color: white;
+}
+
+#homeLanding .telemetryMenu .telemetryMenuHeader {
+    margin: 5px;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    display:none;
+}
+
+#homeLanding .telemetryMenu .telemetryMenuSubHeader {
+    text-transform: none;
+    font-size: 0.8em;
+}
+
+#homeLanding .telemetryMenu ul {
+    list-style: none;
+}
+
+#homeLanding .telemetryMenu ul li {
+    margin: 0;
+    padding: 6px 30px 6px 13px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#homeLanding .telemetryMenu ul li:hover {
+    background-color: #565e65;
+}
+
+#MongoDBInc #homeLanding .telemetryMenu ul li:hover {
+    background-color: #ebebed;
+}
+
+#homeLanding .telemetryMenu .glyphicons {
+    padding: 0;
+    margin-left: 10px;
+    margin-right: -10px;
+    float: right;
+}
+
+#homeLanding .telemetryMenu .glyphicons:before {
+    font-size: 15px;
+    color: #c9cccd;
+}
+
+#homeLanding span.deployment-incident-indicator {
+    position: relative;
+    top: -21px;
+    right: 6px;
+}
+#homeLanding span.deployment-incident-indicator:before {
+    font-size: 12px;
+    color: white;
+}
+
+#homeLanding .telemetryMenu span.server-incident-indicator {
+    position: relative;
+    top: 3px;
+    left: -12px;
+    float: none;
+    margin: 0;
+}
+#homeLanding .telemetryMenu span.server-incident-indicator:before {
+    font-size: 9px;
+    color: white;
+}
+
+#homeLanding .telemetryMenu .listSectionHeader {
+    cursor: default;
+    text-transform: uppercase;
+    font-size: 11px;
+    border-top: 1px solid #565e65;
+}
+
+#homeLanding .telemetryMenu .listSectionHeader:first-child {
+    border-top: none;
+}
+
+#homeLanding .telemetryMenu ul li.listSectionHeader:hover {
+    background-color: inherit;
+}
+
+/*****************************************************************************
+ * Help Tray
+ *****************************************************************************/
+
+div.helpTray {
+    position: fixed;
+    top: 174px; /* needs to be this low b/c of SSO from partners */
+    right: -379px;
+    width: 300px;
+    max-width: 300px;
+    background-color: rgba(0,0,0,0.85);
+    border-left: 4px solid #58afd9;
+    padding: 15px 45px 20px 30px;
+    z-index: 10000;
+    -webkit-transition-property: right;
+    -moz-transition-property: right;
+    -ms-transition-property: right;
+    -o-transition-property: right;
+    transition-property: right;
+    -webkit-transition-duration: 0s;
+    -moz-transition-duration: 0s;
+    -ms-transition-duration: 0s;
+    -o-transition-duration: 0s;
+    transition-duration: 0s;
+}
+
+#MongoDBInc div.helpTray {
+    background-color: #f5f6f7;
+}
+
+div.helpTray.reveal {
+    right: 0;
+    position: absolute;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -ms-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+div.helpTray>div {
+    display:none;
+}
+
+div.helpTray h1 {
+    font-size: 17px;
+    padding-top: 15px;
+}
+
+div.helpTray h2 {
+    font-size: 17px;
+}
+
+div.helpTray>div p {
+    font-size: 13px;
+}
+
+div.helpTray>div li {
+    font-size: 13px;
+}
+
+div.helpTray>div li a {
+    text-decoration: underline !important; 
+}
+
+div.helpTray a.openHelp {
+    width: 28px;
+    height: 63px;
+    position: absolute;
+    top: 20px;
+    left: -32px;
+    background-color: #58afd9;
+    border-radius: 4px 0 0 4px;
+    cursor: pointer;
+}
+
+div.helpTray a.openHelp .openHelpButton {
+    transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    color: white;
+    text-align: center;
+    margin-top: 23px;
+    font-size: 18px;
+}
+
+div.helpTray a.openHelp .openHelpButton:after {
+    content: "help";
+}
+
+div.helpTray a.closeHelp {
+    width: 26px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+div.helpTray a.closeHelp .closeHelpButton:after {
+    content: "\002A2F";
+}
+
+.helpBound .helpIcon {
+    background: url(/css/images/small-question-mark-icon.png) 3px -1px no-repeat;
+    display: inline-block;
+    width: 14px;
+    height: 12px;
+}
+
+#MongoDBInc .helpBound .helpIcon {
+    background: url(/css/images/small-question-mark-icon_white-background.png) 3px 0px no-repeat;
+}
+
+/*****************************************************************************
+ * GENERAL - Fonts
+ *****************************************************************************/
+body {
+    font-family: "Roboto", sans-serif !important;
+    color: #e4e6e6;
+    text-align: left;
+    font-size:14px;
+    font-weight:300;
+}
+
+#MongoDBInc body {
+    color: #494747;
+}
+
+select {
+    font-family: "Roboto", sans-serif !important;
+}
+
+
+td.documentField, #viewSearchesDialog td {
+    font-size:12px;
+}
+
+#tabs {
+    color: #c9cccd;
+}
+
+#MongoDBInc #tabs {
+    color: inherit;
+}
+
+#sidebar {
+    font-weight: lighter;
+    font-size: 13px;
+}
+
+#sidebar pre, #sidebar code {
+    font-size: 12px;
+}
+
+pre, code, .value {
+    font-family: "Droid Sans Mono", monospace;
+    color: #BBBDBD;
+    line-height: 1.4em;
+    font-size: 12px;
+}
+
+#MongoDBInc pre, #MongoDBInc code, #MongoDBInc .value {
+    color: inherit; /*#4d4d4d*/
+}
+
+#mainCol pre, #mainCol code {
+    font-size: 11.5px;
+}
+
+textarea.code {
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    color: inherit;
+}
+
+.ui-dialog pre, .ui-dialog code {
+    color: #555;
+}
+
+.tip {
+    font-size: 90%;
+    text-transform: none;
+}
+
+.tip:before {
+    content: " (";
+}
+
+.tip:after {
+    content: ") ";
+}
+
+span.required:after {
+    content: "*";
+    color: red;
+}
+
+td.center { text-align: center; }
+
+.footnote {
+    color: #999;
+}
+
+.footnote sup {
+    margin-right: 5px;
+}
+
+sup {
+    vertical-align: super;
+}
+
+.errorColor {
+    color: red;
+}
+
+em, strong {
+    font-weight: bold;
+}
+
+.yellow-color {
+    color: yellow;
+}
+
+#MongoDBInc .yellow-color {
+    color: #ffb618;
+}
+
+
+/*****************************************************************************
+ * GENERAL - Layout
+ *****************************************************************************/
+body {
+    min-width: 815px;
+}
+
+#headerAccountLinks {
+    float: right;
+    margin-top: 5px;
+    padding-right: 28px;
+}
+
+#MongoDBInc #headerAccountLinks {
+    display:none;
+}
+
+#body {
+    padding: 30px 90px 120px 60px; /* 30 + 120 - also in global-includes.jsp */
+    min-height: 1000px; /* also set dynamically in global-includes.jsp */
+}
+
+#body #colWrapper {
+    width: 1182px; /* 100 + 675 + 50 + 357 - also in show-collection.jsp */
+}
+
+#body.about #colWrapper,
+#body.legal #colWrapper,
+#body.support #colWrapper {
+    width: auto;
+}
+
+#body #colWrapper #mainCol {
+    width: 765px;
+    float: left;
+    /*overflow: auto;*/
+}
+
+body.wide {
+    min-width: 1182px;
+}
+
+body.wide #body #colWrapper #mainCol {
+    width: 1100px;
+}
+
+body.wide #SnapABug_Button {
+    display: none;
+}
+
+#body.about #colWrapper #mainCol {
+    float: none;
+    margin-left: auto; margin-right: auto;
+}
+
+#body.pricing #colWrapper #mainCol {
+    width: 750px;
+}
+
+#body #colWrapper #sidebar {
+    width: 307px;
+    height: 100%;
+    float: left;
+    margin-left: 45px;
+}
+
+#MongoDBInc #body #colWrapper #sidebar {
+    background:url("/base/img/powered-by-mongolab.png") no-repeat top right;
+    padding-top:15px;
+    min-height:20px;
+}
+
+textarea.code#HTTPGET {
+    height: 2000px;
+}
+
+#preFooterBar .links { display:none; }
+#footer .siteLinks * { color: #aaa !important; }
+
+p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    line-height: 19px;
+}
+
+.tinyLineBreak { height: 3px; }
+.f-left { float: left; }
+.f-right { float: right; }
+.clearer { clear: both; }
+
+.bigLineBreak { height: 10px; }
+
+.nowrap { white-space: nowrap; }
+
+.roundedCorners {
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+}
+
+/*****************************************************************************
+ * GENERAL - Header styles
+ *****************************************************************************/
+h1 {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 20px;
+    cursor: default;
+    margin-top: 0px;
+}
+
+#sidebar h1 {
+    color: white;
+    font-size: 17px;
+    display:inline-block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#MongoDBInc h1 {
+    color: #271B15;
+}
+
+h2 {
+    margin: 33px 0 20px !important;
+    font-size: 22px;
+    color: white;
+    clear: both;
+    cursor: default;
+    
+}
+
+#MongoDBInc h2 {
+    color: #271B15;
+}
+
+
+div.h2 {
+    margin-top: 30px;
+    border-top: 1px solid #3f4a51;
+}
+#MongoDBInc div.h2 {
+    border-color: #ccc;
+}
+
+div.h2.first, div.h2:first-child {
+    margin-top: 0px;
+    border-top: none;
+}
+
+#sidebar h2 {
+    margin: 20px 0 20px !important;
+    font-size: 13px;
+}
+
+#tabs h2 {
+    margin: 15px 0 20px !important;
+}
+
+#subtabs h2 {
+    margin-top: 5px;
+}
+
+.stdForm h2 {
+    font-size: 18px;
+}
+
+h2 a {
+    text-decoration: none;
+}
+
+h3 {
+    margin: 30px 0 20px;
+    font-size: 16px;
+    color: white;
+}
+#MongoDBInc h3 {
+    color: inherit;
+}
+
+#tools h3 {
+    margin: 18px 0 18px 0;
+}
+
+h4 {
+    text-decoration: underline;
+}
+
+
+/*****************************************************************************
+ * GENERAL - CSS buttons
+*****************************************************************************/
+
+button.button,
+a.button {
+    float:right;
+    margin-left: 8px;
+    font-family: "Museo Sans",sans-serif !important;
+    font-size: 12px;
+    font-weight: 500;
+    cursor:pointer;
+    color: #ffffff !important;
+    padding: 8px 18px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border: 0px solid #000000;
+    -moz-box-shadow:
+    0px 1px 3px rgba(000,000,000,0.4),
+    inset 0px 1px 0px rgba(255,255,255,0.4);
+    -webkit-box-shadow:
+    0px 1px 3px rgba(000,000,000,0.4),
+    inset 0px 1px 0px rgba(255,255,255,0.4);
+    box-shadow:
+    0px 1px 3px rgba(000,000,000,0.4),
+    inset 0px 1px 0px rgba(255,255,255,0.4);
+    
+    background: -webkit-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background:    -moz-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background:     -ms-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background:      -o-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background:   linear-gradient(to bottom, #50565c 0%, #3b3b3b 50%, #293036);
+}
+#MongoDBInc button.button,
+#MongoDBInc a.button {
+    background: #6ca439;
+    padding-top: 9px;
+    padding-bottom: 7px;
+    box-shadow:0 1px 0 #307d24;
+}
+
+button.button:hover,
+a.button:hover {
+    background: -webkit-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background:    -moz-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background:     -ms-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background:      -o-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background:   linear-gradient(to bottom, #4d5357 0%, #3b3b3b 50%, #1c2227);
+}
+#MongoDBInc button.button:hover,
+#MongoDBInc a.button:hover {
+    background: #5f962e !important;
+}
+#MongoDBInc button.button:active,
+#MongoDBInc a.button:active {
+    background: #46761a !important;
+}
+
+button.button.disabled,
+a.button.disabled {
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+    cursor:default;
+}
+
+#MongoDBInc button.button.disabled,
+#MongoDBInc a.button.disabled {
+    background: #e7e7e7 !important;
+    color: #bcbcbc !important;
+    box-shadow:none;
+}
+
+a.button.icon {
+    padding-left: 32px;
+    background-color: #293036; /* fallback color if gradients are not supported */
+}
+
+a.button.icon.disabled {
+    color: #464c51 !important;
+}
+
+a.button.mini {
+    font-size: 11px;
+    padding: 5px 10px 5px 10px;
+}
+
+#MongoDBInc a.button.mini {
+    padding: 5px 10px 4px 10px;
+}
+
+/* "Create new" button */
+a.button.create {
+    background: url("/css/images/button-icons/flash.png") no-repeat 10px center, -webkit-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/flash.png") no-repeat 10px center,    -moz-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/flash.png") no-repeat 10px center,     -ms-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/flash.png") no-repeat 10px center,      -o-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/flash.png") no-repeat 10px center,   linear-gradient(to bottom, #50565c 0%, #3b3b3b 50%, #293036);
+}
+a.button.create:hover {
+    background: url("/css/images/button-icons/flash.png") no-repeat 10px center, -webkit-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/flash.png") no-repeat 10px center,    -moz-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/flash.png") no-repeat 10px center,     -ms-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/flash.png") no-repeat 10px center,      -o-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/flash.png") no-repeat 10px center,   linear-gradient(to bottom, #4d5357 0%, #3b3b3b 50%, #1c2227);
+}
+a.button.create.disabled {
+    color: #464c51 !important;
+    background: #283138 url("/css/images/button-icons/flash-disabled.png") no-repeat 10px center;
+}
+
+/* "Clone existing" button */
+a.button.clone {
+    background: url("/css/images/button-icons/clone.png") no-repeat 10px center, -webkit-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/clone.png") no-repeat 10px center,    -moz-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/clone.png") no-repeat 10px center,     -ms-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/clone.png") no-repeat 10px center,      -o-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/clone.png") no-repeat 10px center,   linear-gradient(to bottom, #50565c 0%, #3b3b3b 50%, #293036);
+}
+a.button.clone:hover {
+    background: url("/css/images/button-icons/clone.png") no-repeat 10px center, -webkit-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/clone.png") no-repeat 10px center,    -moz-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/clone.png") no-repeat 10px center,     -ms-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/clone.png") no-repeat 10px center,      -o-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/clone.png") no-repeat 10px center,   linear-gradient(to bottom, #4d5357 0%, #3b3b3b 50%, #1c2227);
+}
+a.button.clone.disabled {
+    color: #464c51 !important;
+    background: #283138 url("/css/images/button-icons/clone-disabled.png") no-repeat 10px center;
+}
+
+/* "Create from backup" button */
+a.button.restore {
+    background: url("/css/images/button-icons/restore.png") no-repeat 10px center, -webkit-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/restore.png") no-repeat 10px center,    -moz-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/restore.png") no-repeat 10px center,     -ms-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/restore.png") no-repeat 10px center,      -o-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/restore.png") no-repeat 10px center,   linear-gradient(to bottom, #50565c 0%, #3b3b3b 50%, #293036);
+}
+a.button.restore:hover {
+    background: url("/css/images/button-icons/restore.png") no-repeat 10px center, -webkit-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/restore.png") no-repeat 10px center,    -moz-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/restore.png") no-repeat 10px center,     -ms-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/restore.png") no-repeat 10px center,      -o-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/restore.png") no-repeat 10px center,   linear-gradient(to bottom, #4d5357 0%, #3b3b3b 50%, #1c2227);
+}
+a.button.restore.disabled {
+    color: #464c51 !important;
+    background: #283138 url("/css/images/button-icons/restore-disabled.png") no-repeat 10px center;
+}
+
+/* "Restart X" button */
+a.button.restart {
+    background: url("/css/images/button-icons/restart.png") no-repeat 10px center, -webkit-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/restart.png") no-repeat 10px center,    -moz-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/restart.png") no-repeat 10px center,     -ms-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/restart.png") no-repeat 10px center,      -o-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/restart.png") no-repeat 10px center,   linear-gradient(to bottom, #50565c 0%, #3b3b3b 50%, #293036);
+}
+#MongoDBInc a.button.restart {
+    background: #6ca439 url("/css/images/button-icons/restart-white.png") no-repeat 10px center;
+}
+a.button.restart:hover {
+    background: url("/css/images/button-icons/restart.png") no-repeat 10px center, -webkit-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/restart.png") no-repeat 10px center,    -moz-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/restart.png") no-repeat 10px center,     -ms-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/restart.png") no-repeat 10px center,      -o-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/restart.png") no-repeat 10px center,   linear-gradient(to bottom, #4d5357 0%, #3b3b3b 50%, #1c2227);
+}
+a.button.restart.disabled {
+    color: #464c51 !important;
+    background: #283138 url("/css/images/button-icons/restart-disabled.png") no-repeat 10px center;
+}
+#MongoDBInc a.button.restart:hover {
+    background: #5f962e url("/css/images/button-icons/restart-white.png") no-repeat 10px center !important;
+}
+#MongoDBInc a.button.restart:active {
+    background: #46761a url("/css/images/button-icons/restart-white.png") no-repeat 10px center;
+}
+
+/* "Delete X" button */
+a.button.delete {
+    background: url("/css/images/button-icons/delete.png") no-repeat 10px center, -webkit-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/delete.png") no-repeat 10px center,    -moz-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/delete.png") no-repeat 10px center,     -ms-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/delete.png") no-repeat 10px center,      -o-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/delete.png") no-repeat 10px center,   linear-gradient(to bottom, #50565c 0%, #3b3b3b 50%, #293036);
+}
+#MongoDBInc a.button.delete {
+    background: #6ca439 url("/css/images/button-icons/delete-white.png") no-repeat 10px center;
+}
+a.button.delete:hover {
+    background: url("/css/images/button-icons/delete.png") no-repeat 10px center, -webkit-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/delete.png") no-repeat 10px center,    -moz-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/delete.png") no-repeat 10px center,     -ms-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/delete.png") no-repeat 10px center,      -o-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/delete.png") no-repeat 10px center,   linear-gradient(to bottom, #4d5357 0%, #3b3b3b 50%, #1c2227);
+}
+#MongoDBInc a.button.delete:hover {
+    background: #5f962e url("/css/images/button-icons/delete-white.png") no-repeat 10px center !important;
+}
+#MongoDBInc a.button.delete:active {
+    background: #46761a url("/css/images/button-icons/delete-white.png") no-repeat 10px center;
+}
+a.button.delete.disabled {
+    background: #283138 url("/css/images/button-icons/delete-disabled.png") no-repeat 10px center;
+}
+#MongoDBInc a.button.delete.disabled {
+    background: #e7e7e7 url("/css/images/button-icons/delete-disabled.png") no-repeat 10px center !important;
+}
+
+
+/* "Add X" button */
+a.button.add {
+    background: url("/css/images/button-icons/add.png") no-repeat 10px center, -webkit-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/add.png") no-repeat 10px center,    -moz-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/add.png") no-repeat 10px center,     -ms-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/add.png") no-repeat 10px center,      -o-linear-gradient(top, #50565c 0%, #3b3b3b 50%, #293036);
+    background: url("/css/images/button-icons/add.png") no-repeat 10px center,   linear-gradient(to bottom, #50565c 0%, #3b3b3b 50%, #293036);
+}
+#MongoDBInc a.button.add {
+    background: #6ca439 url("/css/images/button-icons/add-white.png") no-repeat 10px center;
+}
+a.button.add:hover {
+    background: url("/css/images/button-icons/add.png") no-repeat 10px center, -webkit-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/add.png") no-repeat 10px center,    -moz-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/add.png") no-repeat 10px center,     -ms-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/add.png") no-repeat 10px center,      -o-linear-gradient(top, #4d5357 0%, #3b3b3b 50%, #1c2227);
+    background: url("/css/images/button-icons/add.png") no-repeat 10px center,   linear-gradient(to bottom, #4d5357 0%, #3b3b3b 50%, #1c2227);
+}
+#MongoDBInc a.button.add:hover {
+    background: #5f962e url("/css/images/button-icons/add-white.png") no-repeat 10px center !important;
+}
+#MongoDBInc a.button.add:active {
+    background: #46761a url("/css/images/button-icons/add-white.png") no-repeat 10px center;
+}
+a.button.add.disabled {
+    background: #283138 url("/css/images/button-icons/add-disabled.png") no-repeat 10px center;
+}
+
+#MongoDBInc a.button.add.disabled {
+    background: #e7e7e7 url("/css/images/button-icons/add-disabled.png") no-repeat 10px center !important;
+}
+
+
+/*****************************************************************************
+ * GENERAL - Links, mouseovers, and more buttons
+ *****************************************************************************/
+
+.link {
+    cursor: pointer;
+}
+
+#headerAccountLinks a:link, #headerAccountLinks a:visited, #headerAccountLinks a:hover, #headerAccountLinks a:active,
+#mainCol a:link, #mainCol a:visited, #mainCol a:hover, #mainCol a:active, a.link, .ui-widget-content a.link {
+    cursor: pointer;
+    color: #79ccf5;
+    text-decoration: underline;
+}
+
+#MongoDBInc #headerAccountLinks a:link, #MongoDBInc #headerAccountLinks a:visited,
+#MongoDBInc #mainCol a:link, #MongoDBInc #mainCol a:visited,
+#MongoDBInc a.link {
+    color: #006cbc;
+}
+#MongoDBInc #headerAccountLinks a:hover, #MongoDBInc #headerAccountLinks a:active,
+#MongoDBInc #mainCol a:hover, #MongoDBInc #mainCol a:active,
+#MongoDBInc a.link:hover, #MongoDBInc a.link:active {
+    color: #2a6496;
+}
+
+#mainCol h1 a:hover {
+    color: inherit !important;
+}
+
+a.button, li a {
+    text-decoration: none !important;
+}
+
+#sidebar li a {
+    text-decoration: underline !important;
+}
+
+#MongoDBInc #sidebar a {
+    color:#006cbc;
+}
+#MongoDBInc #sidebar a:hover, #MongoDBInc #sidebar a:active {
+    color:#2a6496;
+}
+
+#mainCol td a:link, #mainCol td a:visited, #mainCol td a:hover, #mainCol td a:active {
+    color: #C9CCCD !important;
+    color: white !important;
+    text-decoration: none !important;
+}
+#MongoDBInc #mainCol td a:link, #MongoDBInc #mainCol td a:visited, #MongoDBInc #mainCol td a:hover, #MongoDBInc #mainCol td a:active {
+    color: #4d4d4d !important;
+}
+
+p a {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.help {
+    cursor: help;
+}
+
+a:visited {
+    color: inherit;
+}
+
+
+
+a.blueButton{font-family:"Museo Sans",sans-serif !important;text-decoration:none;font-size:15px;font-weight:bold;color:#ffffff;padding:6px 17px;background:-moz-linear-gradient(top, #58afd9 0%, #3a97cb);background:-webkit-gradient(linear, left top, left bottom, from(#58afd9), to(#3a97cb));-webkit-border-radius:5px;-moz-border-radius:5px;-ms-border-radius:5px;-o-border-radius:5px;border-radius:5px;-moz-box-shadow:0px 1px 1px rgba(0, 0, 0, 0.5),inset 0px 1px 0px rgba(255, 255, 255, 0.4);-webkit-box-shadow:0px 1px 1px rgba(0, 0, 0, 0.5),inset 0px 1px 0px rgba(255, 255, 255, 0.4);box-shadow:0px 1px 1px rgba(0, 0, 0, 0.5),inset 0px 1px 0px rgba(255, 255, 255, 0.4);cursor:pointer;}
+
+a.blueButton:hover{background:-moz-linear-gradient(top, #78c3e4 0%, #227ab9);background:-webkit-gradient(linear, left top, left bottom, from(#78c3e4), to(#227ab9));-moz-box-shadow:0px 1px 1px rgba(0, 0, 0, 0.6),inset 0px 1px 3px rgba(255, 255, 255, 0.6);-webkit-box-shadow:0px 1px 1px rgba(0, 0, 0, 0.6),inset 0px 1px 3px rgba(255, 255, 255, 0.6);box-shadow:0px 1px 1px rgba(0, 0, 0, 0.6),inset 0px 1px 3px rgba(255, 255, 255, 0.6);}
+
+a.blueButton:active{background:-moz-linear-gradient(top, #43a1d2 0%, #43a1d2);background:-webkit-gradient(linear, left top, left bottom, from(#43a1d2), to(#43a1d2));-moz-box-shadow:0px 1px 0px rgba(0, 0, 0, 0.3),inset 0px 1px 2px rgba(0, 0, 0, 0.1);-webkit-box-shadow:0px 1px 0px rgba(0, 0, 0, 0.3),inset 0px 1px 2px rgba(0, 0, 0, 0.1);box-shadow:0px 1px 0px rgba(0, 0, 0, 0.3),inset 0px 1px 2px rgba(0, 0, 0, 0.1);}
+
+
+#searchQuery a.button {
+    font-size: 80%;
+}
+
+.h1ActionBtns {
+    margin-top: -47px;
+    margin-bottom: 69px;
+}
+
+body.wide .h1ActionBtns {
+    margin-top: -47px;
+    margin-bottom: 69px;
+}
+
+.h2ActionBtns {
+    margin-top: -51px;
+    margin-bottom: 80px;
+}
+
+.h2ResultBtns {
+    margin-bottom: 20px;
+}
+
+.h2ResultBtns a {
+    text-decoration: underline;
+}
+
+
+/*****************************************************************************
+ * Lists
+ *****************************************************************************/
+.pricing ol, .pricing ul,
+.legal ol, .legal ul,
+.message.ol, .message ul {
+    line-height: 125%;
+    margin: 0.5em 0 0 15px;
+    padding: 0;
+}
+
+.message ul { margin-left:0px; }
+.message li {
+    list-style-type: none;
+    text-align: left;
+    margin-left: 0px;
+    padding-bottom: 5px;
+}
+
+.pricing li,
+.legal li {
+    list-style-type: inherit;
+    margin-left: 30px;
+    padding-bottom: 5px;
+}
+
+ul.databaseTree {
+    list-style: none;
+    display: inline;
+}
+ul.databaseTree li {
+    /* background-image: url(); */
+    /* background-position: 0 1px;*/
+    /* background-repeat: no-repeat; */
+    padding-left: 20px;
+}
+
+
+/*****************************************************************************
+ * General - Forms
+ *****************************************************************************/
+form input[type=text], form input[type=password], form textarea {
+    color: #555;
+    font: inherit;
+    width: 100%;
+    height: 1.5em;
+    border: 1px solid #aaa;
+}
+
+form input:not([type=submit]):not([type=file]) {
+    background: #c9cccd;
+    background: white;
+    padding: 0px 3px 0px 3px;
+}
+
+form :focus {
+    background-color: lightyellow !important;
+}
+
+form select {
+    color: #555; font: inherit;
+    font-size: 90%;
+}
+
+
+form fieldset {
+    margin: 0px auto;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+
+form fieldset > div {
+    padding-top: 7px;
+}
+
+form fieldset h2 + div {
+    padding-top: 0;
+}
+
+form label.radioIndent {
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+    line-height: 200%;
+}
+
+form textarea.createJSON {
+    height: 150px;
+}
+
+label input {
+    vertical-align: middle;
+}
+
+.message {
+    padding:10px 8px 10px 39px;
+    font:300 13px/20px "Roboto", sans-serif;
+    margin-top: 10px;
+    margin-bottom:10px;
+    border-radius:5px;
+    color: #a1a6a9;
+    box-shadow:0 3px 6px rgba(0, 0, 0, 0.2);
+    border: none;
+    background: #3a454d 10px 8px no-repeat;
+}
+
+#MongoDBInc .message {
+    background-color: #ebebed;
+}
+
+.message strong {
+    color:#fff;
+}
+
+.message a {
+    color:#53b9ec;
+}
+
+.message a.close {
+    float:right; color:#999; text-decoration:none; line-height:1px; margin-left:30px; margin-right:10px;
+}
+
+.message.success {
+    background-image: url(/css/images/status_ok.png);
+    color: #4cbf7c;
+    background-position: 10px 9px;
+}
+
+#MongoDBInc .message.success {
+    background-image: url(/css/images/status_ok_white-background.png);
+    color: #299F5A;
+}
+
+.message.warning {
+    background-image: url(/css/images/status_warning.png);
+    color: #e0b226;
+}
+
+#MongoDBInc .message.warning {
+    background-image: url(/css/images/status_warning_white-background.png);
+    color: #A6800E;
+}
+
+.message.error {
+    background-image: url(/css/images/status_error.png);
+    color: #ef5a46;
+}
+
+#MongoDBInc .message.error {
+    background-image: url(/css/images/status_error_white-background.png);
+    color: #C7331F;
+}
+
+.message.maintenance {
+    background-image: url(/css/images/status_maintenance.png);
+    color: #31abed;
+    background-position: 10px 10px;
+}
+
+#MongoDBInc .message.maintenance {
+    background-image: url(/css/images/status_maintenance_white-background.png);
+    color: #148FD1;
+}
+
+.message.loading {
+    background-image: url("/css/images/status_loading.gif");
+    background-position-y: 16px;
+}
+
+.message.info {
+    font-size: 100%;
+    margin-left: auto; margin-right: auto;
+    width: 95%;
+}
+
+.message.announcement {
+    color: #00ee00; /* bright green */
+    color: white;
+    padding: 15px 25px;
+    line-height: 25px;
+    cursor: pointer;
+    text-align: left;
+    moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    xborder:1px dotted #00ee00;
+    xborder:1px dotted white;
+    border:1px dotted #a6cbe1;
+}
+
+.message.announcement span {
+    vertical-align: middle;
+}
+
+.message .messageActions {
+    float: right;
+    height: 1em;
+    margin-right: 10px;
+    color:#79ccf5 !important;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.message .messageAction {
+    display: inline;
+    padding-left: 10px;
+}
+
+.message.pending {
+    text-decoration: line-through;
+    color: #888;
+}
+
+/*****************************************************************************
+ * GENERAL - Forms jQuery validation
+ *****************************************************************************/
+label.f-left {
+    width: 150px;
+}
+
+input.error, textarea.error {
+    xborder: 1px solid red !important;
+    border: 1px dashed red !important;
+    background: #faebe7 !important;
+}
+
+label.error {
+    display: inline;
+    clear: both;
+    min-height: 13px;
+    margin: 3px 0 0;
+    padding-left: 17px;
+    text-indent: 0px;
+    font-size: 10px;
+    line-height: 13px;
+    background: url(/css/images/validation-pointer.png) 2px 1px no-repeat;
+    color: red;
+}
+
+/*****************************************************************************
+ * Sidebar
+ *****************************************************************************/
+.sidebarBtn.icon {
+    display: none;
+    cursor: pointer;
+}
+
+div.sidebarBtn.icon {
+    float: right;
+    margin-top: 39px;
+    margin-right:3px;
+    margin-left: 0px;
+}
+
+label.sidebarBtn.icon.show {
+    float: right;
+    margin-right: 0px;
+}
+
+label.sidebarBtn.icon.hide {
+    float: right;
+    margin-right: 0px;
+}
+
+label.sidebarBtn a {
+    text-decoration: none;
+    color: #79CCF5;
+    font-size: 12px;
+    width: 80px;
+    display:block;
+}
+
+label.sidebarBtn.icon.show a {
+    margin-left:21px;
+}
+
+label.sidebarBtn.icon.hide a {
+    margin-left:-78px;
+}
+
+.sidebarBtn.icon.show {
+    background: transparent url(/css/images/icon-narrowcolumn.png) no-repeat;
+    width: 18px; height: 18px;
+}
+
+.sidebarBtn.icon.hide {
+    background: transparent url(/css/images/icon-widecolumn.png) no-repeat;
+    width: 18px; height: 18px;
+}
+
+
+#sidebar em {
+    font-style: italic;
+    font-weight: normal;
+}
+
+#sidebar pre {
+    font-size: 9.5px;
+}
+
+#sidebar li {
+    padding-bottom: 15px;
+}
+
+#sidebar h1:first-child {
+    margin-top: 1.25em;
+}
+
+#sidebar .generalHelp {
+    background-color: #28313a;
+}
+
+#MongoDBInc #sidebar .generalHelp {
+    background-color: #f5f6f7;
+}
+
+#sidebar .generalHelp>div {
+    margin: .5em 0;
+}
+
+#sidebar .generalHelp>div>div {
+    margin: .3em 0;
+}
+
+#sidebar .generalHelp>div>pre:first-child {
+    color: #ddd;
+}
+#MongoDBInc #sidebar .generalHelp>div>pre:first-child {
+    font-weight: bold;
+    color: inherit;
+}
+
+#sidebar .generalHelp .op {
+    color: #ddd;
+}
+#MongoDBInc #sidebar .generalHelp .op {
+    color: inherit;
+}
+
+#sidebar .generalHelp .code:before {
+    content: "  ";
+}
+
+/*****************************************************************************
+ * modals
+ *****************************************************************************/
+#modalMask, .modalMask {
+    position: absolute;
+    z-index: 9000;
+    background-color: #1b242c;
+    width: 100%; height: 3000px;
+    display: none;
+}
+
+#modalLoadingIndicator, .modalLoadingIndicator {
+    position: absolute;
+    width: 225px; height: auto;
+    display: none;
+    z-index: 9999;
+    background-color: white;
+    color: #333;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+div.modalMask {
+    display: block;
+    width: 100%;
+    opacity: 0.6;
+    top: 0;
+    left: 0;
+}
+
+div.modalLoadingIndicator {
+    width: 200px;
+    margin-left: -100px;
+    height: 150px;
+    margin-top: -75px;
+    display: block;
+}
+
+#modalLoadingIndicator>div, .modalLoadingIndicator>div {
+    padding: 0 25px;
+}
+
+#modalLoadingIndicator div .title, .modalLoadingIndicator div .title {
+    text-align: justify;
+    padding-top: 25px;
+    color: #555;
+}
+
+.loadingIndicator {
+    background: url(/css/images/ajax-loader.gif) no-repeat;
+    width: 32px; height: 32px;
+    margin-top: 5px;
+    margin-left: 20px;
+    display: none;
+}
+
+.loadingIndicatorBig {
+    background: url(/css/images/ajax-loader-big.gif) no-repeat center !important;
+    width: 54px; height: 55px;
+    padding: 25px 0;
+    margin: auto;
+}
+
+/*****************************************************************************
+ * div#footer
+ *****************************************************************************/
+#footer {
+    text-align: center;
+    position: relative;
+    z-index: 100;
+}
+
+#footer a {
+    text-decoration: none;
+}
+
+#copyright a {
+    color: #94c1db; /* dk. powder blue */
+    text-decoration: none;
+}
+
+#footerNav .divider:after {
+    content: " | "
+}
+
+#footerNav a {
+    color: #94c1db; /* dk. powder blue */
+}
+
+/*****************************************************************************
+ * div#body #mainCol
+ *****************************************************************************/
+#breadcrumbs {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+#breadcrumbs .label {
+    font-size: 10px;
+}
+
+#breadcrumbs .divider {
+    font-size: 8px;
+}
+
+#breadcrumbs .divider:after {
+    content: " , ";
+}
+
+#breadcrumbs a {
+    color: white;
+}
+
+.connectionInfo {
+    border: 1px solid #3f4a51;
+    padding: 20px 20px 10px 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    background-color: #1b242c;
+}
+#MongoDBInc .connectionInfo {
+    border:1px solid #ddd !important;
+    background-color: #fcfcfd;
+}
+
+.connectionInfo #horizontalFade {
+    float: right;
+    position:absolute;
+    z-index: 100;
+    height: 85%;
+    width: 200px;
+    margin-top: 5px;
+    top: 0; right: 0;
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0,#1b242c), color-stop(1, #1b242c));
+    background-image: -webkit-linear-gradient(left, rgba(27,36,44,0), rgba(27,36,44,1));
+    background-image:    -moz-linear-gradient(left, rgba(27,36,44,0), rgba(27,36,44,1));
+    background-image:     -ms-linear-gradient(left, rgba(27,36,44,0), rgba(27,36,44,1));
+    background-image:      -o-linear-gradient(left, rgba(27,36,44,0), rgba(27,36,44,1));
+    filter: progid:DXImageTransform.Microsoft.Gradient(
+    StartColorStr='#001b242c', EndColorStr='#FF1b242c', GradientType=1);
+}
+#MongoDBInc .connectionInfo #horizontalFade { /* AJP : needs confirmation */
+background-image: none;
+}
+
+.connectionInfo code {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: block;
+    white-space: nowrap;
+    font-size: 12px;
+    text-indent: 15px;
+}
+
+.connectionInfo #internalConnectionInfo {
+    width: 633px;
+}
+
+.connectionInfo #internalConnectionInfo code {
+    display: inline;
+}
+
+.connectionInfo #connectionInfoContent {
+    float: left;
+}
+
+.connectionInfo #connectionInfoContent>div:first-child {
+    margin-bottom: 14px;
+}
+
+.label, .connectionInfo #connectionInfoContent div {
+    font-family: "Museo Sans", sans-serif;
+}
+
+.connectionInfo #mongoVersionInfo {
+    float: right;
+    height: 100%;
+    vertical-align: bottom;
+    width: 100%;
+    text-align: right;
+    position: relative;
+    z-index: 101;
+    padding-top: 0px;
+}
+
+.connectionInfo #mongoVersionInfo code {
+    display: inline;
+    font-size: 10px;
+}
+
+#keyMetadata {
+    padding: 10px 15px;
+}
+
+.prompt {
+    color: #DAA8F5; /* purple */
+}
+
+#MongoDBInc .prompt { /* AJP : needs confirmation */
+color: inherit;
+}
+
+.prompt:after {
+    content: "% ";
+}
+
+.noData, .noDataStyle, .noDatabases, .noServerLogs, .noBackups, .noMmsUsers, .noIpRules {
+    color: #a6cbe1; /* powder blue */
+    font-style: italic;
+    padding-left: 10px;
+}
+
+#MongoDBInc .noData, #MongoDBInc .noDataStyle, #MongoDBInc .noDatabases, #MongoDBInc .noMmsUsers, #MongoDBInc .noServerLogs, #MongoDBInc .noBackups, #MongoDBInc .noIpRules {
+    color: inherit;
+}
+
+.noData:not(.customText):after {
+    content: "[None at this time]"
+}
+
+.noBackups:after {
+    content: "No custom backups have been taken recently. Contact support@mlab.com for access to a system-level backup."
+}
+
+.noBackups.dedicated:after {
+    content: "No custom backups have been taken recently."
+}
+
+#MongoDBInc .noBackups:after {
+    content: "No custom snapshots have been taken recently."
+}
+
+.noDatabases:after {
+    content: "[No databases at this time]"
+}
+
+.noServerLogs:after {
+    content: "[No log files at this time]"
+}
+
+.noQueryReports:after {
+    content: "[No slow queries found at this time]"
+}
+
+.noNotificationChannels:after {
+    content: "[No notification channels have been added yet]"
+}
+
+.noMmsUsers:after {
+    content: "[No MMS users have been attached yet]"
+}
+
+.noIpRules:after {
+    content: "[No inbound allow rules configured. Add 0.0.0.0/0 to allow all traffic.]";
+}
+
+.errorData {
+    color: #BBBDBD;
+    font-style: italic;
+    padding-left: 10px;
+}
+
+table {
+    text-align: left;
+    width: 100%;
+    vertical-align: middle;
+    border-collapse: separate;
+    border-spacing: 0 2px;
+}
+
+#MongoDBInc table {
+    border-spacing: 0 1px;
+}
+
+th, td {
+    padding: 3px 10px;
+}
+
+th {
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    border: 0;
+    text-transform: uppercase;
+    font-size: 11.5px;
+}
+#MongoDBInc th {
+    font-size: 11px;
+    color:#9a9694;
+}
+
+th.help .helpIcon {
+    background: url(/css/images/small-question-mark-icon.png) 3px -1px no-repeat;
+    display: inline-block;
+    width: 14px;
+    height: 12px;
+}
+#MongoDBInc th.help .helpIcon {
+    background: url(/css/images/small-question-mark-icon_white-background.png) 0 0 no-repeat;
+    margin:0 0 0 3px;
+    width:10px;
+    height:10px;
+}
+
+h2 .helpIcon {
+    background: url(/css/images/small-question-mark-icon.png) 3px -1px no-repeat;
+    display: inline-block;
+    width: 14px;
+    height: 16px;
+}
+
+label .helpIcon {
+    background: url(/css/images/small-question-mark-icon.png) 2px -1px no-repeat;
+    display: inline-block;
+    width: 14px;
+    height: 16px;
+}
+
+.ui-dialog th {
+    color: #555;
+}
+
+.tableMode th {
+    text-transform: none;
+    background-color: #3f4852;
+}
+#MongoDBInc .tableMode th { /* AJP : needs confirmation */
+background-color: #f5f6f7;
+}
+
+thead tr:hover {
+    background: transparent;
+}
+
+tr {
+    height: 26px;
+}
+
+tr textarea {
+    height: 100px;
+    cursor: inherit;
+}
+
+tr.odd,  tr.odd.nolink:hover  { background-color: #3f4852; }
+tr.even, tr.even.nolink:hover { background-color: #515c65; }
+
+
+tr.odd:hover  { background-color: #353E48; }
+tr.even:hover { background-color: #47525B; }
+
+#MongoDBInc tr td:first-child {color: #6f6763 !important; font-weight: 500}
+#MongoDBInc tr.nolink td {color: inherit; }
+#MongoDBInc tr, #MongoDBInc tr.nolink:hover {background-color: #ffffff !important;}
+#MongoDBInc tr:hover { background-color: #f6f7f8 !important; }
+#MongoDBInc thead tr {background-color: #f5f6f7 !important; }
+
+
+td {
+    font-size: 13px;
+    width: inherit;
+}
+
+#MongoDBInc td {
+    border-top:1px solid #f2f2f2 !important;
+    
+}
+#MongoDBInc tbody tr:first-child td {
+    border-top:none !important;
+}
+
+#listMode td {
+    font-size: 12px;
+}
+
+td.actionBtns {
+    width: 15px;
+    min-width: 0;
+    border: 0;
+    padding: 0;
+    background: #1b242c;
+}
+
+#MongoDBInc td.actionBtns { /* AJP : needs confirmation */
+background: inherit;
+}
+
+.tableMode td.actionBtns {
+    background: transparent;
+    padding-right: 5px;
+}
+
+.listMode td.actionBtns {
+    white-space: nowrap;
+    padding-left: 4px;
+}
+
+td.actionBtns.wide {
+    width: 60px;
+}
+
+.listMode td.actionBtns button {
+    margin-right: -2px;
+    margin-left: 0;
+}
+
+td.actionBtns button, .connection-summary button, .cluster-summary button {
+    font-family: "Droid Sans Mono", monospace;
+    background: none;
+    border: 0;
+    padding: 0; margin: 2px;
+    cursor:pointer;
+    
+}
+
+td.actionBtns button span {
+    font-size: 108%;
+}
+
+td.actionBtns button.makedefault {
+    background: url(/css/images/icon-makedefault.png) left top no-repeat;
+    width: 24px; height: 24px;
+    box-shadow: none;
+}
+
+td.actionBtns button.makedefault:hover {
+    background-position: right top;
+}
+
+td.actionBtns button.delete,
+.connection-summary button.delete,
+.cluster-summary button.delete {
+    background: url(/css/images/icon-delete.png) left top no-repeat;
+    width: 24px; height: 24px;
+    box-shadow: none;
+}
+
+#MongoDBInc td.actionBtns button.delete,
+#MongoDBInc .connection-summary button.delete,
+#MongoDBInc .cluster-summary button.delete {
+    background-image: url(/css/images/icon-delete_white-background.png);
+}
+
+td.actionBtns button.edit,
+.connection-summary button.edit,
+.cluster-summary button.edit{
+    background: url(/css/images/icon-edit.png) left top no-repeat;
+    width: 24px; height: 24px;
+    box-shadow: none;
+}
+
+#MongoDBInc td.actionBtns button.edit,
+#MongoDBInc .connection-summary button.edit,
+#MongoDBInc .cluster-summary button.edit{
+    background-image: url(/css/images/icon-edit_white-background.png);
+}
+
+td.actionBtns button.retry {
+    background: url(/css/images/icon-retry.png) left top no-repeat;
+    width: 24px; height: 24px;
+    box-shadow: none;
+}
+
+.cluster-summary button.mms {
+    background: url(/css/images/icon_mms.png) left top no-repeat;
+    width: 24px; height: 24px;
+    box-shadow: none;
+}
+
+td.actionBtns button.edit:hover,
+td.actionBtns button.delete:hover,
+td.actionBtns button.retry:hover,
+.cluster-summary button.delete:hover,
+.cluster-summary button.edit:hover,
+.cluster-summary button.mms:hover,
+.connection-summary button.delete:hover,
+.connection-summary button.edit:hover {
+    background-position: right top;
+}
+
+.cluster-summary button.delete,
+.connection-summary button.delete,
+.connection-summary button.edit,
+.cluster-summary button.mms,
+.cluster-summary button.edit{
+    float: right;
+    position: relative;
+    z-index: 20;
+}
+
+td.actionBtns button.dllog {
+    background: url(/css/images/icon-view-log.png) left top no-repeat;
+    width: 24px; height: 24px;
+    box-shadow: none;
+}
+
+#MongoDBInc td.actionBtns button.dllog {
+    background: url(/css/images/icon-view-log_white-background.png) left top no-repeat;
+}
+
+td.actionBtns button.dllog:hover {
+    background-position: right top;
+}
+
+td.actionBtns button.download {
+    background: url(/css/images/icon-download.png) left top no-repeat;
+    width: 24px; height: 24px;
+    box-shadow: none;
+}
+
+#MongoDBInc td.actionBtns button.download {
+    background-image: url(/css/images/icon-download_white-background.png);
+}
+
+td.actionBtns button.download:hover {
+    background-position: right top;
+}
+
+caption {
+    margin-top: 5px;
+}
+
+div.actionBtns {
+    margin-top: 10px;
+}
+
+form.deleteDialog span:after {
+    content: " will be permanently deleted.  Are you sure you want to do this?";
+}
+
+form.deleteProfileCollectionDialog span:after {
+    content: " will be permanently deleted. In order to delete this collection, we will need to first turn off profiling.  Are you sure you want to do this?";
+}
+
+.paginatorForm, .paginatorNav {
+    text-transform: lowercase;
+    color: #ccc;
+}
+#MongoDBInc .paginatorForm, #MongoDBInc .paginatorNav {
+    color: inherit;
+}
+
+.paginatorNav a {
+    text-decoration: none;
+    font-size: 80%;
+    color: inherit;
+}
+
+/** Index options table */
+
+table.indexOptionsTable {
+    width: 325px;
+}
+
+table.indexOptionsTable td, table.indexOptionsTable th {
+    border: none;
+    color: #222;
+    padding: 3px 5px;
+}
+
+table.indexOptionsTable td {
+    width: 100%;
+}
+
+table.indexOptionsTable th {
+    text-transform: none;
+    white-space: nowrap;
+}
+
+table.indexOptionsTable tr:hover {
+    xbackground-color: transparent;
+    background-color: transparent;
+}
+
+.tooltip {
+    display: none;
+}
+
+/** Button tooltips */
+button .tooltip {
+    position:relative;
+    top:2em; left:1em;
+    padding: 2px;
+    border: 1px solid #a6cbe1; /* lt blue */
+    background-color: #1b242c;
+    color: white;
+    font-size: 12px;
+    font-family: "Century Gothic", "Heiti TC", Questrial, sans-serif;
+}
+
+button:hover .tooltip {
+    display:inline;
+}
+
+/** HTML overlays **/
+div .overlay {
+    color: #ccc;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#0e1b23), to(#0D141C));
+    background-image: -webkit-linear-gradient(top, #0e1b23, #0D141C); /*safari 5.1+*/
+    background-image: -moz-linear-gradient(top, #0e1b23, #0D141C);/*firefox3.6+*/
+    background-image: -ms-linear-gradient(top, #0e1b23, #0D141C);/*ie 10*/
+    background-image: -o-linear-gradient(top, #0e1b23, #0D141C);/*opera*/
+    border: 1px solid #ccc;
+    padding: 40px;
+    width: 600px;
+    max-height: 400px;
+    overflow: scroll;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+}
+
+div .overlay h1 {
+    font-size: 22px;
+}
+
+div .overlay .tableHeader {
+    margin: 15px 0 5px 0 !important;
+    padding-top: 5px;
+}
+
+div .overlay table {
+    border-collapse: collapse;
+    color: inherit;
+}
+
+div .overlay table td.label {
+    color: #a6cbe1; /* powder blue */
+}
+
+div .overlay .audit {
+    color: #aaa;
+    margin-top: 10px;
+    font-size: 90%;
+    float: right;
+}
+
+table td.booleanValueCol {
+    color: #0e0;
+}
+
+/*****************************************************************************
+ * div#body #sidebar
+ *****************************************************************************/
+.generalHelp {
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.generalHelp, .specificHelp {
+    padding: 5px 20px 15px 25px;
+    width: 267px;
+}
+
+.specificHelp {
+    border-color: #DAA8F5; /* purple */
+    z-index: 100;
+    position: absolute;
+    background-color: #385a6d;
+    padding-top:20px;
+    margin: 15px 0;
+}
+
+#MongoDBInc .specificHelp {
+    background-color: #323232;
+    color:#fff;
+}
+
+.specificHelp h1 {
+    line-height:24px;
+    margin-top:0px !important;
+    margin-bottom:0px !important;
+}
+
+#MongoDBInc .specificHelp h1 {
+    color:#fff;
+}
+
+.specificHelp .helpIcon {
+    background: url(/css/images/large-question-mark-icon.png) top left no-repeat;
+    display: inline-block;
+    margin-right:7px;
+    width: 24px;
+    height: 24px;
+    float:left;
+}
+
+/*****************************************************************************
+ * Account - login, signup, reset-password, etc.
+ *****************************************************************************/
+
+.account {
+    margin: 65px auto 0 auto;
+    padding: 15px;
+    width: 400px;
+    text-align: left;
+    background-color: #3f4852;
+    font-family: "Roboto", sans-serif !important;
+    color: inherit;
+}
+
+.account .blueButton { float:left; }
+
+.account .title  {
+    display: block;
+    margin: 3px;
+    margin-bottom:10px;
+    padding: 8px 8px;
+    font-size: 24px;
+    color: white;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+}
+
+.account .message {
+    margin-left: 20px; margin-right: 20px;
+    background-color: #333d47;
+    box-shadow: none;
+    padding-top: 5px;
+    margin-bottom: 0;
+}
+
+.account .content fieldset {
+    width: 85%;
+}
+
+.account .content fieldset.btns {
+    margin-top: 25px;
+    vertical-align: middle;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.account a:link, .account a:visited {
+    color:#79ccf5 !important; }
+    
+    
+    
+/*****************************************************************************
+ * Server Summary
+ *****************************************************************************/
+
+#secondaryDataWarning {
+    margin-top: -35px;
+    color: white;
+    border: 1px solid #E2DAA7; /* pale yellow */
+    position: absolute;
+    z-index: 200;
+    float: left;
+    width: 67px;
+    height: 16px;
+    padding: 3px 8px 3px 25px;
+    background-image: url(/css/images/icon_warning.gif);
+    background-color: #1b242c;
+    background-repeat: no-repeat;
+    background-position: 5px 3px;
+    overflow: hidden;
+}
+
+#secondaryDataWarning.nofloat {
+    float: none;
+    margin-left: 20px;
+}
+
+#secondaryDataWarning:hover {
+    background-color: #515c65;
+}
+
+#secondaryDataWarning .secondaryDataTitle {
+    white-space: nowrap;
+}
+
+#secondaryDataWarning .secondaryDataDetails {
+    width: 335px;
+    margin-top: 10px;
+}
+
+.healthStatus0 { color: #e00; text-decoration: underline } /* red */
+.healthStatus1 { color: #0e0; text-decoration: underline } /* green */
+.healthStatus2 { color: #ee0; text-decoration: underline } /* yellow */
+
+#MongoDBInc .healthStatus0 { color: #ed1c24; }
+#MongoDBInc .healthStatus1 { color: #359202; }
+#MongoDBInc .healthStatus2 { color: #ffb618; }
+#MongoDBInc .specificHelp .healthStatus0 { color: #ff6b49; }
+#MongoDBInc .specificHelp .healthStatus1 { color: #85ff15; }
+#MongoDBInc .specificHelp .healthStatus2 { color: #ffd618; }
+
+.notCalculatingStats {
+    text-align: center;
+    font-style: italic;
+}
+
+.loadingDatabaseComplete {
+    display: none;
+}
+
+.loadingDatabase .loadingWheel,
+.loadingDatabase .loadingWheel {
+    width: 18px;
+    height: 18px;
+    float: left;
+    padding-right: 5px;
+}
+
+.loadingCluster .loadingWheel {
+    width: 18px;
+    height: 18px;
+    padding-right: 5px;
+    position: absolute;
+    margin-left: -24px;
+}
+
+.loadingCluster {
+    font-size: 12px;
+    color: #BBBDBD;
+    float: left;
+    margin-left: 30px;
+    margin-top: -10px;
+}
+
+.buildingCluster {
+    padding-left: 10px;
+    font-size: 12px;
+    color: #ee0; /* yellow */
+}
+
+#MongoDBInc .buildingCluster { /* AJP : needs confirmation */
+color: #fead00;
+}
+
+.buildingCluster .activity {
+    font-size: 12px;
+    color: #A6CBE1;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+#MongoDBInc .buildingCluster .activity { /* AJP : needs confirmation */
+color: #271B15;
+}
+
+.buildingClusterComplete {
+    padding-left: 10px;
+    padding-bottom: 10px;
+    font-size: 12px;
+    color: #0e0;
+}
+
+.buildingClusterComplete a {
+    text-decoration: none;
+}
+
+.cluster-summary.link .title,
+.cluster-summary.link .title h1 {
+    cursor: pointer;
+}
+
+.cluster-summary, .connection-summary {
+    background-color: #28313a;
+    margin: 0px auto 25px auto;
+    padding: 10px 15px 15px 15px;
+    width: 95%;
+    text-align: left;
+}
+
+#MongoDBInc .cluster-summary, #MongoDBInc .connection-summary {
+    background: #fff !important;
+    border: 1px solid #e0e0e0;
+    box-shadow:none !important;
+}
+
+#MongoDBInc .cluster-summary:hover, #MongoDBInc .connection-summary:hover {
+    background: #f4f6f8 !important;
+    background: -moz-linear-gradient(top,  #f4f6f8 0%, #ffffff 50%) !important;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f4f6f8), color-stop(50%,#ffffff)) !important;
+    background: -webkit-linear-gradient(top,  #f4f6f8 0%,#ffffff 50%) !important;
+    background: -o-linear-gradient(top,  #f4f6f8 0%,#ffffff 50%) !important;
+    background: -ms-linear-gradient(top,  #f4f6f8 0%,#ffffff 50%) !important;
+    background: linear-gradient(to bottom,  #f4f6f8 0%,#ffffff 50%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f6f8', endColorstr='#ffffff',GradientType=0 ) !important;
+}
+
+.cluster-summary .subtitleContainer {
+    height: 16px;
+    margin-top: 4px;
+    padding-left: 10px;
+    display: block;
+}
+
+.cluster-summary .subtitle {
+    display: block;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.connection-summary span.subtitle {
+    margin-top: 4px;
+    display: inline;
+    font-size: 12px;
+    text-decoration: none;
+    padding-left: 20px;
+}
+
+.cluster-summary .server-status {
+    margin-top: 4px;
+    float: right;
+    display: inline;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.cluster-summary .dbtable tbody tr.odd,
+.cluster-summary .dbtable tbody tr.odd.nolink:hover,
+.connection-summary .dbtable tbody tr.odd,
+.connection-summary .dbtable tbody tr.odd.nolink:hover {
+    background-color: #515c65;
+}
+
+.cluster-summary .dbtable tbody tr.even,
+.cluster-summary .dbtable tbody tr.even.nolink:hover,
+.connection-summary .dbtable tbody tr.even,
+.connection-summary .dbtable tbody tr.even.nolink:hover {
+    background-color: #3f4852;
+}
+
+#MongoDBInc .dbtable tbody tr {
+    background-color: #fff;
+}
+
+.cluster-summary .dbtable tbody tr:hover,
+.connection-summary .dbtable tbody tr:hover {
+    background-color: #47525B;
+}
+
+#MongoDBInc .cluster-summary .dbtable tbody tr:hover,
+#MongoDBInc .connection-summary .dbtable tbody tr:hover {
+    background-color: inherit !important; /* these rows are not linkable (the entire summary is) */
+}
+
+.cluster-summary h1, .connection-summary h1 {
+    display: inline;
+}
+
+.cluster-summary div.title,
+.connection-summary div.title  {
+    display: block;
+    margin: 0px 3px 10px 3px;
+    padding: 8px 8px;
+    font-size: 18px;
+    color: white;
+    border-bottom: none;
+    background-color: transparent;
+}
+
+#MongoDBInc .cluster-summary div.title,
+#MongoDBInc .connection-summary div.title  { /* AJP : needs confirmation */
+color: inherit;
+}
+
+.cluster-summary div.link {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.cluster-summary.link {
+    position: relative;
+    
+    background-image: linear-gradient(top, #353E47 20px, #28313a 120px);
+    background-image: -o-linear-gradient(top, #353E47 20px, #28313a 120px);
+    background-image: -moz-linear-gradient(top, #353E47 20px, #28313a 120px);
+    background-image: -webkit-linear-gradient(top, #353E47 20px, #28313a 120px);
+    background-image: -ms-linear-gradient(top, #353E47 20px, #28313a 120px);
+    
+    background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(20px, #353E47),
+    color-stop(90px, #28313a)
+    );
+    background-repeat: no-repeat;
+    background-position: 0 -200px;
+    
+    -webkit-box-shadow: 0px 0px 0px rgba(31,37,45,1), 0px 0px 0px rgba(0,0,0,.5);
+    -moz-box-shadow: 0px 0px 0px rgba(31,37,45,1), 0px 0px 0px rgba(0,0,0,.5);
+    box-shadow: 0px 0px 0px rgba(31,37,45,1), 0px 0px 0px rgba(0,0,0,.5);
+    
+    -webkit-transition: all .1s ease;
+    -moz-transition: all .1s ease;
+    -ms-transition: all .1s ease;
+    -o-transition: all .1s ease;
+    transition: all .1s ease;
+}
+
+#MongoDBInc .cluster-summary.link { /* AJP : needs confirmation */
+
+background-image: linear-gradient(top, #DEE0E3 20px, #ebebed 120px);
+background-image: -o-linear-gradient(top, #DEE0E3 20px, #ebebed 120px);
+background-image: -moz-linear-gradient(top, #DEE0E3 20px, #ebebed 120px);
+background-image: -webkit-linear-gradient(top, #DEE0E3 20px, #ebebed 120px);
+background-image: -ms-linear-gradient(top, #DEE0E3 20px, #ebebed 120px);
+
+
+}
+
+.cluster-summary.link:hover {
+    position: relative;
+    background-position: 0 0;
+}
+
+.cluster-summary.link:active {
+    position: relative;
+    top: -2px;
+    background-position: 0 -25px;
+    -webkit-box-shadow: 0px 2px 0px rgba(31,37,45,1), 0px 3px 6px rgba(0,0,0,.5);
+    -moz-box-shadow: 0px 2px 0px rgba(31,37,45,1), 0px 3px 6px rgba(0,0,0,.5);
+    box-shadow: 0px 2px 0px rgba(31,37,45,1), 0px 3px 6px rgba(0,0,0,.5);
+}
+
+.connection-summary div.title:hover {
+    background-color: #353E47;
+}
+
+.connection-summary .subtitle {
+    font-size: 12px;
+    padding-left: 20px;
+}
+
+.cluster-summary .dbtable,
+.connection-summary .dbtable {
+    padding-top: 0px;
+}
+
+.cluster-summary .label,
+.connection-summary .label {
+    display: inline;
+    color: #A6CBE1;
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-top: 8px;
+}
+
+.cluster-summary .content .message,
+.connection-summary .content .message {
+    margin-left: 20px; margin-right: 20px;
+}
+
+.cluster-summary .content fieldset,
+.connection-summary .content fieldset {
+    width: 85%;
+}
+
+.cluster-summary .content fieldset.btns,
+.connection-summary .content fieldset.btns {
+    margin-top: 25px;
+    vertical-align: middle;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.connection-summary .down {
+    color: #e00;
+}
+
+.connection-summary div.down {
+    font-style: italic;
+    padding-left: 10px;
+}
+
+/*****************************************************************************
+ * Cluster status
+ *****************************************************************************/
+
+.healthStatusDisplay {
+    text-decoration: none;
+}
+
+span.statusLabel {
+    color: #81B6D5;
+}
+
+#MongoDBInc span.statusLabel {
+    color:#006cbc;
+}
+
+.repLag-sec, .repLag-ms {
+    color: #0e0; /* green */
+}
+
+#MongoDBInc .repLag-sec, #MongoDBInc .repLag-ms {
+    color: #359202 !important;
+}
+#MongoDBInc .specificHelp .repLag-sec, #MongoDBInc .specificHelp .repLag-ms {
+    color: #85ff15 !important;
+}
+
+.repLag-min, .repLag-unknown {
+    color: #ee0;
+}
+
+#MongoDBInc .repLag-min, #MongoDBInc .repLag-unknown {
+    color: #ffb618 !important;
+}
+#MongoDBInc .specificHelp .repLag-min, #MongoDBInc .specificHelp .repLag-unknown {
+    color: #ffd618 !important;
+}
+
+table.serverStatusTable .optime-unrecoverable,
+.repLag-hr, .repLag-day,
+.repLag-unrecoverable {
+    color: #e00; /* red */
+}
+
+table.serverStatusTable.patching .memberPatch {
+    display: none;
+}
+
+table.serverStatusTable.replacingNode .memberReplace {
+    display: none;
+}
+
+#MongoDBInc table.serverStatusTable .optime-unrecoverable,
+#MongoDBInc .repLag-hr, #MongoDBInc .repLag-day,
+#MongoDBInc .repLag-unrecoverable {
+    color: #ed1c24 !important;
+}
+#MongoDBInc .specificHelp table.serverStatusTable .optime-unrecoverable,
+#MongoDBInc .specificHelp .repLag-hr, #MongoDBInc .specificHelp .repLag-day,
+#MongoDBInc .specificHelp .repLag-unrecoverable {
+    color: #ff6b49 !important;
+}
+
+
+/*****************************************************************************
+ * Server logs
+ *****************************************************************************/
+table.serverLogsTable a {
+    text-decoration: none;
+    width: 100%;
+    display: block;
+}
+#MongoDBInc table.serverLogsTable a {
+    color: #4d4d4d !important;
+}
+
+#tabs #logs .formFields {
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+#tabs #logs .formFields .fieldLabel {
+    margin-right: 5px;
+    text-align: right;
+    color: white;
+    font-size: 120%;
+}
+
+#tabs #logs .formFields .fieldInput {
+    font-size: 110%;
+}
+
+#tabs #logs #logsLoading {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/*****************************************************************************
+ * User edit form
+ *****************************************************************************/
+form.stdForm {
+    width: 570px;
+}
+
+form.stdForm label {
+    float: left;
+    width: 180px;
+    text-align: right;
+    clear: left;
+    margin-right: 10px;
+}
+
+form.stdForm label.error {
+    float: none;
+    width: 250px;
+    text-align: left;
+    margin-left: 190px;
+    display: block;
+}
+
+form.stdForm label:after {
+    content: ":";
+}
+
+form.stdForm label.error:after {
+    content: "";
+}
+
+form.stdForm input[type=text],
+form.stdForm input[type=password],
+form.stdForm textarea {
+    width: 250px;
+}
+
+/*****************************************************************************
+ * Credit cards
+ *****************************************************************************/
+ul.cards{margin:0 0 10px 0!important;height:25px;}
+ul.cards li{list-style-type:none;float:left;margin:0 1px 0 0!important;}
+ul.cards li.text{position:relative;top:5px;font-size:11px;color:#999;}
+ul.cards .card{float:left;width:39px;height:25px;text-indent:-9999px;background-position:0 0;background-repeat:no-repeat;}
+ul.cards .card.disabled{background-position:0 -25px;opacity:.3;-moz-opacity:.3;filter:alpha(opacity=30);}
+ul.cards .card.visa{background-image:url(/css/images/card-visa.gif);}
+ul.cards .card.master{background-image:url(/css/images/card-mastercard.gif);}
+ul.cards .card.american_express{background-image:url(/css/images/card-amex.gif);}
+ul.cards .card.discover{background-image:url(/css/images/card-discover.gif);}
+ul.cards .card.jcb{background-image:url(/css/images/card-jcb.gif);}
+ul.cards .card.diners_club{background-image:url(/css/images/card-diners.gif);}
+
+/*****************************************************************************
+ * Pricing
+ * (vertically aligned bullet points using technique described here:
+ *  http://www.jakpsatweb.cz/css/css-vertical-center-solution.html)
+ *
+ *****************************************************************************/
+.pricing .divider {
+    background: url(/css/images/horizontal-line.png) repeat-x;
+    height: 1px;
+    margin: 10px 0;
+}
+
+.pricing .levelHd {
+    width: 400px;
+    float: left;
+    color: #a6cbe1;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.pricing .levelBd {
+    margin-top: 6px;
+    width: 400px;
+    float: left;
+}
+
+.pricing .levelBdTable {
+    
+    display: table;
+    height: 100px;
+    overflow: hidden;
+}
+
+.pricing .levelBdTableCell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.pricing .planHd {
+    margin-left: 25px;
+    width: 90px;
+    float: left;
+    color: #a6cbe1;
+    text-align: center;
+    font-size: 14px;
+    text-transform: lowercase;
+}
+
+.pricing .planBd {
+    margin-left: 25px;
+    width: 90px;
+    float: left;
+}
+
+.pricing .planBox {
+    margin-top: 6px;
+    width: 90x;
+    height: 100px;
+    border: 1px solid #a6cbe1;
+    text-align: center;
+}
+
+.pricing .planBox div.price {
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+.pricing .planBox span.price {
+    font-size: 16px;
+}
+
+.pricing .planBox div.maxSize {
+    margin-top: 16px;
+    font-size: 12px;
+}
+
+.pricing .planBox span.maxSize {
+    font-size: 14px;
+}
+
+.pricing .planBox div.overagePrice {
+    font-size: 12px;
+}
+
+/*****************************************************************************
+ * FAQ
+ *****************************************************************************/
+.faq {
+}
+
+.faq .question:before {
+    content: "Q. ";
+    xfont-size: 16px;
+}
+
+.faq .question {
+    color: #a6cbe1; /* powder blue */
+    font-size: 100%;
+}
+
+.faq .answer {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 19px;
+}
+
+.faq h3 {
+    font-size: 100%;
+    border: 0;
+    margin: 0 0;
+    color: #ccc;
+    text-decoration: underline;
+}
+
+/*****************************************************************************
+ * jQuery UI - General
+ *****************************************************************************/
+.ui-widget,
+.ui-widget input, .ui-widget select {
+    font-size: 100%;
+    font-family: inherit;
+}
+
+.ui-widget-content {
+    color: inherit;
+}
+
+.ui-widget-content .ui-menu-item {
+    color: #222;
+}
+
+.ui-tabs.ui-widget-content p {
+    font-size:14px;
+    line-height:22px;
+}
+
+.ui-widget-content a {
+    color: inherit;
+}
+
+button.ui-button {
+    border: 0;
+    background: none;
+}
+
+#MongoDBInc button.ui-button {
+    background:#ebebed !important;
+    color:#271b15 !important;
+    box-shadow:0 1px 0 #aaa;
+}
+#MongoDBInc button.ui-button:hover {
+    background:#dedee1 !important;
+}
+#MongoDBInc button.ui-button:active {
+    background:#c3c3c9 !important;
+}
+#MongoDBInc button.ui-button:first-child {
+    background:#6ca439 !important;
+    color:#fff !important;
+    box-shadow:0 1px 0 #666;
+}
+#MongoDBInc button.ui-button:first-child:hover {
+    background:#5f962e !important;
+}
+#MongoDBInc button.ui-button:first-child:active {
+    background:#46761a !important;
+}
+
+/*****************************************************************************
+ * jQuery UI Dialog formatting adjustments
+ *****************************************************************************/
+.ui-dialog {
+    font: inherit !important;
+    color: #555;
+}
+
+.ui-dialog a.link {
+    color: #3a9ecd; /* md. powder blue */
+}
+
+.ui-dialog tr {
+    color: #c9cccd;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    color: #3a9ecd; /* md. powder blue */
+    font-size: 140%;
+    font-weight: normal;
+    text-align: left;
+    margin: 3px;
+    padding: 10px 8px;
+}
+#MongoDBInc .ui-dialog .ui-dialog-titlebar {
+    color: #271b15;
+    background:#ebebed;
+    border:none;
+}
+
+.ui-dialog #ui-dialog-title-jsonErrorDialog {
+    color: red;
+}
+
+.ui-dialog .ui-dialog-content {
+    color: inherit !important;
+    padding: 7px 14px 12px 7px;
+    text-align: left;
+}
+
+.ui-dialog h2 {
+    color: inherit !important;
+    font-size: 16px;
+    margin: 20px 0 5px 0 !important;
+    padding-top: 5px;
+    border-top: 1px solid #ccc;
+    text-transform: capitalize;
+}
+
+.ui-dialog h2.first {
+    margin-top: 0px;
+    border-top: none;
+}
+
+.ui-dialog h2:after {
+    content: ":"
+}
+
+.ui-dialog .h2Section {
+    padding: 0px 20px;
+}
+
+.ui-dialog .h2Section label {
+    margin-top: 5px;
+    display: block;
+}
+
+.ui-dialog .ui-dialog-content p.intro {
+    font-size: 108%;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.ui-dialog .ui-dialog-content p.body {
+    font-size: 108%;
+}
+
+#MongoDBInc .ui-dialog .ui-dialog-content a {
+    color:#006cbc;
+}
+
+.ui-dialog fieldset {
+    width: 90%;
+    color: inherit;
+}
+
+.ui-dialog fieldset label {
+    color: inherit;
+}
+
+.ui-dialog .ui-button {
+    border: 1px solid #d3d3d3;
+}
+#MongoDBInc .ui-dialog .ui-button {
+    border: none;
+}
+
+.ui-dialog .ui-button:last-child,
+.ui-dialog .noSubmitOnEnter {
+    background: none;
+}
+
+.ui-dialog .ui-icon-alert {
+    float: left;
+    margin: 0 10px;
+}
+
+.ui-dialog p {
+    margin-left: 11px;
+}
+
+#MongoDBInc .ui-dialog-titlebar-close {
+    background:none !important;
+    border-color:transparent !important;
+}
+
+/*****************************************************************************
+ * jQuery UI Tabs
+ *****************************************************************************/
+#tabs.ui-tabs {padding:0;}
+#tabs.ui-tabs > .ui-tabs-nav {
+    margin:0; padding:0; border:none; display:block;
+    width:100%; border-radius:5px;
+    background:#595f65; /* Old browsers */
+    background:-moz-linear-gradient(top, #595f65 0%, #282f36 63%, #3d464d 100%); /* FF3.6+ */
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#595f65), color-stop(63%,#282f36), color-stop(100%,#3d464d)); /* Chrome,Safari4+ */
+    background:-webkit-linear-gradient(top, #595f65 0%, #282f36 63%, #3d464d 100%); /* Chrome10+,Safari5.1+ */
+    background:     -o-linear-gradient(top, #595f65 0%, #282f36 63%, #3d464d 100%); /* Opera 11.10+ */
+    background:    -ms-linear-gradient(top, #595f65 0%, #282f36 63%, #3d464d 100%); /* IE10+ */
+    background:  linear-gradient(to bottom, #595f65 0%, #282f36 63%, #3d464d 100%); /* W3C */
+    moz-box-shadow:0px 2px 4px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.2);
+    webkit-box-shadow:0px 2px 4px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.2);
+    box-shadow:0px 2px 4px rgba(000,000,000,0.3),inset 0px 0px 3px rgba(255,255,255,0.2);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#595f65', endColorstr='#3d464d',GradientType=0); /* IE6-9 */
+}
+#MongoDBInc #tabs.ui-tabs > .ui-tabs-nav {
+    background: #f2f2f3;
+    moz-box-shadow:0px 1px 0px rgba(000,000,000,0.05), inset 0px -1px 0px rgba(206,207,212,1.0);
+    webkit-box-shadow:0px 1px 0px rgba(000,000,000,0.05), inset 0px -1px 0px rgba(206,207,212,1.0);
+    box-shadow:0px 1px 0px rgba(000,000,000,0.05), inset 0px -1px 0px rgba(206,207,212,1.0);
+}
+#tabs .ui-tabs:after {clear:both; display:table; content:"";}
+#tabs.ui-tabs > .ui-tabs-nav li {
+    padding:0; margin:0; float:left; background: none; border:none;
+    border-radius:0;display:block; top:0;
+}
+#tabs.ui-tabs > .ui-tabs-nav li:hover {background: none; margin:0; padding:0; display:block;}
+#tabs.ui-tabs > .ui-tabs-nav li a {
+    display:block; float:left; text-align:center; width:93px; height:34px; color:#C9CCCD !important; font:15px/41px "Museo Sans", sans-serif; padding:0 20px 6px 20px; text-decoration:none !important;
+    background:url(/base/img/subnav-border.png) right center no-repeat;
+}
+
+#MongoDBInc #tabs.ui-tabs > .ui-tabs-nav li a {
+    background: url(/base/img/subnav-border_white-background.png) right center no-repeat;
+    color:#6f6763 !important;
+}
+#MongoDBInc #tabs.ui-tabs > .ui-tabs-nav li:last-child a {
+    background-image:none !important;
+}
+
+#tabs.ui-tabs > .ui-tabs-nav li:first-child a {border-radius:5px 0 0 5px; margin-left:0 !important;}
+
+#tabs.ui-tabs > .ui-tabs-nav li a:hover {
+    background:#7b8083; /* Old browsers */
+    background:-moz-linear-gradient(top, #7b8083 0%, #42484e 65%, #646b71 100%); /* FF3.6+ */
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#7b8083), color-stop(65%,#42484e), color-stop(100%,#646b71)); /* Chrome,Safari4+ */
+    background:-webkit-linear-gradient(top, #7b8083 0%, #42484e 65%, #646b71 100%); /* Chrome10+,Safari5.1+ */
+    background:-o-linear-gradient(top, #7b8083 0%, #42484e 65%, #646b71 100%); /* Opera 11.10+ */
+    background:-ms-linear-gradient(top, #7b8083 0%, #42484e 65%, #646b71 100%); /* IE10+ */
+    background:linear-gradient(to bottom, #7b8083 0%, #42484e 65%, #646b71 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7b8083', endColorstr='#646b71',GradientType=0); /* IE6-9 */
+    color:#ffffff;
+}
+#MongoDBInc #tabs.ui-tabs > .ui-tabs-nav li a:hover {
+    background: #e0e0e3 url(/base/img/subnav-border_white-background.png) right center no-repeat;
+}
+#tabs.ui-tabs > .ui-tabs-nav li.ui-tabs-selected a,
+#tabs.ui-tabs .ui-tabs-nav li.ui-tabs-selected a:hover {
+    position:relative; margin-left:-1px;
+    background:#308ab4; /* Old browsers */
+    background:-moz-linear-gradient(top, #257ca9 0%, #3893bc 100%); /* FF3.6+ */
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#257ca9), color-stop(100%,#3893bc)); /* Chrome,Safari4+ */
+    background:-webkit-linear-gradient(top,  #257ca9 0%,#3893bc 100%); /* Chrome10+,Safari5.1+ */
+    background:-o-linear-gradient(top, #257ca9 0%, #3893bc 100%); /* Opera 11.10+ */
+    background:-ms-linear-gradient(top, #257ca9 0%, #3893bc 100%); /* IE10+ */
+    background:linear-gradient(to bottom, #257ca9 0%, #3893bc 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#257ca9', endColorstr='#3893bc',GradientType=0); /* IE6-9 */
+    color:#ffffff !important;
+    moz-box-shadow: inset 0px 2px 2px rgba(0,0,0,0.3);
+    webkit-box-shadow:inset 0px 2px 2px rgba(0,0,0,0.3);
+    box-shadow:inset 0px 2px 2px rgba(0,0,0,0.3);
+}
+#MongoDBInc #tabs.ui-tabs > .ui-tabs-nav li.ui-tabs-selected a,
+#MongoDBInc #tabs.ui-tabs .ui-tabs-nav li.ui-tabs-selected a:hover {
+    background: #6ca439;
+    color:#fff !important;
+    moz-box-shadow: inset 0px 1px 1px rgba(48,125,36,1.0);
+    webkit-box-shadow:inset 0px 1px 1px rgba(48,125,36,1.0);
+    box-shadow: inset 0px 1px 1px rgba(48,125,36,1.0);
+}
+
+#tabs.ui-tabs > .ui-tabs-nav li.ui-tabs-selected a:after {
+    content:""; display:block;width:0; height:0;
+    position:absolute; left:50%; margin-left:-7px;
+    border-left:7px solid transparent; border-right:7px solid transparent;
+    border-top:7px solid #3995bd;
+    margin-top: -1px;
+}
+
+#MongoDBInc #tabs.ui-tabs > .ui-tabs-nav li.ui-tabs-selected a:after {
+    border-top:7px solid #6ca439;
+}
+
+/*****************************************************************************
+ * jQuery UI Tabs [more...]
+ *****************************************************************************/
+
+#subtabs.ui-tabs .ui-widget-header {
+    background:transparent;
+    border: 0px;
+}
+
+#subtabs.ui-tabs .ui-tabs-nav li.ui-state-default,
+#subtabs.ui-tabs .ui-tabs-nav li.ui-state-hover,
+#subtabs.ui-tabs .ui-tabs-nav li.ui-state-active {
+    background:transparent !important;
+    border: 0px !important;
+}
+
+#subtabs.ui-tabs .ui-tabs-nav a {
+    text-decoration: underline !important;
+    color: #fff;
+}
+
+#MongoDBInc #subtabs.ui-tabs .ui-tabs-nav a {
+    color: #006CBC;
+}
+
+#subtabs.ui-tabs .ui-tabs-nav li.ui-tabs-selected a,
+#subtabs.ui-tabs .ui-tabs-nav li.ui-tabs-selected a:hover {
+    background: none repeat scroll 0 0 #3995BD;
+    text-decoration: none !important;
+}
+#MongoDBInc #subtabs.ui-tabs .ui-tabs-nav li.ui-tabs-selected a {
+    color: #fff !important;
+    background: #271b15 !important;
+}
+
+.ui-tabs .ui-tabs-panel {
+    padding: 1em 4px;
+}
+
+#subtabs.ui-tabs .ui-tabs-panel {
+    padding: 0px 0px;
+}
+
+.ui-tabs {
+    background: transparent;
+    border: 0px;
+}
+
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected,
+.ui-tabs .ui-tabs-nav li.ui-state-default {float: right; }
+.ui-tabs .ui-tabs-nav li a { float: right; }
+
+/*****************************************************************************
+ * Inline help
+ *****************************************************************************/
+
+.inlineHelp {
+    border: 1px dotted;
+    border-color: #a6cbe1; /* lt blue */
+    padding: 5px 10px;
+    margin-top: 10px;
+    color: #333;
+}
+
+.inlineHelp p {
+    font-size: 12px;
+    margin: .5em 0;
+}
+
+.inlineHelp pre {
+    font-size: 11px;
+}
+
+/*****************************************************************************
+ * Heroku
+ *****************************************************************************/
+#herokuAddOnsScreenshot {
+    background: url(/css/images/heroku-add-ons.png) no-repeat;
+    width: 338px; height: 267px;
+    float: right;
+    margin: 0px 10px;
+}
+
+/*****************************************************************************
+ * Dex
+ *****************************************************************************/
+
+#queryReportsSummary + .h2 {
+    margin-top: 7px;
+}
+#MongoDBInc #queryReportsSummary + .h2 {
+    border-color:#ccc;
+}
+
+#queryReportsSummary .section.one {
+    float:left;
+}
+
+#queryReportsSummary .section.two {
+    float:right;
+    margin-right: 7px;
+}
+
+#queryReportsSummary .section.footnote {
+    margin-top:15px;
+}
+
+#queryReportsSummary .footnote span {
+    font-style: italic;
+    font-size: 11px;
+}
+
+#queryReportsSummary .label {
+    color: #a6cbe1; /* powder blue */
+    text-align: left;
+    width: 200px;
+}
+#MongoDBInc #queryReportsSummary .label { /* AJP : needs confirmation */
+color: inherit;
+}
+
+#queryReportsSummary .datetime .label {
+    color: inherit;
+    width: 40px;
+    float: left;
+}
+
+#queryReportsSummary .datetime .value {
+    float: left;
+}
+
+#queryReportsSummary .value {
+    float: left;
+}
+
+.queryReport .label {
+    color: #a6cbe1; /* powder blue */
+}
+#MongoDBInc .queryReport .label { /* AJP : needs confirmation */
+color: inherit;
+}
+
+.queryReport {
+    padding-bottom:5px;
+    margin-bottom:20px;
+    background-color: #28313a;
+}
+#MongoDBInc .queryReport {
+    background-color: #f5f6f7;
+}
+
+.queryReport .section { float:left; padding-left: 18px; padding-top: 14px; padding-right:18px;}
+.queryReport .row.top .section { min-height:132px;}
+.queryReport .row.bottom .section { min-height:50px;}
+.queryReport .sectionDivider { float:left; background-color:#888;width:1px; min-height: 136px; margin-top:14px; margin-bottom:10px;}
+.queryReport .rowDivider { float:left; margin-top: 1px; margin-left:15px; background-color:#888; height:1px; min-width: 750px }
+.queryReport .section.one { width:830px; }
+.queryReport .section.two { width:90px; }
+.queryReport .section.three { float:left; width:775px; }
+.queryReport .section.four { float:left; width: 160px; }
+
+#MongoDBInc .queryReport .sectionDivider, #MongoDBInc .queryReport .rowDivider {
+    background-color:#ccc;
+}
+
+.queryReport .label { margin-bottom:10px; text-transform:lowercase;}
+.queryReport .namespace { margin-top: -1px; margin-bottom:10px; float:right; }
+.queryReport .value { margin-bottom:10px; color:#ACACAC;}
+.queryReport .value.json { font-family:"Droid Sans Mono",monospace; font-size:12px;}
+.queryReport .major.label { font-size:17px; }
+.queryReport .major.label .tip { font-size:11px; color:#ACACAC; }
+.queryReport .major.value { margin-left:15px; }
+.queryReport .stats .value { display:block; margin-bottom:10px; }
+.queryReport .stats .stat:last-child .value { margin-bottom: 0px; }
+.queryReport a.button { margin-top:10px; }
+
+/*****************************************************************************
+ * Backups
+ *****************************************************************************/
+.backupTargetProvider div,
+.backupTarget div {
+    clear: both;
+    vertical-align: middle;
+}
+.backupTargetProvider label,
+.backupTarget label {
+    width: 150px;
+    float: left;
+}
+
+.backupTarget label.error {
+    margin-left: 150px;
+    margin-top: -2px;
+}
+
+.backupTarget input[type="text"] {
+    width: 300px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    height:19px;
+    float: left;
+}
+
+/*****************************************************************************
+ * Mongostat
+ *****************************************************************************/
+
+#MongoDBInc .rickshaw_legend .label { /* AJP : needs confirmation */
+color: #4D4D4D;
+}
+#tabs #mongostatContent {
+    border:1px solid #3F4A51;
+    -webkit-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;-o-border-radius:3px;border-radius:3px;
+    clear:both;
+}
+#MongoDBInc #tabs #mongostatContent { /* AJP : needs confirmation */
+border:1px solid #E0E0E0;
+}
+#tabs #graphs {
+    margin-top:15px;
+    width: 720px;
+}
+
+#tabs #graphs h2 {
+    margin-top:20px !important;
+}
+
+#tabs #graphs .graphSection {
+    margin: 0 30px;
+}
+
+#mongostatControls {
+    height: 58px;
+    border-bottom: 1px solid #3F4A51;
+}
+#serverSelector {
+    margin-left: 10px;
+}
+#consoleOutput {
+    min-width: 970px;
+    overflow-x: scroll;
+    margin: auto auto;
+}
+#consoleOutput table {
+    background-color: transparent;
+    color: white;
+    margin-top: 20px;
+    font-family: "Droid Sans Mono", monospace;
+}
+#MongoDBInc #consoleOutput table {
+    color: inherit;
+}
+#consoleOutput table thead th {
+    text-transform: none;
+    padding: 3px 5px;
+    white-space: nowrap;
+    font-size: 10px;
+    text-align: right;
+}
+#consoleOutput table tbody td {
+    padding: 0 5px 0 0;
+    white-space: nowrap;
+    font-size: 10px;
+    text-align: right;
+}
+#consoleOutput table tr {
+    height: 1em;
+}
+.rickshaw_graph, .rickshaw_legend {
+    background-color: transparent;
+}
+.rickshaw_graph .detail .x_label { display: none }
+.rickshaw_graph .detail .item { line-height: 1.4; padding: 0.5em }
+.detail_swatch { float: right; display: inline-block; width: 10px; height: 10px; margin: 0 4px 0 0 }
+.rickshaw_graph .detail .date { color: #a0a0a0; }
+.rickshaw_graph .tick line {
+    stroke: #3f4a51;
+}
+.rickshaw_graph .y_ticks text,
+.rickshaw_graph .x_ticks_d3 text
+{
+    fill: white;
+    opacity: 0.6;
+}
+#MongoDBInc .rickshaw_graph .y_ticks text,
+#MongoDBInc .rickshaw_graph .x_ticks_d3 text
+{
+    fill: #4d4d4d;
+}
+.rickshaw_legend .line {
+    float: left;
+    clear: none;
+    min-width: 0px;
+    margin-left: 0px;
+    padding-right: 20px;
+}
+#startButton {
+    display: block;
+    margin-left: 10px;
+}
+#graphs {
+    margin: auto auto;
+    height: 550px;
+}
+#graphs h2 {
+    text-align: center;
+    font-size: 16px;
+}
+#graphs .graphSection {
+    width: 300px;
+    height: 275px;
+    float: left;
+    margin: 0px 10px;
+}
+#consoleOutput th.oddGroup {
+    background-color: #3f4852;
+}
+#consoleOutput th.evenGroup {
+    background-color: #353E47;
+    color: #ddd;
+}
+#consoleOutput th {
+    color: white;
+}
+
+/*****************************************************************************
+ * Networking
+ *****************************************************************************/
+
+#networking #editIpRulesForm {
+    margin-bottom: 25px;
+}
+
+#networking .noIpRules {
+    display:none;
+}
+
+#networking.none .noIpRules {
+    display: block;
+}
+
+#networking.none #editIpRulesForm .tableSection {
+    display: none;
+}
+
+#networking #editIpRulesForm .submitBtns {
+    display: none;
+}
+
+#networking.modified #editIpRulesForm .submitBtns {
+    display: inherit;
+}
+
+#networking #addIpRuleDialog input,
+#networking #addSecurityGroupDialog input {
+    width: 99%;
+}
+
+#addIpRuleDialog .peering {
+    display: none;
+}
+
+#addIpRuleDialog .peering[active=loading] {
+    display: inherit;
+    font-style: italic;
+    color: #a1a6a9;
+}
+
+#addIpRuleDialog .peering[active=true] {
+    display: inherit;
+}
+
+#networking.modified .clusterActivity,
+#networking.none .clusterActivity {
+    display:none;
+}
+
+#networking .tableSection table tbody td.descriptionCol {
+    width: 600px;
+}
+
+#networking .tableSection table tbody td.enabledCol {
+    width: 55px;
+    text-align: center;
+}
+
+#networking .tableSection table.none thead {
+    display: none;
+}
+
+#networking .tableSection tr.noRules {
+    font-style: italic;
+    display: none;
+}
+
+#networking .tableSection tr.inactive td {
+    text-decoration: line-through;
+}
+
+#networking .tableSection table.none tr.noRules {
+    display: block;
+}
+
+#networking .selectedLevelInfo {
+    margin-top: 10px;
+    padding: 5px;
+    background-color: #3d4750;
+    display: none;
+    width: 1081px;
+    color: white;
+}
+
+.selectedLevelInfo .glyphicons {
+    padding-left: 24px;
+    top: -12px;
+}
+
+.selectedLevelInfo .glyphicons:before {
+    color: white;
+    font-size: 15px;
+}
+
+#networking .selectedLevelInfoContent {
+    margin: 10px 40px;
+    padding: 20px;
+    border: 1px dotted;
+    border-radius: 5px;
+}
+
+#networking .networkRoutingContent {
+    white-space: nowrap;
+    height: 135px;
+}
+
+#networking .networkRoutingLevel {
+    float: left;
+    width: 327px;
+    background: #272f37;
+    padding: 15px;
+    margin-left: 10px;
+    height: 105px;
+}
+
+#networking .networkRoutingLevel:first-child {
+    margin-left: 0;
+}
+
+#networking .networkRoutingLevel .flowIndicator {
+    position: relative;
+    top: -80px;
+    left: -35px;
+    padding-left: 5px;
+}
+
+#networking .networkRoutingLevel .flowIndicator:before {
+    color: #bcbcbc;
+    position: relative;
+    font-size: 20px;
+}
+
+#networking .networkRoutingLevel .levelName {
+    font-weight: bold;
+    font-size: 16px;
+    color: #bcbcbc;
+    padding-bottom: 15px;
+    margin-bottom: 6px;
+    text-align: center;
+    border-bottom: 1px solid #3f4a51
+}
+
+#networking .networkRoutingLevel table {
+    margin-bottom: 15px;
+}
+
+@-webkit-keyframes bounce-right {
+    0% { right: -42px; }
+    40% { right: -36px; }
+    100% { right: -42px; }
+}
+
+@-o-keyframes bounce-right {
+    0% { right: -42px; }
+    40% { right: -36px; }
+    100% { right: -42px; }
+}
+
+@-moz-keyframes bounce-right {
+    0% { right: -42px; }
+    40% { right: -36px; }
+    100% { right: -42px; }
+}
+
+@keyframes bounce-right {
+    0% { right: -42px; }
+    40% { right: -36px; }
+    100% { right: -42px; }
+}
+
+@-webkit-keyframes bounce-left {
+    0% { left: -42px; }
+    40% { left: -36px; }
+    100% { left: -42px; }
+}
+
+@-o-keyframes bounce-left {
+    0% { left: -42px; }
+    40% { left: -36px; }
+    100% { left: -42px; }
+}
+
+@-moz-keyframes bounce-left {
+    0% { left: -42px; }
+    40% { left: -36px; }
+    100% { left: -42px; }
+}
+
+@keyframes bounce-left {
+    0% { left: -42px; }
+    40% { left: -36px; }
+    100% { left: -42px; }
+}
+
+#networking .networkRoutingLevel .leftIndicator {
+    -webkit-animation: bounce-left 2s infinite;
+    animation: bounce-left 2s infinite;
+}
+
+#networking .networkRoutingLevel .previousLevelButton {
+    left: -42px;
+}
+
+#networking .networkRoutingLevel .rightIndicator {
+    -webkit-animation: bounce-right 2s infinite;
+    animation: bounce-right 2s infinite;
+}
+
+#networking .networkRoutingLevel .nextLevelButton {
+    right: -35px;
+}
+
+#networking .networkRoutingLevel .transitionIndicators .glyphicons,
+#networking .networkRoutingLevel .transitionButtons .glyphicons {
+    padding-left: 5px;
+}
+
+#networking .networkRoutingLevel .transitionIndicators .glyphicons:before {
+    color: white;
+    position: relative;
+    font-size: 32px;
+}
+
+#networking .networkRoutingLevel .transitionButtons .glyphicons:before {
+    color: white;
+    position: relative;
+    font-size: 20px;
+}
+
+#networking .networkRoutingLevel .transitionIndicators,
+#networking .networkRoutingLevel .transitionButtons {
+    margin-top: 5px;
+    position: relative;
+}
+
+#networking .networkRoutingLevel .transitionButton label {
+    display: none;
+    padding: 0 9px;
+    cursor: pointer;
+}
+
+#networking .networkRoutingLevel .transitionButton:hover label {
+    display: inline;
+}
+
+#networking .networkRoutingLevel .transitionButton:hover {
+    z-index: 101
+}
+
+#networking .networkRoutingLevel .transitionIndicator {
+    position: absolute;
+    padding: 10px 0px;
+    top: -95px;
+    z-index: 100;
+}
+
+#networking .networkRoutingLevel .transitionButton {
+    position: absolute;
+    padding: 10px 0px;
+    top: -90px;
+    z-index: 100;
+}
+
+#networking .networkRoutingLevel .transitionIndicator,
+#networking .networkRoutingLevel .transitionButton,
+#networking .networkRoutingLevel .info {
+    display: none;
+}
+
+#networking .networkRoutingLevel.selected {
+    background: #3d4750;
+    height: 115px;
+}
+
+#networking .networkRoutingLevel.transitioning .levelName,
+#networking .networkRoutingLevel.selected .levelName {
+    border-bottom: 1px solid #565e65;
+    color: #53b9ec;
+}
+
+
+#networking .networkRoutingLevel.transitioning .externalAccess,
+#networking .networkRoutingLevel.transitioning .dnsMapping,
+#networking .networkRoutingLevel.selected .externalAccess,
+#networking .networkRoutingLevel.selected .dnsMapping {
+    color: white;
+}
+
+#networking .networkRoutingLevel.selected .transitionButton,
+#networking .networkRoutingLevel.selected .info {
+    display: block;
+}
+
+@-webkit-keyframes transitioning {
+    0% { -webkit-box-shadow: 0 0 0 0 rgba(166, 203, 225, 0.4); }
+    90% { -webkit-box-shadow: 0 0 0 8px rgba(166, 203, 225, 0); }
+    100% { -webkit-box-shadow: 0 0 0 0 rgba(166, 203, 225, 0); }
+}
+@keyframes transitioning {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(166, 203, 225, 0.4);
+        box-shadow: 0 0 0 0 rgba(166, 203, 225, 0.4);
+    }
+    90% {
+        -moz-box-shadow: 0 0 0 8px rgba(166, 203, 225, 0);
+        box-shadow: 0 0 0 8px rgba(166, 203, 225, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(166, 203, 225, 0);
+        box-shadow: 0 0 0 0 rgba(166, 203, 225, 0);
+    }
+}
+
+#networking .networkRoutingLevel.transitioning {
+    background: #3d4750;
+    -webkit-animation: transitioning 2s infinite;
+    animation: transitioning 2s infinite;
+}
+
+#networking .networkRoutingContent .externalAccess,
+#networking .networkRoutingContent .dnsMapping {
+    height: 24px;
+    padding: 10px 0 4px 0;
+    text-align: center;
+    color: #bcbcbc;
+}
+
+#networking .networkRoutingContent .labels {
+    text-transform: lowercase;
+    width: 200px;
+    float: left;
+    padding: 15px 0px 15px 30px;
+    font-size: 13px;
+}
+
+#networking .networkRoutingContent .labels div {
+    text-align: left;
+    color: inherit;
+}
+
+.clusterActivity, .resourceActivity {
+    padding:10px 8px 10px 40px;
+    font:300 13px/20px "Roboto", sans-serif;
+    background: #3a454d 10px 8px no-repeat;
+    background-image: url(/css/images/status_maintenance.png);
+    color: #c9cccd;
+    background-position: 10px 10px;
+    box-shadow:0 3px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom:30px;
+    border-radius:5px;
+    border: none;
+}
+
+.clusterActivity.error, .resourceActivity.error {
+    background-image: url("/css/images/status_error.png");
+    color: #ef5a46;
+}
+
+/*****************************************************************************
+ * Environments
+ *****************************************************************************/
+
+#peerings .peering[status=loading] .status:after {
+    content: "loading";
+    font-style: italic;
+    color: #a1a6a9;
+}
+
+#peerings .peering[status=unknown] .status:after {
+    content: "unknown";
+    color: #a1a6a9;
+}
+
+#peerings .peering[status='pending-acceptance'] .status:after {
+    content: "pending acceptance";
+    color: #a1a6a9;
+}
+
+#peerings .peering[status='provisioning'] .status:after {
+    content: "provisioning";
+    color: #a1a6a9;
+}
+
+#peerings .peering[status='failed'] .status:after {
+    content: "failed";
+    color: #ef5a46;
+}
+
+#peerings .peering[status='expired'] .status:after {
+    content: "expired";
+    color: #a1a6a9;
+}
+
+#peerings .peering[status='rejected'] .status:after {
+    content: "rejected";
+    color: #ef5a46;
+}
+
+#peerings .peering[status='deleted'] .status:after {
+    content: "deleted";
+    color: #a1a6a9;
+}
+
+#peerings .peering[status='does-not-exist'] .status:after {
+    content: "does not exist";
+    color: #ef5a46;
+}
+
+#peerings .peering[status='active'] .status:after {
+    content: "active";
+    color: #4cbf7c;
+}
+
+#peerings .peering[status='active'] .retry,
+#peerings .peering[status='loading'] .retry,
+#peerings .peering[status='provisioning'] .retry {
+    visibility: hidden;
+}
+
+/*****************************************************************************
+ * MongoDBInc preFooterBar
+ *****************************************************************************/
+#MongoDBInc #preFooterBar {
+    border-top:4px solid #ebebeb;
+    border-bottom:none;
+    background: #f5f6f7;
+    color: #4d4d4d;
+    height:103px;
+}
+
+#MongoDBInc #preFooterBar .wrap {
+    margin: 0 53px 0 53px;
+}
+
+#MongoDBInc #preFooterBar .logo {
+    float: left;
+    padding-top:33px;
+}
+
+#MongoDBInc #preFooterBar .legal {
+    float:left;
+    padding-top:50px;
+    padding-left:20px;
+}
+
+#MongoDBInc #preFooterBar .legal a {
+    font-size:11px;
+    padding-right:15px;
+    text-decoration: none;
+}
+
+#MongoDBInc #preFooterBar .legal a:hover {
+    text-decoration: underline;
+}
+
+#MongoDBInc #preFooterBar .powered-by span {
+    float:right;
+    font-size: 11px;
+    padding-top:49px;
+    padding-right: 15px;
+    color: #9F9F9F;
+    font-family: "Museo Sans";
+    font-weight: 400;
+}
+
+#MongoDBInc #preFooterBar .powered-by img {
+    float:right;
+    padding-top: 33px;
+}
+
+/*
+#MongoDBInc #preFooterBar .wrap {margin:0 50px;}
+#MongoDBInc #preFooterBar .tos-links {float:left; margin:35px 0 0 60px;}
+#MongoDBInc #preFooterBar .tos-links a {color:#271b15; font-size:11px; text-decoration:none; margin-right:20px;}
+#MongoDBInc #preFooterBar .powered-by {float:right; margin:22px 0 0 0; font-size:11px; color:#4d4d4d;}
+#MongoDBInc #preFooterBar .powered-by span {display:inline-block; margin:0 10px 8px 0;}
+#MongoDBInc #preFooterBar .powered-by img {vertical-align:bottom;}
+*/

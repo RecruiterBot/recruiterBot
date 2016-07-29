@@ -3,15 +3,17 @@ const User = require( '../schemas/Users' );
 module.exports = {
 
 	login( req, res ) {
-		User.findOne( { 'userName': req.body.userName }, req.body, { new: false }, ( err, user ) => {
+		console.log(req.body);
+		User.findOne( { 'username': req.body.username }, req.body, { new: false }, ( err, user ) => {
+			console.log(user);
 			if ( err ) {
 				return res.status( 500 ).json( err );
 			}
 			else if( !user ){
-				return res.status( 401 ).send( `user name not found` );
+				return res.status( 200 ).json( {error: `Username not found`} );
 			}
 			else if ( req.body.password !== user.password ) {
-				return res.status( 401 ).send( `incorrect password` );
+				return res.status( 200 ).json( {error: `Incorrect password`} );
 			}
 			return res.status( 200 ).json( user );
 		} )
@@ -27,7 +29,9 @@ module.exports = {
 	}
 
 	, createUser( req, res ) {
+		console.log("Body", req.body);
 		new User( req.body ).save( ( err, newUser ) => {
+			console.log("newUser", newUser);
 			if ( err ) {
 				return res.status( 500 ).json( err );
 			}
