@@ -1,10 +1,9 @@
+const Students = require( '../schemas/Students' );
+
 module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
 
-  const botkit_mongo_storage = require( '../sophiebot/storage' )( { mongoURI });
   // const apiToken = require( '../sophiebot/config' ).apiToken;
-  const controller = Botkit.slackbot( {
-    storage: botkit_mongo_storage
-  } );
+  const controller = Botkit.slackbot();
 
   const bot = controller.spawn( {
     token: require( '../sophiebot/config' ).botToken
@@ -17,7 +16,7 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
   //   apiai.process( message, bot );
   // } );
 
-  // apiai.action( 'candidate.search', ( message, resp, bot ) => {
+  // apiai.action( 'candidate.search.findSkills', ( message, resp, bot ) => {
   //     console.log( 'message', message );
   //     console.log( 'resp', resp );
   //     console.log( 'bot', bot );
@@ -36,39 +35,8 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
 
 
 
-  //
-  // controller.hears( [ 'fill a position', 'looking for a dev' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
-  //   const locQuestion = `In which city and state is the position located?`;
-  //   const skillQuestion = `What skills does the ideal candidate possess?`;
-  //   const expQuestion = `How many years experience does the ideal candidate need?`;
-  //
-  //   askLocation = ( response, convo ) => {
-  //     convo.ask( locQuestion, ( response, convo ) => {
-  //       convo.say(`looking for candidates in ${ response.text }` );
-  //       askSkills( response, convo );
-  //       convo.next();
-  //     } );
-  //   }
-  //   convo.ask( skillQuestion, ( response, convo ) => {
-  //       convo.say( `looking for candidates with experience in ${ response.text }` );
-  //       askYearsExperience( response, convo );
-  //       convo.next();
-  //     } );
-  //   }
-  //   askYearsExperience = ( response, convo ) => {
-  //     convo.ask( expQuestion, ( response, convo ) => {
-  //       convo.say( `looking for candidates with ${ response.text } years experience` );
-  //       convo.next();
-  //       convo.on( 'end', ( convo ) => {
-  //         if ( convo.status === `completed` ){
-  //           const res = convo.extractResponses();
-  //           console.log( 'res', res );
-  //         }
-  //       } )
-  //     } )
-  //   }
-  //  bot.startConversation( message, askLocation );
-//
+
+
   controller.hears( ['looking for a job', 'I need a job','connect me with employer'],'direct_message,direct_mention,mention', ( bot, message ) => {
     // convo.say(`Excellent I can help you with that I'll ask you some questions and save that information so a recruiter can contact you with open positions.`);
     const firstNameQuestion = `Excellent I can help you with that I'll ask you some questions and save that information so a recruiter can contact you with open positions. What is your first name?`;
@@ -194,6 +162,8 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
 
     bot.startConversation( message, askFirstName );
   } )
+
+
     // function to build the attachment
 
 
@@ -222,7 +192,7 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
               formatted.push( "personal Website: " + obj.personalWebsite );
               value.link = obj.personalWebsite;
             }
-            else {
+            if( !obj.gitHub && !obj.linkedIn && !obj.personalWebsite ) {
               formatted.push( "N/A" );
             }
             return formatted.join("\n");
@@ -308,34 +278,91 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
         return reply;
       }
 
-  // controller.hears( [ 'find all students' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
-  //   controller.storage.students.all( ( err, allStudents ) => {
-  //     if ( err ) {
-  //       console.log( 'err', err )
-  //     }
-  //
-  // // create the attachment
-  //
-  //     const attachment = createAttachment( allStudents );
-  //
+
+  controller.hears( [ 'fill', 'position', 'dev', 'developer', 'web developer', 'hire' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
+    const locQuestion = `In which city and state is the position located?`;
+    const skillQuestion = `What skills does the ideal candidate possess?`;
+    const expQuestion = `How many years experience does the ideal candidate need?`;
+
+    askLocation = ( response, convo ) => {
+      convo.ask( locQuestion, ( response, convo ) => {
+        convo.say(`looking for candidates in ${ response.text }` );
+        askSkills( response, convo );
+        convo.next();
+      } );
+    }
+    askSkills = ( response, convo ) => {
+      convo.ask( skillQuestion, ( response, convo ) => {
+        convo.say( `looking for candidates with experience in ${ response.text }` );
+        askYearsExperience( response, convo );
+        convo.next();
+      } );
+    }
+    askYearsExperience = ( response, convo ) => {
+      convo.ask( expQuestion, ( response, convo ) => {
+        convo.say( `looking for candidates with ${ response.text } years experience` );
+        convo.next();
+        convo.on( 'end', ( convo ) => {
+          if ( convo.status === `completed` ){
+            const locArr = convo.extractResponse( locQuestion ).split(', ');
+            const skillsArr = convo.extractResponse( skillQuestion ).split(', ');
+            const exp = Number( convo.extractResponse( expQuestion ) );
+
+            const location = {};
+            location.city = locArr[ 0 ].toLowerCase();
+            location.state = locArr[ 1 ].toLowerCase();
+
+            Students.find(
+              { $and: [
+                { locations: { $elemMatch: { city: location.city, state: location.state } } },
+                { yearsExperience: { $gte: exp } }
+                ]
+              },
+               ( err, students ) => {
+              if( err ) {
+                console.log( 'err', err );
+              }
+              console.log( 'students', students )
+
+          // create the attachment
+
+              const attachment = createAttachment( students );
+              console.log( 'attachment', attachment )
+
+          // // loop through the attachment and send a reply
+
+              for (var i = 0; i < attachment.length; i++) {
+                bot.reply( message, attachment[i] )
+              }
+            } )
+            console.log( 'skills', skillsArr );
+
+          }
+        } )
+      } )
+    }
+    bot.startConversation( message, askLocation );
+  } )
+
+  controller.hears( [ 'find all students' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
+    Students.find( {}, ( err, allStudents ) => {
+      if ( err ) {
+        console.log( 'err', err )
+      }
+
+      // create the attachment
+
+      const attachment = createAttachment( allStudents );
+      // console.log( 'attachment', attachment )
+
   // // loop through the attachment and send a reply
-  //
-  //     for (var i = 0; i < attachment.length; i++) {
-  //       console.log( 'attachment', attachment[i].attachments[0].pretext )
-  //       bot.reply( message, attachment[i] )
-  //     }
-  //
-  //
-  //     // let i = 0;
-  //     // do {
-  //     //   setTimeout( () => {
-  //     //     bot.reply( message, attachment[ i ] );
-  //     //     i++;
-  //     //   }, 300 )
-  //     // }
-  //     // while ( i < attachment.length );
-  //   } )
-  // } )
+
+      for (var i = 0; i < attachment.length; i++) {
+        bot.reply( message, attachment[i] )
+      }
+    } )
+  } )
+
 
   // controller.hears( ["sophie", "I need a web developer", "good ones", /^.{0.}sophie.{0.}$/ ], [ "direct_message", "ambient" ], ( bot, message ) => {
   //   if( message.text === "sophie" ){
@@ -357,5 +384,6 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
       console.log( err )
       throw new Error( 'Could not connect to Slack' );
     }
-  });
+
+  } );
 }

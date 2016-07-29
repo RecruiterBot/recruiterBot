@@ -1,9 +1,9 @@
 angular.module('recruiterBot')
-	.controller('dashboardCtrl', function($scope, dashboardService, $state){
+	.controller('dashboardCtrl', function($scope, dashboardService, homeService, $state){
 		
 		// //////////////////////////////// recruiterBot global variables //////////////////////////////////////////
 		$scope.states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
-		$scope.skills = ["HTML5", "CSS3", "Javascript", "Git", "GitHub", "JQuery", "AngularJS", "Node.JS", "Express", "Module Management", "React", "Webpack", "Flux", "Browserify", "Gulp", "MongoDB", "Firebase", "Bootstrap"];
+		$scope.skills = [ 'html5','css3','javascript','git','github','jquery','angularjs','node.js','express','module management','react','webpack','flux','browserify','gulp','mongodb','firebase','bootstrap' ];
 		$scope.selectedSkills = [];
 		$scope.selectedLocations = [];
 
@@ -40,6 +40,21 @@ angular.module('recruiterBot')
 
 		// //////////////////////////////// dashboard-jumbotron ///////////////////////////////////////////////////
 		$scope.students;
+
+		let verifyAuth = ()=>{
+			console.log(homeService.adminVerified);
+			if (homeService.adminVerified === true) {
+				getStudents();
+			}else{
+				$state.go('home');
+			}
+		}
+
+		$scope.logout = ()=>{
+			homeService.adminVerified === false;
+			$state.go('home');
+		}
+
 		let getStudents = ()=>{
 			dashboardService.getStudents()
 			.then((response)=>{
@@ -60,6 +75,16 @@ angular.module('recruiterBot')
 			}else{
 				updatedStudent['devMountain'] = false;
 			}
+			
+			console.log("Before", updatedStudent.locations);
+
+			for (let i = 0; i < updatedStudent.locations.length; i++) {
+				updatedStudent.locations[i].city = updatedStudent.locations[i].city.toLowerCase();
+				updatedStudent.locations[i].state = updatedStudent.locations[i].state.toLowerCase();
+			}	
+
+			console.log("After", updatedStudent.locations);
+
 			dashboardService.updateStudentById(updatedStudent)
 			.then((response)=>{
 				getStudents();
@@ -246,10 +271,18 @@ angular.module('recruiterBot')
 			// format newStudent object to json format
 			let studentSkills = {};
 			for (let i = 0; i < $scope.selectedSkills.length; i++) {
-				studentSkills[$scope.selectedSkills[i]] = $scope.selectedSkills[i];
+				let currentSkill = $scope.selectedSkills[i].toLowerCase();
+				studentSkills[currentSkill] = currentSkill;
 			}
 			newStudent.skills = studentSkills;
 			newStudent.locations = $scope.selectedLocations;
+
+
+			for (let i = 0; i < newStudent.locations.length; i++) {
+				newStudent.locations[i].city = newStudent.locations[i].city.toLowerCase();
+				newStudent.locations[i].state = newStudent.locations[i].state.toLowerCase();
+			}
+
 
 			console.log(newStudent);
 			// send formatted newStudent object to dashboardService
@@ -268,13 +301,17 @@ angular.module('recruiterBot')
 
 		// updates email for a new admin
 		$scope.updateEmail = (newAdmin)=>{
-			console.log(newAdmin);
-			dashboardService.updateEmail(newAdmin)
-			// .then((response)=>{
-			// 	console.log(response);
-			// })
+
+			if (confirm(`Authorize '${newAdmin.email}' as admin?`) == true) {
+		         dashboardService.updateEmail(newAdmin)
+				.then((response)=>{
+					console.log(response);
+					$scope.newAdmin = "";
+				})
+		    }
 		}
 
+		
 
 
 
@@ -319,17 +356,10 @@ angular.module('recruiterBot')
 				else if (allStudents[i].yearsExperience === 5) {
 					allStudents[i].yearsExperience = "5+ years";
 				}
-				// if (allStudents[ i ].skills) {
-				// 	allStudents[ i ].skills = Object.keys( allStudents[ i ].skills ).join( ", " );
-				// }
-				
-
-				// let locationsToString = "";
-				// for (let j = 0; j < allStudents[ i ].locations.length; j++) {
-				// 	locationsToString = locationsToString + allStudents[ i ].locations[j].city + " (" + allStudents[ i ].locations[j].state + ")" + ", ";
-				// }
-				// allStudents[ i ].locations = locationsToString.substr(0, locationsToString.length-2);
+				allStudents[i].locations = locationsCapitalizer(allStudents[i].locations);
+				// allStudents[i].skills = skillsCapitalizer(allStudents[i].skills);
 			}
+
 			return allStudents;
 		}
 
@@ -346,11 +376,51 @@ angular.module('recruiterBot')
 			return str;
 		}
 
+		let locationsCapitalizer = (locations)=>{
+			for(let l=0; l<locations.length; l++){
+				let city = locations[l].city.split(" ");
+				let cityCapitalized = "";
+				for(let c=0; c<city.length; c++){
+					cityCapitalized = cityCapitalized + city[c].charAt(0).toUpperCase() + city[c].slice(1);
+					if(c !== city.length-1){
+						cityCapitalized = cityCapitalized + " ";
+					}
+				}
+				locations[l].city = cityCapitalized;
+				
+				let state = locations[l].state.split(" ");
+				let stateCapitalized = "";
+				for(let s=0; s<state.length; s++){
+					stateCapitalized = stateCapitalized + state[s].charAt(0).toUpperCase() + state[s].slice(1);
+					if(s !== state.length-1){
+						stateCapitalized = stateCapitalized + " ";
+					}
+				}
+				locations[l].state = stateCapitalized;
+			
+			}
+			return locations;
+		}
+
+		// let skillsCapitalizer = (skills)=>{
+		// 	for(let prop in skills){
+		// 		console.log(skills[prop]);
+		// 		let currSkill = skills[prop].split(' '); // ["module", "management"]
+		// 		let skillsCapitalized = "";
+		// 		for(let i = 0; i<currSkill.length; i++){
+		// 			skillsCapitalized = skillsCapitalized + currSkill[i].charAt(0).toUpperCase() + currSkill[i].slice(1);
+		// 			if(i !== currSkill.length-1){
+		// 				skillsCapitalized = skillsCapitalized + " ";
+		// 			}
+		// 		}
+		// 		skills[prop] = skillsCapitalized;
+		// 	}
+		// 	return skills;
+		// }
 
 
 
-
-		getStudents();
+		verifyAuth();
 
 
 // end of dashboardCtrl		

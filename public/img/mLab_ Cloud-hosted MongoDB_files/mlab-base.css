@@ -1,0 +1,77 @@
+html{background-color:#515c65;color:white;}
+body{margin:0;-webkit-text-size-adjust:auto;}
+body{font-family:"Droid Sans",sans-serif !important;font-size:14px;}
+a:link,a:visited{color:inherit;}
+p{margin-top:1em;margin-bottom:1em;line-height:1.5em;}
+p:first-child{margin-top:0;}
+li{list-style-type:inherit;margin-left:30px;padding-bottom:5px;}
+img{border:none;}
+.clearer{clear:both;}
+*{text-align:left;}
+strong,em{font-weight:bold;}
+h1{font-family:"Museo Sans",sans-serif !important;font-size:28px;font-weight:normal;color:white;margin-top:30px;margin-bottom:20px;}
+h1:first-child{margin-top:0;}
+h2{font-family:"Museo Sans",sans-serif !important;font-size:18px;font-weight:normal;color:#90e8fe;margin-top:30px;margin-bottom:20px;}
+h2:first-child{margin-top:0;}
+h3{font-family:"Museo Sans",sans-serif !important;font-size:18px;font-weight:bold;letter-spacing:0.75px;}
+.overlay{display:none;z-index:10000;-moz-box-shadow:0 0 90px 5px #000;-webkit-box-shadow:0 0 90px #000;border:1px solid #79ccf5;}
+#header{background:#373f46;}
+#header{height:94px;}
+#header a{text-decoration:none;}
+#header:after{clear:both;content:"";display:block;}
+#header .wrap{min-width:1040px;margin:0 auto;padding:0 30px;}
+#header .logo{float:left;margin-top:21px;}
+#header .logo a{display:block;text-indent:-999em;width:146px;height:53px;background:url("/base/img/mLab-logo-dark.png");background-image:url('/base/img/mLab-logo-dark.svg'), none; background-repeat:no-repeat;background-size:146px 53px;}
+#header .links{text-align:right;font:300 12px "Museo-Sans",sans-serif;text-transform:uppercase;padding-top:35px;}
+#header .links a{margin-left:25px;color:#fff;}
+#header .links a.signup{font-family:"Museo Sans",sans-serif !important;display:inline-block;text-align:center;cursor:pointer;margin:2px 2px 2px 25px;padding:8px 16px 7px;border:none;-webkit-border-radius:4px;border-radius:4px;font-size:12px;font-weight:500;text-transform:uppercase;color:#ffffff;-o-text-overflow:clip;text-overflow:clip;background:#31abed;text-shadow:-1px 1px 0 rgba(0, 0, 0, 0.12);width:55px;}#header .links a.signup:hover{margin:0 0 0 23px;padding:10px 18px 9px;background:-webkit-linear-gradient(-90deg, #5ec6ff 0, #2ba4e5 100%);background:-moz-linear-gradient(180deg, #5ec6ff 0, #2ba4e5 100%);background:linear-gradient(180deg, #5ec6ff 0, #2ba4e5 100%);background-position:50% 50%;-webkit-background-origin:padding-box;background-origin:padding-box;-webkit-background-clip:border-box;background-clip:border-box;-webkit-background-size:auto auto;background-size:auto auto;text-shadow:-1px 1px 0 rgba(0, 0, 0, 0.25);}
+#header .links a.signup:active{background:#26a1e2;text-shadow:none;}
+#header .links a.login{font-family:"Museo Sans",sans-serif !important;display:inline-block;text-align:center;cursor:pointer;margin:2px 2px 2px 13px;padding:8px 16px 7px;border:none;-webkit-border-radius:4px;border-radius:4px;font-size:12px;font-weight:500;text-transform:uppercase;color:#ffffff;-o-text-overflow:clip;text-overflow:clip;background:#e0a905;text-shadow:-1px 1px 0 rgba(0, 0, 0, 0.12);width:55px;}#header .links a.login:hover{margin:0 0 0 11px;padding:10px 18px 9px;background:-webkit-linear-gradient(-90deg, #edb41a 0, #dba000 100%);background:-moz-linear-gradient(180deg, #edb41a 0, #dba000 100%);background:linear-gradient(180deg, #edb41a 0, #dba000 100%);background-position:50% 50%;-webkit-background-origin:padding-box;background-origin:padding-box;-webkit-background-clip:border-box;background-clip:border-box;-webkit-background-size:auto auto;background-size:auto auto;text-shadow:-1px 1px 0 rgba(0, 0, 0, 0.25);}
+#header .links a.login:active{background:#d39700;text-shadow:none;}
+#nav{font-family:"Museo Sans",sans-serif !important;font-size:15px;color:white;text-align:right;border-top:1px solid #000;background:#9199a2;background:-moz-linear-gradient(top, #9199a2 0%, #596069 100%);background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #9199a2), color-stop(100%, #596069));background:-webkit-linear-gradient(top, #9199a2 0%, #596069 100%);background:-o-linear-gradient(top, #9199a2 0%, #596069 100%);background:-ms-linear-gradient(top, #9199a2 0%, #596069 100%);background:linear-gradient(to bottom, #9199a2 0%, #596069 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#9199a2', endColorstr='#596069', GradientType=0);}
+#nav{height:70px;font-size:25px;}
+#nav .wrap{width:960px;margin:0 auto;}
+#nav .wrap div{padding-top:23px;text-transform:none;font-weight:bold;}
+#content{background-color:#1b242c;color:#8c969d;}
+#content .wrap{width:960px;margin:0 auto;padding-top:40px;padding-bottom:40px;}
+#content .wrap #mainCol{width:720px;padding-right:20px;float:left;}
+#content .wrap #sidebar{width:220px;float:left;}
+#preFooterBar{background:#373f46;font:14px "Museo-Sans",sans-serif;color:#adb3b9;height:84px;}
+#preFooterBar:after{clear:both;content:"";display:block;}
+#preFooterBar .wrap{width:1040px;margin:0 auto 0 63px;}
+#preFooterBar .logo{float:left;width:187px;}
+#preFooterBar .logo img{display:none;width:146px;height:38px;margin-top:22px;}
+#preFooterBar .logo a{display:block;margin-top:21px;text-indent:-999em;width:117px;height:43px;background:url("/base/img/mLab-logo-dark.png");background-image:url('/base/img/mLab-logo-dark.svg'), none; background-repeat:no-repeat;background-size:117px 43px;}
+#preFooterBar .social{float:left;}
+#preFooterBar .social a{float:left;width:36px;height:34px;text-indent:-999em;background:url(/base/img/social-media-icons.png) no-repeat;margin-right:8px;margin-top:24px;}
+#preFooterBar .social a.twitter{background-position:0 top;}
+#preFooterBar .social a.twitter:hover{background-position:0 bottom;}
+#preFooterBar .social a.facebook{background-position:-36px top;}
+#preFooterBar .social a.facebook:hover{background-position:-36px bottom;}
+#preFooterBar .social a.google{background-position:-72px top;}
+#preFooterBar .social a.google:hover{background-position:-72px bottom;}
+#preFooterBar .links{float:right;color:#9eaab2;font-size:15px;line-height:22px;margin-top:20px;}
+#preFooterBar .links a{font-weight:bold;}
+#preFooterBar .links em{color:#ffffff;}
+#preFooterBar .links a.signup{display:inline-block;text-align:center;cursor:pointer;margin:2px 2px 2px 25px;padding:12px 16px 11px;border:none;-webkit-border-radius:4px;border-radius:4px;font:13px "Museo-Sans",sans-serif;text-transform:uppercase;color:#ffffff;-o-text-overflow:clip;text-overflow:clip;background:#31abed;text-shadow:-1px 1px 0 rgba(0, 0, 0, 0.12);}
+#preFooterBar .links a.signup:hover{margin:0 0 0 23px;padding:14px 18px 13px;background:-webkit-linear-gradient(-90deg, #5ec6ff 0, #2ba4e5 100%);background:-moz-linear-gradient(180deg, #5ec6ff 0, #2ba4e5 100%);background:linear-gradient(180deg, #5ec6ff 0, #2ba4e5 100%);background-position:50% 50%;-webkit-background-origin:padding-box;background-origin:padding-box;-webkit-background-clip:border-box;background-clip:border-box;-webkit-background-size:auto auto;background-size:auto auto;text-shadow:-1px 1px 0 rgba(0, 0, 0, 0.25);}
+#preFooterBar .links a.signup:active{background:#26a1e2;text-shadow:none;}
+#footer{background-color:#434a51;color:#adb3b9;font:100 13px Roboto,sans-serif;}
+#footer:after{clear:both;content:"";display:block;}
+#footer a{text-decoration:none;}
+#footer .wrap{clear:both;width:1040px;margin:0 auto 0 63px;padding:35px 0 !important;}
+#footer .siteLinks{margin-bottom:100px;float:left;width:748px;}
+#footer .siteLinks strong{font:12px "Museo-Sans",sans-serif;text-transform:uppercase;}
+#footer .siteLinks a{color:#fff;}
+#footer .siteLinks a:hover{color:#adb3b9;}
+#footer .siteLinks ul{margin:0;padding:0;list-style:none;}
+#footer .siteLinks li{margin:0;padding:0;list-style:none;}
+#footer .siteLinks>ul>li{float:left;margin:0;padding:0;width:187px;}
+#footer .siteLinks li li{margin:15px 30px 0 0;}
+#footer .safeharbor{background:#d5d9dc;float:right;width:200px;padding:7px 10px;border-radius:5px;}
+#footer .safeharbor a{font-size:10px;color:#333;float:left;padding:10px 0 0 5px;}
+#footer .safeharbor a+a{float:right;padding:0;}
+#footer .copyright{clear:both;font:100 12px Roboto,sans-serif;}
+#footer .copyright a{margin-right:20px;}
+#footer .copyright a+a{color:#fff;}
+#footer .copyright a+a:hover{color:#adb3b9;}
