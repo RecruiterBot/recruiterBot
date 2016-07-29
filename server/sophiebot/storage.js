@@ -15,6 +15,9 @@ module.exports =  config  => {
 	const storage = {
 
 		students:{
+			create( data, cb ) {
+				new Students( data ).save( cb )
+			},
 			get( id, cb ) {
 				Students.findOne( { id: id } ), unwrapFromList( cb );
 			},
