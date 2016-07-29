@@ -194,6 +194,7 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
             }
             if( !obj.gitHub && !obj.linkedIn && !obj.personalWebsite ) {
               formatted.push( "N/A" );
+              value.link = `https://www.google.com#q=${ obj.name.firstName }+${ obj.name.lastName }`
             }
             return formatted.join("\n");
           }
@@ -305,7 +306,7 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
         convo.on( 'end', ( convo ) => {
           if ( convo.status === `completed` ){
             const locArr = convo.extractResponse( locQuestion ).split(', ');
-            const skillsStrngToArr = convo.extractResponse( skillQuestion ).split(', ')
+            const skillsStrngToArr = convo.extractResponse( skillQuestion ).toLowerCase().split(', ')
             const exp = Number( convo.extractResponse( expQuestion ) );
 
             const location = {};
@@ -314,6 +315,9 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
 
             const skillsArr = [];
             skillsStrngToArr.forEach( value => {
+              if( value === "js" ){
+                value = "javascript"
+              }
               const name = 'skills.' + value;
               skillsArr.push( { 
                 [ name ]: {
