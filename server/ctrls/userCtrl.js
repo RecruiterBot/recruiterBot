@@ -20,7 +20,7 @@ module.exports = {
 	},
 
 	updateEmail( req, res ) {
-		User.findByIdAndUpdate( '579285b747eeca3e64bd45fb', { $push: { 'email': req.body.email } }, { new: true }, ( err, user) => {
+		User.findByIdAndUpdate( '579a3a37ad5eaf667f93a220', { $push: { 'email': req.body.email } }, { new: true }, ( err, user) => {
 			if ( err ) {
 				return res.status( 500 ).json( err );
 			}

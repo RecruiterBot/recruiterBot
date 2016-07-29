@@ -4,7 +4,7 @@ angular.module('recruiterBot')
 		// sends newAdmin email to server side 
 		this.updateEmail = (newAdmin)=>{
 			console.log(newAdmin);
-			// return $http.put(`/api/admin/email`, newAdmin);
+			return $http.put(`/api/admin/email`, newAdmin);
 		}
 
 		// sends newStudent info to server side
