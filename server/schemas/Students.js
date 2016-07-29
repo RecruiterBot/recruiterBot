@@ -4,18 +4,18 @@ const location = require( './location' );
 const Students = new mongoose.Schema( {
 
 	name:{
-		firstName: { type: String, required: true },
-		lastName: {  type: String, required: true} 
+		firstName: { type: String },
+		lastName: {  type: String} 
 	},
 	locations: [ location ],
-	email: { type: String, required: true },
-	devMountain: { type: Boolean, required: true },
+	email: { type: String },
+	devMountain: { type: Boolean },
 	gitHub: { type: String },
 	linkedIn: { type: String },
 	personalWebsite: { type: String },
 	skills: {},
 	campus: { type: String },
-	yearsExperience: { type: Number, required: true }
+	yearsExperience: { type: Number }
 
 } );
 

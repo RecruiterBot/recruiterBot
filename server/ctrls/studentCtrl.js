@@ -22,7 +22,7 @@ module.exports = {
 	},
 
 	createStudent( req, res ) {
-		console.log(">>>>>>>>>>>>", req.body);
+		console.log("NEW STUDENT >>>>>>>>", req.body);
 		new Student( req.body ).save( ( err, newStudent ) => {
 			console.log(">>>>>>>>>>>>", newStudent);
 			if ( err ) {
