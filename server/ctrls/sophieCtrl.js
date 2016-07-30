@@ -33,10 +33,6 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
 
 
 
-
-
-
-
   controller.hears( ['looking for a job', 'I need a job','connect me with employer'],'direct_message,direct_mention,mention', ( bot, message ) => {
     // convo.say(`Excellent I can help you with that I'll ask you some questions and save that information so a recruiter can contact you with open positions.`);
     const firstNameQuestion = `Excellent I can help you with that I'll ask you some questions and save that information so a recruiter can contact you with open positions. What is your first name?`;
@@ -164,6 +160,7 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
   } )
 
 
+
     // function to build the attachment
 
 
@@ -194,6 +191,7 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
             }
             if( !obj.gitHub && !obj.linkedIn && !obj.personalWebsite ) {
               formatted.push( "N/A" );
+              value.link = `https://www.google.com#q=${ obj.name.firstName }+${ obj.name.lastName }`
             }
             return formatted.join("\n");
           }
@@ -305,17 +303,34 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
         convo.on( 'end', ( convo ) => {
           if ( convo.status === `completed` ){
             const locArr = convo.extractResponse( locQuestion ).split(', ');
-            const skillsArr = convo.extractResponse( skillQuestion ).split(', ');
+            const skillsStrngToArr = convo.extractResponse( skillQuestion ).toLowerCase().split(', ')
+
             const exp = Number( convo.extractResponse( expQuestion ) );
 
             const location = {};
             location.city = locArr[ 0 ].toLowerCase();
             location.state = locArr[ 1 ].toLowerCase();
 
+            const skillsArr = [];
+            skillsStrngToArr.forEach( value => {
+              if( value === "js" ){
+                value = "javascript"
+              }
+              const name = 'skills.' + value;
+              skillsArr.push( { 
+                [ name ]: {
+                  $exists: true
+                }
+              } );
+            } )
+
+            console.log( 'skills', skillsArr );
+
             Students.find(
               { $and: [
                 { locations: { $elemMatch: { city: location.city, state: location.state } } },
-                { yearsExperience: { $gte: exp } }
+                { yearsExperience: { $gte: exp } },
+                { $or: skillsArr }
                 ]
               },
                ( err, students ) => {
@@ -335,8 +350,6 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
                 bot.reply( message, attachment[i] )
               }
             } )
-            console.log( 'skills', skillsArr );
-
           }
         } )
       } )
