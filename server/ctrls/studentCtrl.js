@@ -22,9 +22,7 @@ module.exports = {
 	},
 
 	createStudent( req, res ) {
-		console.log("NEW STUDENT >>>>>>>>", req.body);
 		new Student( req.body ).save( ( err, newStudent ) => {
-			console.log(">>>>>>>>>>>>", newStudent);
 			if ( err ) {
 				return res.status( 500 ).json( err );
 			}

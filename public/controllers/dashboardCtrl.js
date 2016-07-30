@@ -3,7 +3,7 @@ angular.module('recruiterBot')
 		
 		// //////////////////////////////// recruiterBot global variables //////////////////////////////////////////
 		$scope.states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
-		$scope.skills = [ 'html5','css3','javascript','git','github','jquery','angularjs','node.js','express','module management','react','webpack','flux','browserify','gulp','mongodb','firebase','bootstrap' ];
+		$scope.skills = [ 'html5','css3','javascript','git','github','jquery','angularjs','node','express','module management','react','webpack','flux','browserify','gulp','mongodb','firebase','bootstrap' ];
 		$scope.selectedSkills = [];
 		$scope.selectedLocations = [];
 
@@ -193,22 +193,20 @@ angular.module('recruiterBot')
 			}
 		}	
 
-		$scope.removeLocation = (location)=>{
-			let locationIndex = $scope.selectedLocations.indexOf(location.city);
-			$scope.selectedLocations.splice(locationIndex, 1);
+		$scope.removeLocation = ( location ) => {
+			let locationIndex = $scope.selectedLocations.indexOf( location.city );
+			$scope.selectedLocations.splice( locationIndex, 1 );
 		}
 
 
 
 
 		// creates a new student by using New Student Form
-		$scope.createStudent = (newStudent)=>{
+		$scope.createStudent = ( newStudent ) => {
 
 			let alertMessage = "Please enter the following:\n";
 			let alertMessageDetails = alertMessage;
 			let counter = 1;
-
-			console.log(newStudent);
 
 			if (!newStudent) {
 				return alert("Please fill out the form");
@@ -270,25 +268,25 @@ angular.module('recruiterBot')
 
 			// format newStudent object to json format
 			let studentSkills = {};
-			for (let i = 0; i < $scope.selectedSkills.length; i++) {
+			for ( let i = 0; i < $scope.selectedSkills.length; i++ ) {
 				let currentSkill = $scope.selectedSkills[i].toLowerCase();
-				studentSkills[currentSkill] = currentSkill;
+				studentSkills[ currentSkill ] = currentSkill;
 			}
 			newStudent.skills = studentSkills;
 			newStudent.locations = $scope.selectedLocations;
 
 
-			for (let i = 0; i < newStudent.locations.length; i++) {
+			for ( let i = 0; i < newStudent.locations.length; i++ ) {
 				newStudent.locations[i].city = newStudent.locations[i].city.toLowerCase();
 				newStudent.locations[i].state = newStudent.locations[i].state.toLowerCase();
 			}
 
 
-			console.log(newStudent);
+			console.log( "new student", newStudent );
 			// send formatted newStudent object to dashboardService
-			dashboardService.createStudent(newStudent)
-			.then((response)=>{
-				console.log(response);
+			dashboardService.createStudent( newStudent )
+			.then( ( response ) => {
+				console.log( "response", response );
 				$scope.newStudent = "";
 				$scope.selectedSkills = [];
 				getStudents();
