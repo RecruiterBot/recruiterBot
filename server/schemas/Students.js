@@ -8,7 +8,7 @@ const Students = new mongoose.Schema( {
 		lastName: {  type: String} 
 	},
 	locations: [ location ],
-	email: { type: String },
+	email: { type: String, unique: true },
 	devMountain: { type: Boolean },
 	gitHub: { type: String },
 	linkedIn: { type: String },
