@@ -193,22 +193,20 @@ angular.module('recruiterBot')
 			}
 		}	
 
-		$scope.removeLocation = (location)=>{
-			let locationIndex = $scope.selectedLocations.indexOf(location.city);
-			$scope.selectedLocations.splice(locationIndex, 1);
+		$scope.removeLocation = ( location ) => {
+			let locationIndex = $scope.selectedLocations.indexOf( location.city );
+			$scope.selectedLocations.splice( locationIndex, 1 );
 		}
 
 
 
 
 		// creates a new student by using New Student Form
-		$scope.createStudent = (newStudent)=>{
+		$scope.createStudent = ( newStudent ) => {
 
 			let alertMessage = "Please enter the following:\n";
 			let alertMessageDetails = alertMessage;
 			let counter = 1;
-
-			console.log(newStudent);
 
 			if (!newStudent) {
 				return alert("Please fill out the form");
@@ -270,25 +268,25 @@ angular.module('recruiterBot')
 
 			// format newStudent object to json format
 			let studentSkills = {};
-			for (let i = 0; i < $scope.selectedSkills.length; i++) {
+			for ( let i = 0; i < $scope.selectedSkills.length; i++ ) {
 				let currentSkill = $scope.selectedSkills[i].toLowerCase();
-				studentSkills[currentSkill] = currentSkill;
+				studentSkills[ currentSkill ] = currentSkill;
 			}
 			newStudent.skills = studentSkills;
 			newStudent.locations = $scope.selectedLocations;
 
 
-			for (let i = 0; i < newStudent.locations.length; i++) {
+			for ( let i = 0; i < newStudent.locations.length; i++ ) {
 				newStudent.locations[i].city = newStudent.locations[i].city.toLowerCase();
 				newStudent.locations[i].state = newStudent.locations[i].state.toLowerCase();
 			}
 
 
-			console.log(newStudent);
+			console.log( "new student", newStudent );
 			// send formatted newStudent object to dashboardService
-			dashboardService.createStudent(newStudent)
-			.then((response)=>{
-				console.log(response);
+			dashboardService.createStudent( newStudent )
+			.then( ( response ) => {
+				console.log( "response", response );
 				$scope.newStudent = "";
 				$scope.selectedSkills = [];
 				getStudents();
