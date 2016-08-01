@@ -33,36 +33,80 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
 
 
 
-  controller.hears( ['looking for a job', 'I need a job','connect me with employer'],'direct_message,direct_mention,mention', ( bot, message ) => {
+  controller.hears( ['job','looking for a job', 'I need a job','connect me with employer'],'direct_message,direct_mention,mention', ( bot, message ) => {
     // convo.say(`Excellent I can help you with that I'll ask you some questions and save that information so a recruiter can contact you with open positions.`);
-    const firstNameQuestion = `Excellent I can help you with that I'll ask you some questions and save that information so a recruiter can contact you with open positions. What is your first name?`;
-    const lastNameQuestion = `What is your last name?`;
-    const locationsQuestion = `In what city and state are you looking for a position?`
-    const emailQuestion = `What is your email?`;
-    const githubQuestion = `Do you have a github? if so paste link in. If no type "no"`;
-    const linkedinQueston = `Do you have a linkedIn vanity URL? if so paste link in. If no type "no"`;
-    const personalWebsiteQuestion = `Do you have a personal website? if so past link in. If no typoe "no"`;
-    const skillsQuestion = `What skills do you have?`
+    const firstNameQuestion = `Excellent, I can help you with that. I'll need to ask you some questions and save that information, so a recruiter can contact you with open positions. Let's get started... \n What is your first name? (e.g., 'Jack')`;
+    const lastNameQuestion = `What is your last name? (e.g., 'Daniels')`;
+    const locationsQuestion = `In what cities and states are you looking for a position? (e.g., 'Dallas, TX / Queens, NY') \n NOTE: \n 1. separate city and state with a comma \n 2. separate locations with a slash`
+    const emailQuestion = `What is your email? (e.g., 'jdaniels@gmail.com')`;
+    const githubQuestion = `Do you have GitHub? if so, paste in your GitHub URL. If no, type "no"`;
+    const linkedinQueston = `Do you have LinkedIn? if so, paste in your LinkedIn URL. If no, type "no"`;
+    const personalWebsiteQuestion = `Do you have a personal website? if so, paste link in. If no, type "no"`;
+    const skillsQuestion = `What skills do you have? (e.g., 'javascript, html5, angular' etc. ) \n Note: separate skills with a comma`
+
+    let firstName = "";
+    let lastName = "";
+    let locations = "";
 
     askFirstName = ( response, convo ) => {
       convo.ask( firstNameQuestion, ( response, convo ) => {
-        convo.say(`Ok the first name I have saved is ${ response.text}`)
-        askLastName( response, convo );
-        convo.next();
+        response.text = response.text.trim();
+
+        if (response.text.indexOf(' ') !== -1) {
+          bot.reply(message, `[Oops!] Your first name must not contain any spaces`);
+          convo.stop();
+          setTimeout(function(){ 
+            bot.startConversation( message, askFirstName ); 
+          }, 1000);
+          
+        }else{
+           firstName = capitalizeFirstLetterOfName(response.text)
+           convo.say(`Ok, the first name I have saved is ${firstName}`)
+           askLastName( response, convo );
+           convo.next();
+        }
+
+       
       })
     }
     askLastName = ( response, convo) => {
-    convo.ask( lastNameQuestion, ( response, convo ) => {
-      convo.say( `Ok the last name I have saved is ${ response.text}` )
-      askLocations( response, convo );
-      convo.next();
-    })
+      convo.ask( lastNameQuestion, ( response, convo ) => {
+        response.text = response.text.trim();
+
+        if (response.text.indexOf(' ') !== -1) {
+          bot.reply(message, `[Oops!] Your last name must not contain any spaces`);
+          convo.stop();
+          setTimeout(function(){ 
+            bot.startConversation( message, askLastName ); 
+          }, 1000);
+          
+        }else{
+           lastName = capitalizeFirstLetterOfName(response.text)
+           convo.say(`Ok, the first name I have saved is ${lastName}`)
+           askLocations( response, convo );
+           convo.next();
+        }
+
+       
+      })
     }
     askLocations = ( response, convo ) => {
       convo.ask( locationsQuestion, ( response, convo ) => {
-        convo.say(`Ok the location I have saved is ${ response.text }`)
-        askEmail (response, convo );
-        convo.next();
+
+         if (!locationsIsFormatted(response.text)) {
+          bot.reply(message, `[Oops!] Please enter locations in a correct format`);
+          convo.stop();
+          setTimeout(function(){ 
+            bot.startConversation( message, askLocations ); 
+          }, 1000);
+          
+        }else{
+          locations = locationsFormatted(response.text);
+          convo.say(`Ok, the locations I have saved are ${locations}`)
+          askEmail (response, convo );
+          convo.next();
+        }
+
       })
     }
     askEmail = ( response, convo ) => {
@@ -150,6 +194,33 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
           return skills;
       })
     }
+
+    // local functions for formatting 
+    capitalizeFirstLetterOfName = (name)=>{
+      return name.charAt(0).toUpperCase() + name.slice(1);
+    }
+
+    locationsIsFormatted = (locations)=>{
+      let locationsArray = locations.split('/');
+      console.log(locationsArray);
+      for(let i=0; i<locationsArray.length; i++){
+        locationsArray[i] = locationsArray[i].trim();
+        if(locationsArray[i].indexOf(',') === -1){
+          return false;
+        }
+      }
+      return true;
+    } 
+    locationsFormatted = (locations)=>{
+      let locationsArray = locations.split('/');
+      console.log(locationsArray);
+      for(let i=0; i<locationsArray.length; i++){
+        locationsArray[i] = locationsArray[i].trim();
+      }
+      return locationsArray;
+    }  
+
+    // string.charAt(0).toUpperCase() + string.slice(1);
 
 
 
@@ -277,85 +348,85 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
       }
 
 
-  controller.hears( [ 'fill', 'position', 'dev', 'developer', 'web developer', 'hire' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
-    const locQuestion = `In which city and state is the position located?`;
-    const skillQuestion = `What skills does the ideal candidate possess?`;
-    const expQuestion = `How many years experience does the ideal candidate need?`;
+  // controller.hears( [ 'fill', 'position', 'dev', 'developer', 'web developer', 'hire' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
+  //   const locQuestion = `In which city and state is the position located?`;
+  //   const skillQuestion = `What skills does the ideal candidate possess?`;
+  //   const expQuestion = `How many years experience does the ideal candidate need?`;
 
-    askLocation = ( response, convo ) => {
-      convo.ask( locQuestion, ( response, convo ) => {
-        convo.say(`looking for candidates in ${ response.text }` );
-        askSkills( response, convo );
-        convo.next();
-      } );
-    }
-    askSkills = ( response, convo ) => {
-      convo.ask( skillQuestion, ( response, convo ) => {
-        convo.say( `looking for candidates with experience in ${ response.text }` );
-        askYearsExperience( response, convo );
-        convo.next();
-      } );
-    }
-    askYearsExperience = ( response, convo ) => {
-      convo.ask( expQuestion, ( response, convo ) => {
-        convo.say( `looking for candidates with ${ response.text } years experience` );
-        convo.next();
-        convo.on( 'end', ( convo ) => {
-          if ( convo.status === `completed` ){
-            const locArr = convo.extractResponse( locQuestion ).split(', ');
-            const skillsStrngToArr = convo.extractResponse( skillQuestion ).toLowerCase().split(', ')
+  //   askLocation = ( response, convo ) => {
+  //     convo.ask( locQuestion, ( response, convo ) => {
+  //       convo.say(`looking for candidates in ${ response.text }` );
+  //       askSkills( response, convo );
+  //       convo.next();
+  //     } );
+  //   }
+  //   askSkills = ( response, convo ) => {
+  //     convo.ask( skillQuestion, ( response, convo ) => {
+  //       convo.say( `looking for candidates with experience in ${ response.text }` );
+  //       askYearsExperience( response, convo );
+  //       convo.next();
+  //     } );
+  //   }
+  //   askYearsExperience = ( response, convo ) => {
+  //     convo.ask( expQuestion, ( response, convo ) => {
+  //       convo.say( `looking for candidates with ${ response.text } years experience` );
+  //       convo.next();
+  //       convo.on( 'end', ( convo ) => {
+  //         if ( convo.status === `completed` ){
+  //           const locArr = convo.extractResponse( locQuestion ).split(', ');
+  //           const skillsStrngToArr = convo.extractResponse( skillQuestion ).toLowerCase().split(', ')
 
-            const exp = Number( convo.extractResponse( expQuestion ) );
+  //           const exp = Number( convo.extractResponse( expQuestion ) );
 
-            const location = {};
-            location.city = locArr[ 0 ].toLowerCase();
-            location.state = locArr[ 1 ].toLowerCase();
+  //           const location = {};
+  //           location.city = locArr[ 0 ].toLowerCase();
+  //           location.state = locArr[ 1 ].toLowerCase();
 
-            const skillsArr = [];
-            skillsStrngToArr.forEach( value => {
-              if( value === "js" ){
-                value = "javascript"
-              }
-              const name = 'skills.' + value;
-              skillsArr.push( { 
-                [ name ]: {
-                  $exists: true
-                }
-              } );
-            } )
+  //           const skillsArr = [];
+  //           skillsStrngToArr.forEach( value => {
+  //             if( value === "js" ){
+  //               value = "javascript"
+  //             }
+  //             const name = 'skills.' + value;
+  //             skillsArr.push( { 
+  //               [ name ]: {
+  //                 $exists: true
+  //               }
+  //             } );
+  //           } )
 
-            console.log( 'skills', skillsArr );
+  //           console.log( 'skills', skillsArr );
 
-            Students.find(
-              { $and: [
-                { locations: { $elemMatch: { city: location.city, state: location.state } } },
-                { yearsExperience: { $gte: exp } },
-                { $or: skillsArr }
-                ]
-              },
-               ( err, students ) => {
-              if( err ) {
-                console.log( 'err', err );
-              }
-              console.log( 'students', students )
+  //           Students.find(
+  //             { $and: [
+  //               { locations: { $elemMatch: { city: location.city, state: location.state } } },
+  //               { yearsExperience: { $gte: exp } },
+  //               { $or: skillsArr }
+  //               ]
+  //             },
+  //              ( err, students ) => {
+  //             if( err ) {
+  //               console.log( 'err', err );
+  //             }
+  //             console.log( 'students', students )
 
-          // create the attachment
+  //         // create the attachment
 
-              const attachment = createAttachment( students );
-              console.log( 'attachment', attachment )
+  //             const attachment = createAttachment( students );
+  //             console.log( 'attachment', attachment )
 
-          // // loop through the attachment and send a reply
+  //         // // loop through the attachment and send a reply
 
-              for (var i = 0; i < attachment.length; i++) {
-                bot.reply( message, attachment[i] )
-              }
-            } )
-          }
-        } )
-      } )
-    }
-    bot.startConversation( message, askLocation );
-  } )
+  //             for (var i = 0; i < attachment.length; i++) {
+  //               bot.reply( message, attachment[i] )
+  //             }
+  //           } )
+  //         }
+  //       } )
+  //     } )
+  //   }
+  //   bot.startConversation( message, askLocation );
+  // } )
 
   controller.hears( [ 'find all students' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
     Students.find( {}, ( err, allStudents ) => {
@@ -379,9 +450,9 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
 
   // deleting candidates from recruitBot database
   controller.hears([`delete`, `remove`], 'direct_message, direct_mention, mention', (bot, message)=>{
-    const firstNameQuestion = `Ok, but before that, we need you to verify few information... \n What is your first name?`;
-    const lastNameQuestion = `What is your last name?`;
-    const emailQuestion = `And lastly, your email?`;
+    const firstNameQuestion = `Ok, but before that, we need you to verify few information... \n What is your first name? (e.g., 'Jack')`;
+    const lastNameQuestion = `What is your last name? (e.g., 'Daniels')`;
+    const emailQuestion = `And lastly, your email? (e.g., 'jdaniels@gmail.com')`;
     const confirmDeletionQuestion = `Are you sure you want to delete your profile? (Y/n)`;
 
     askFirstName = ( response, convo ) => {
