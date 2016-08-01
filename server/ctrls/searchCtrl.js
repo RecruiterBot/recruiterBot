@@ -1,7 +1,7 @@
 const Students = require( '../schemas/Students' );
 const attachmentCtrl = require( './attachmentCtrl' );
 
-module.exports = ( controller, bot ) => {
+module.exports = ( bot, controller ) => {
 
 	controller.hears( [ 'fill', 'position', 'dev', 'developer', 'web developer', 'hire' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
     const locQuestion = `In which city and state is the position located?  Please separate the city and state with a comma.  e.g. Dallas, TX`;
