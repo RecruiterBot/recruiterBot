@@ -1,4 +1,7 @@
 const Students = require( '../schemas/Students' );
+const attachmentCtrl = require( './attachmentCtrl' );
+const searchCtrl = require( './searchCtrl' );
+const deleteCtrl = require( './deleteCtrl' );
 
 module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
 
@@ -8,6 +11,9 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
   const bot = controller.spawn( {
     token: require( '../sophiebot/config' ).botToken
   } );
+
+  searchCtrl( Botkit, app, mongoURI, controller, bot )
+  deleteCtrl( bot, controller )
 
   // const apiai = ApiaiBotkit( apiToken );
 
@@ -159,200 +165,6 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
   //   bot.startConversation( message, askFirstName );
   // } )
 
-
-
-    // function to build the attachment
-
-
-
-      createAttachment = ( arr ) => {
-        const reply = [];
-        arr.forEach( value => {
-
-    //create skills as string
-
-          const skills = Object.keys( value.skills ).join(", ");
-
-    //function to build and format the websites and assign title link website.
-
-          const formatWebsites = ( obj ) => {
-            const formatted = [];
-            if( obj.gitHub ){
-              formatted.push( "gitHub: " + obj.gitHub );
-              value.link = obj.gitHub;
-            }
-            if( obj.linkedIn ){
-              formatted.push( "linkedIn: " + obj.linkedIn );
-              value.link = obj.linkedIn;
-            }
-            if( obj.personalWebsite ){
-              formatted.push( "personal Website: " + obj.personalWebsite );
-              value.link = obj.personalWebsite;
-            }
-            if( !obj.gitHub && !obj.linkedIn && !obj.personalWebsite ) {
-              formatted.push( "N/A" );
-              value.link = `https://www.google.com#q=${ obj.name.firstName }+${ obj.name.lastName }`
-            }
-            return formatted.join("\n");
-          }
-
-    //create websites
-
-          const websites = formatWebsites( value );
-
-    //function for formating locations
-
-        const createLocations = ( arr ) => {
-          const locs = [];
-          arr.forEach( loc => {
-            locs.push( loc.city + ", " + loc.state );
-          } );
-          return locs.join( "\n" )
-        }
-
-    //create locations
-
-        const locations = createLocations( value.locations );
-
-    //identify sponsored
-
-          if( value.devMountain ){
-              value.sponsored = ":star: *_Sponsored_*:  ";
-            }
-            else{
-              value.sponsored = "";
-            }
-    //format the attachment reply
-
-        const messageContent = {
-            "attachments": [
-              {
-                "fallback": value.name.firstName + " " + value.name.lastName,
-                "pretext": "<" + value.link + "|" + value.sponsored + value.name.firstName + " " + value.name.lastName + ">",
-                "mrkdwn_in" : [ "pretext" ],
-                "fields": [
-                  {
-                    "title": "eMail address",
-                    "value": value.email,
-                    "short": true
-                  },
-                  {
-                    "title": "Years experience:",
-                    "value": value.yearsExperience.toString(),
-                    "short": true
-                  },
-                  {
-                    "title": "Locations: ",
-                    "value": locations,
-                    "short": true
-                  },
-                  {
-                    "title": "Skills:",
-                    "value": skills,
-                    "short": true
-                  },
-                  {
-                    "title": "Websites:",
-                    "value": websites + "\n"
-                  }
-                ]
-              }
-            ]
-          };
-
-    // arrange responses
-
-
-            if( value.devMountain === true ){
-              reply.unshift( messageContent );
-              // console.log( 'unshift', reply[0].attachments[0].pretext );
-            }
-            else if (value.devMountain === false) {
-              reply.push( messageContent );
-              // console.log( 'push', reply[1].attachments[0].pretext )
-            }
-
-        } )
-        return reply;
-      }
-
-
-  controller.hears( [ 'fill', 'position', 'dev', 'developer', 'web developer', 'hire' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
-    const locQuestion = `In which city and state is the position located?`;
-    const skillQuestion = `What skills does the ideal candidate possess?`;
-    const expQuestion = `How many years experience does the ideal candidate need?`;
-
-    askLocation = ( response, convo ) => {
-      convo.ask( locQuestion, ( response, convo ) => {
-        convo.say(`looking for candidates in ${ response.text }` );
-        askSkills( response, convo );
-        convo.next();
-      } );
-    }
-    askSkills = ( response, convo ) => {
-      convo.ask( skillQuestion, ( response, convo ) => {
-        convo.say( `looking for candidates with experience in ${ response.text }` );
-        askYearsExperience( response, convo );
-        convo.next();
-      } );
-    }
-    askYearsExperience = ( response, convo ) => {
-      convo.ask( expQuestion, ( response, convo ) => {
-        convo.say( `looking for candidates with ${ response.text } years experience` );
-        convo.next();
-        convo.on( 'end', ( convo ) => {
-          if ( convo.status === `completed` ){
-            const locArr = convo.extractResponse( locQuestion ).split(', ');
-            const skillsStrngToArr = convo.extractResponse( skillQuestion ).toLowerCase().split(', ')
-
-            const exp = Number( convo.extractResponse( expQuestion ) );
-
-            const location = {};
-            location.city = locArr[ 0 ].toLowerCase();
-            location.state = locArr[ 1 ].toLowerCase();
-
-            const skillsArr = [];
-            skillsStrngToArr.forEach( value => {
-              if( value === "js" ){
-                value = "javascript"
-              }
-              const name = 'skills.' + value;
-              skillsArr.push( { 
-                [ name ]: {
-                  $exists: true
-                }
-              } );
-            } )
-
-            Students.find(
-              { $and: [
-                { locations: { $elemMatch: { city: location.city, state: location.state } } },
-                { yearsExperience: { $gte: exp } },
-                { $or: skillsArr }
-                ]
-              },
-               ( err, students ) => {
-              if( err ) {
-                console.log( 'err', err );
-              }
-
-          // create the attachment
-
-              const attachment = createAttachment( students );
-
-          // // loop through the attachment and send a reply
-
-              for (var i = 0; i < attachment.length; i++) {
-                bot.reply( message, attachment[i] )
-              }
-            } )
-          }
-        } )
-      } )
-    }
-    bot.startConversation( message, askLocation );
-  } )
-
   controller.hears( [ 'find all students' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
     Students.find( {}, ( err, allStudents ) => {
       if ( err ) {
@@ -371,96 +183,6 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
       }
     } )
   } )
-
-
-  // deleting candidates from recruitBot database
-  controller.hears([`delete`, `remove`], 'direct_message, direct_mention, mention', (bot, message)=>{
-    const firstNameQuestion = `Ok, but before that, we need you to verify few information... \n What is your first name?`;
-    const lastNameQuestion = `What is your last name?`;
-    const emailQuestion = `And lastly, your email?`;
-    const confirmDeletionQuestion = `Are you sure you want to delete your profile? (Y/n)`;
-
-    askFirstName = ( response, convo ) => {
-      convo.ask( firstNameQuestion, ( response, convo ) => {
-        // convo.say(`Ok the first name I have saved is ${ response.text}`)
-        askLastName( response, convo );
-        convo.next();
-      })
-    },
-    askLastName = ( response, convo ) => {
-      convo.ask( lastNameQuestion, ( response, convo ) => {
-        // convo.say(`Ok the first name I have saved is ${ response.text}`)
-        askEmail( response, convo );
-        convo.next();
-      })
-    }
-    askEmail = (response, convo)=>{
-
-      convo.ask(emailQuestion, (response, convo)=>{
-
-            const candidateInfo = convo.extractResponses();
-
-            const firstName = convo.extractResponse(firstNameQuestion);
-            const lastName = convo.extractResponse(lastNameQuestion);
-            const email = convo.extractResponse(emailQuestion);
-
-            let orIndex =  email.indexOf('|');
-            let emailTrimmed = email.slice(8, orIndex);
-
-
-            Students.find({$and: [{"name.firstName" : firstName }, {"name.lastName" : lastName }, {email: emailTrimmed}]}, (err, studentFound)=>{
-
-              if (studentFound.length === 0) {
-                bot.reply(message, `Sorry, I could not find [${firstName} ${lastName}] on recruitBot`);
-              }else{
-                let studentFoundId = studentFound[0]._id;
-                const attachment = createAttachment( studentFound );
-                convo.say( attachment[ 0 ] )
-                confirmDeletion( response, convo, studentFoundId )
-              }
-              convo.next();
-            })
-      })
-
-    }
-    confirmDeletion = ( response, convo, studentFoundId )=>{
-      convo.ask(confirmDeletionQuestion, (response, convo)=>{
-        const confirmation = convo.extractResponse(confirmDeletionQuestion);
-        if (confirmation === 'Y') {
-          Students.findByIdAndRemove({_id: studentFoundId}, (err, studentRemoved)=>{
-            bot.reply(message, "Ok, I deleted your profile from recruitBot");
-          })
-        }else if(confirmation === 'n'){
-          bot.reply(message, "Ok, then, I won't delete your profile");
-        }else{
-          confirmDeletion(response, convo, studentFoundId);
-        }
-        convo.next();
-      })
-
-    }
-
-
-
-    // invoke conversation
-    bot.startConversation( message, askFirstName );
-  })
-
-
-  // controller.hears( ["sophie", "I need a web developer", "good ones", /^.{0.}sophie.{0.}$/ ], [ "direct_message", "ambient" ], ( bot, message ) => {
-  //   if( message.text === "sophie" ){
-  //     bot.reply( message,'What can I do for you, ?' );
-  //   }
-  //   else if ( message.text ==="I need a web developer" ){
-  //     bot.reply( message, 'Keep calm I can help you with that. What kind of developer are you looking for?' )
-  //   }
-  //   else if ( message.text === "good ones" ){
-  //     bot.reply( message, 'Ok, excellent, here is what you need.' )
-  //   }
-  //   else {
-  //     bot.reply( message, "I only speak a few phrases right now, try me out late." );
-  //   }
-  // } );
 
   bot.startRTM( ( err, bot, payload ) => {
     if ( err ) {
