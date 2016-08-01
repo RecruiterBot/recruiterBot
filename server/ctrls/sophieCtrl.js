@@ -12,7 +12,7 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
     token: require( '../sophiebot/config' ).botToken
   } );
 
-  searchCtrl( Botkit, app, mongoURI, controller, bot )
+  searchCtrl( controller, bot )
   deleteCtrl( bot, controller )
 
   // const apiai = ApiaiBotkit( apiToken );

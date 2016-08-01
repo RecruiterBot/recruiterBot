@@ -1,12 +1,12 @@
 const Students = require( '../schemas/Students' );
 const attachmentCtrl = require( './attachmentCtrl' );
 
-module.exports = ( Botkit, app, mongoURI, controller, bot ) => {
+module.exports = ( controller, bot ) => {
 
 	controller.hears( [ 'fill', 'position', 'dev', 'developer', 'web developer', 'hire' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
     const locQuestion = `In which city and state is the position located?  Please separate the city and state with a comma.  e.g. Dallas, TX`;
     const skillQuestion = `What skills does the ideal candidate possess?  Please separate each skill with a comma.  e.g. React, Express, Node`;
-    const expQuestion = `How many years experience does the ideal candidate need?`;
+    const expQuestion = `How many minimum years experience does the ideal candidate need?`;
     const useComma = `Please separate your skills with a comma.  e.g. React, AngularJS, Express`;
     const cityState = `Please include both city and state separated with a comma.  e.g. Dallas, TX`;
     const expectNumber = `Please type the number of years experience required rounded down.  e.g. 2`;
@@ -46,7 +46,7 @@ module.exports = ( Botkit, app, mongoURI, controller, bot ) => {
       convo.ask( expQuestion, ( response, convo ) => {
         const number = Number( response.text );
         if ( isNaN( number ) ) {
-          convo.say( expectNumber );
+          bot.reply( message, expectNumber );
           if( !locArr ) {
               locArr = convo.extractResponse( locQuestion ).split(', ');
             }
