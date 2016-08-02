@@ -9,7 +9,7 @@ module.exports = ( bot, controller ) => {
     const expQuestion = `How many minimum years experience does the ideal candidate need?`;
     const useComma = `Please separate your skills with a comma.  e.g. React, AngularJS, Express`;
     const cityState = `Please include both city and state separated with a comma.  e.g. Dallas, TX`;
-    const expectNumber = `Please type the number of years experience required rounded down.  e.g. 2`;
+    const expectNumber = `Please type the minimum number of years experience required.  e.g. 2`;
     let locArr = "";
     let skillsStrngToArr = "";
 
