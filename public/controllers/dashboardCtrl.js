@@ -14,7 +14,7 @@ angular.module('recruiterBot')
 		// $scope.showEditStudentProfile = false;
 		$scope.showFilter = false;
 		let alreadySorted = false;
-		let originalStudentsOrder;
+		// let originalStudentsOrder;
 
 		// //////////////////////////////// header-tabs ////////////////////////////////////////////////////////////
 		$scope.showDashboardView = ()=>{
@@ -87,7 +87,7 @@ angular.module('recruiterBot')
 				let allStudents = response.data;
 				allStudents = convertToReadableData(allStudents);
 				console.log(allStudents);
-				originalStudentsOrder = allStudents;
+				// originalStudentsOrder = allStudents;
 				$scope.students = allStudents;
 			})
 		}
@@ -392,6 +392,8 @@ angular.module('recruiterBot')
 				}
 				allStudents[i].locations = locationsCapitalizer(allStudents[i].locations);
 				// allStudents[i].skills = skillsCapitalizer(allStudents[i].skills);
+				allStudents[i].name.firstName = allStudents[i].name.firstName.charAt(0).toUpperCase() + allStudents[i].name.firstName.slice(1);
+				allStudents[i].name.lastName = allStudents[i].name.lastName.charAt(0).toUpperCase() + allStudents[i].name.lastName.slice(1);
 			}
 
 			return allStudents;

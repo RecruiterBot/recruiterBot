@@ -46,9 +46,9 @@
 
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="student in students | filter:search:strict">
 				<div class="student-thumbnail student-moreinfo col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div ng-click="collapsedMoreInfo=!collapsedMoreInfo" class="student col-lg-10 col-md-10 col-sm-10 col-xs-12">
+					<div ng-click="collapsedMoreInfo=!collapsedMoreInfo" class="student col-lg-10 col-md-10 col-sm-12 col-xs-12">
 						<img src="./img/user-avatar.jpeg" class="img-responsive img-rounded" alt="student-photo" style="width:140px; height:150px;">
-						<div class="student-info">
+						<div class="student-info hidden-xs">
 						<!-- ng-class="showEditStudentProfile ? 'red' : 'green'" -->
 							<h3>{{student.name.firstName}} {{student.name.lastName}}</h3>
 							<p><strong>Location:</strong> <span ng-repeat="location in student.locations">
@@ -57,7 +57,7 @@
 							<p><strong>Years of Experience:</strong> {{student.yearsExperience}}</p>
 						</div>
 					</div>
-					<div class="admin-actions col-lg-2 col-md-2 col-sm-2 col-xs-12">
+					<div class="admin-actions col-lg-2 col-md-2 col-sm-12 col-xs-12">
 						<a ng-click="collapsed=!collapsed" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
 						<!-- <a href="#" class="btn btn-block btn-success"><span class="glyphicon glyphicon-ok"></span> Save</a> -->
 						<a ng-click="deleteStudent(student)" class="btn btn-block btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove</a>
