@@ -15,8 +15,8 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
   } );
 
   searchCtrl( bot, controller );
-  deleteCtrl( bot, controller );
-  createCtrl( bot, controller );
+  // deleteCtrl( bot, controller );
+  // createCtrl( bot, controller );
   helpCtrl( bot, controller );
 
   // const apiai = ApiaiBotkit( apiToken );

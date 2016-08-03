@@ -3,6 +3,7 @@ const attachmentCtrl = require( './attachmentCtrl' );
 
 module.exports = ( bot, controller ) => {
 
+
 controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direct_message,direct_mention,mention', ( bot, message ) => {
     // convo.say(`Excellent I can help you with that I'll ask you some questions and save that information so a recruiter can contact you with open positions.`);
     const firstNameQuestion = `Excellent, I can help you with that. I'll need to ask you some questions and save that information, so a recruiter can contact you with open positions. Let's get started... \n What is your first name? (e.g., 'Jack')`;
@@ -16,6 +17,11 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
     const yearsOfExperienceQuestion =`How many years of technical experience do you have? (e.g., '3') \n NOTE: must be a whole number`
     const profileSubmitConfirmation = `Awesome! Thank you for providing all the information. I am just about ready to submit your profile as a recruitBot candidate. \n Are you sure you want me to go ahread and save your profile? (Y/n)`
 
+    const endConvo = ( convo ) => {
+        bot.reply( message, `Have a nice day!`)
+        return convo.stop();
+      }
+      
     let firstName = "";
     let lastName = "";
     let locations = "";
@@ -28,6 +34,9 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
 
     askFirstName = ( response, convo ) => {
       convo.ask( firstNameQuestion, ( response, convo ) => {
+        if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
+          return endConvo( convo );
+        }
         response.text = response.text.trim();
 
         if (response.text.indexOf(' ') !== -1) {
@@ -49,6 +58,9 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
     }
     askLastName = ( response, convo) => {
       convo.ask( lastNameQuestion, ( response, convo ) => {
+        if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
+          return endConvo( convo );
+        }
         response.text = response.text.trim();
 
         if (response.text.indexOf(' ') !== -1) {
@@ -70,6 +82,9 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
     }
     askLocations = ( response, convo ) => {
       convo.ask( locationsQuestion, ( response, convo ) => {
+        if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
+          return endConvo( convo );
+        }
 
          if (!locationsIsFormatted(response.text)) {
           bot.reply(message, `[Oops!] Please enter locations in the correct format`);
@@ -89,6 +104,9 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
     }
     askEmail = ( response, convo ) => {
       convo.ask( emailQuestion, ( response, convo ) => {
+        if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
+          return endConvo( convo );
+        }
 
         if (!isEmailFormat(response.text)) {
           bot.reply(message, `[Oops!] Please enter your email in the correct format`);
@@ -110,6 +128,9 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
     }
     askGithub = ( response, convo ) => {
       convo.ask( githubQuestion, ( response, convo ) => {
+        if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
+          return endConvo( convo );
+        }
         if(response.text === "no"){
           askLinkedin ( response, convo );
           convo.next();
@@ -131,6 +152,9 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
     }
     askLinkedin = ( response, convo ) => {
       convo.ask( linkedinQueston, ( response, convo ) => {
+        if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
+          return endConvo( convo );
+        }
         if(response.text === "no"){
           askPersonalWebsite ( response, convo );
           convo.next();
@@ -152,6 +176,9 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
     }
     askPersonalWebsite = (response, convo ) => {
       convo.ask( personalWebsiteQuestion, ( response, convo ) => {
+        if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
+          return endConvo( convo );
+        }
           if(response.text === "no"){
             askSkills ( response, convo );
             convo.next();
@@ -173,6 +200,9 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
     }
     askSkills = ( response, convo ) => {
       convo.ask( skillsQuestion, ( response, convo ) => {
+        if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
+          return endConvo( convo );
+        }
           if(!skillsIsFormatted(response.text)){
             bot.reply(message, `[Oops!] Please list your skills in the correct format`);
             convo.next();
@@ -186,6 +216,9 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
     }
     askYearsOfExperience = ( response, convo ) => {
       convo.ask( yearsOfExperienceQuestion, ( response, convo ) => {
+        if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
+          return endConvo( convo );
+        }
           if(!yearsOfExperienceFormatted(response.text)){
             bot.reply(message, `[Oops!] Please enter an interger for your years of experience`);
             convo.next();
@@ -199,6 +232,9 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
     }
     saveProfileConfirmation = (response, convo)=>{
       convo.ask(profileSubmitConfirmation, (response, convo)=>{
+        if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
+          return endConvo( convo );
+        }
         if (response.text === 'Y') {
           bot.reply(message, `Ok, I saved your profile on recruitBot`);
           let candidate = formatCandidateProfile();
