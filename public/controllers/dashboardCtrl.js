@@ -2,7 +2,7 @@ angular.module('recruiterBot')
 	.controller('dashboardCtrl', function($scope, dashboardService, homeService, $state){
 		
 		// //////////////////////////////// recruiterBot global variables //////////////////////////////////////////
-		$scope.states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
+		$scope.states = [ 'AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MI','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WI','WV','WY'];
 		$scope.skills = [ 'html5','css3','javascript','git','github','jquery','angularjs','node','express','module management','react','webpack','flux','browserify','gulp','mongodb','firebase','bootstrap' ];
 		$scope.selectedSkills = [];
 		$scope.selectedLocations = [];
@@ -13,6 +13,8 @@ angular.module('recruiterBot')
 		$scope.showAdmin = false;
 		// $scope.showEditStudentProfile = false;
 		$scope.showFilter = false;
+		let alreadySorted = false;
+		let originalStudentsOrder;
 
 		// //////////////////////////////// header-tabs ////////////////////////////////////////////////////////////
 		$scope.showDashboardView = ()=>{
@@ -20,6 +22,7 @@ angular.module('recruiterBot')
 			$scope.showStudent = false;
 			$scope.showAdmin = false;
 			$scope.selectedSkill = "";
+			getStudents();
 		}
 		$scope.showStudentView = ()=>{
 			$scope.showDashboard = false;
@@ -31,11 +34,31 @@ angular.module('recruiterBot')
 			$scope.showStudent = false;
 			$scope.showAdmin = true;
 		}
-		$scope.filterSort = ()=>{
+		$scope.filter = ()=>{
 			$scope.showFilter = true;
 		}
 		$scope.hideFilter = ()=>{
 			$scope.showFilter = false;
+		}
+
+		$scope.sort = ()=>{
+			if (alreadySorted === true) {
+				alreadySorted = false;
+				getStudents();
+			}else{
+				alreadySorted = true;
+				$scope.students.sort(function(a, b) {
+				  let nameA = a.name.firstName.toUpperCase(); // ignore upper and lowercase
+				  var nameB = b.name.firstName.toUpperCase(); // ignore upper and lowercase
+				  if (nameA < nameB) {
+				    return -1;
+				  }
+				  if (nameA > nameB) {
+				    return 1;
+				  }
+				  return 0;
+				});
+			}
 		}
 
 		// //////////////////////////////// dashboard-jumbotron ///////////////////////////////////////////////////
@@ -64,6 +87,7 @@ angular.module('recruiterBot')
 				let allStudents = response.data;
 				allStudents = convertToReadableData(allStudents);
 				console.log(allStudents);
+				originalStudentsOrder = allStudents;
 				$scope.students = allStudents;
 			})
 		}
@@ -91,11 +115,13 @@ angular.module('recruiterBot')
 			})
 		}
 
-		$scope.deleteStudent = (studentId)=>{
-			dashboardService.deleteStudent(studentId)
-			.then((response)=>{
-				getStudents();
-			})
+		$scope.deleteStudent = (student)=>{
+			if (confirm(`Delete '${student.name.firstName} ${student.name.lastName}' from recruitBot?`) == true){
+				dashboardService.deleteStudent(student._id)
+				.then((response)=>{
+					getStudents();
+				});
+			};
 		}
 
 		$scope.removeUpdatedSkill = (studentId, skill)=>{
@@ -284,6 +310,14 @@ angular.module('recruiterBot')
 
 			console.log( "new student", newStudent );
 			// send formatted newStudent object to dashboardService
+
+			$scope.selectedSkills = [];
+			$scope.selectedLocations = [];
+
+			$scope.newStudent = "";
+			$scope.selectedState = "";
+			$scope.selectedCity = ""
+
 			dashboardService.createStudent( newStudent )
 			.then( ( response ) => {
 				console.log( "response", response );
@@ -306,6 +340,8 @@ angular.module('recruiterBot')
 					console.log(response);
 					$scope.newAdmin = "";
 				})
+		    }else{
+		    	$scope.newAdmin = "";
 		    }
 		}
 
@@ -386,15 +422,16 @@ angular.module('recruiterBot')
 				}
 				locations[l].city = cityCapitalized;
 				
-				let state = locations[l].state.split(" ");
-				let stateCapitalized = "";
-				for(let s=0; s<state.length; s++){
-					stateCapitalized = stateCapitalized + state[s].charAt(0).toUpperCase() + state[s].slice(1);
-					if(s !== state.length-1){
-						stateCapitalized = stateCapitalized + " ";
-					}
-				}
-				locations[l].state = stateCapitalized;
+				// let state = locations[l].state.split(" ");
+				// let stateCapitalized = "";
+				// for(let s=0; s<state.length; s++){
+				// 	stateCapitalized = stateCapitalized + state[s].charAt(0).toUpperCase() + state[s].slice(1);
+				// 	if(s !== state.length-1){
+				// 		stateCapitalized = stateCapitalized + " ";
+				// 	}
+				// }
+
+				locations[l].state = locations[l].state.toUpperCase();
 			
 			}
 			return locations;
