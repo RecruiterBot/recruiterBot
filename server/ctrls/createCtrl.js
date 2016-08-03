@@ -9,9 +9,9 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
     const lastNameQuestion = `What is your last name? (e.g., 'Daniels')`;
     const locationsQuestion = `In what cities and states are you looking for a position? (e.g., 'Dallas, TX / Queens, NY') \n NOTE: \n 1. separate city and state with a comma \n 2. separate locations with a slash`
     const emailQuestion = `What is your email? (e.g., 'jdaniels@gmail.com')`;
-    const githubQuestion = `Do you have GitHub? if so, paste in your GitHub URL. If no, type "no" (e.g., 'https://github.com/jdaniels')`;
-    const linkedinQueston = `Do you have LinkedIn? if so, paste in your LinkedIn URL. If no, type "no" (e.g., 'https://www.linkedin.com/in/npranto')`;
-    const personalWebsiteQuestion = `Do you have a personal website? if so, paste link in. If no, type "no" (e.g., https://www.jackdaniels.com)`;
+    const githubQuestion = `Do you have GitHub? if so, paste in your GitHub URL. If no, type "no" (e.g., 'https://github.com/abcde')`;
+    const linkedinQueston = `Do you have LinkedIn? if so, paste in your LinkedIn URL. If no, type "no" (e.g., 'https://www.linkedin.com/in/abcde')`;
+    const personalWebsiteQuestion = `Do you have a personal website? if so, paste link in. If no, type "no" (e.g., https://www.myprofileurl.com)`;
     const skillsQuestion = `What skills do you have? (e.g., 'javascript, html5, angular' etc. ) \n NOTE: separate skills with a comma`
     const yearsOfExperienceQuestion =`How many years of technical experience do you have? (e.g., '3') \n NOTE: must be a whole number`
     const profileSubmitConfirmation = `Awesome! Thank you for providing all the information. I am just about ready to submit your profile as a recruitBot candidate. \n Are you sure you want me to go ahread and save your profile? (Y/n)`
@@ -200,28 +200,50 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
     saveProfileConfirmation = (response, convo)=>{
       convo.ask(profileSubmitConfirmation, (response, convo)=>{
         if (response.text === 'Y') {
-          convo.say(`Ok, I saved your profile on recruitBot`);
+          bot.reply(message, `Ok, I saved your profile on recruitBot`);
           let candidate = formatCandidateProfile();
-          // console.log("<<<<<<<<<", candidate);
 
           // add candidate to database
           new Students( candidate ).save( ( err, newStudent ) => {
             if ( err ) {
               console.log(err);
             }else{
-              console.log(newStudent);
-              console.log([newStudent]);
-              const attachment = attachmentCtrl.createAttachment( [newStudent] );
-              console.log(attachment[0]);
+              // console.log(newStudent);
+              // console.log([newStudent]);
+              // const attachment = attachmentCtrl.createAttachment( [newStudent] );
+              // console.log(attachment[0]);
+
+
+
+
+              Students.findById(newStudent._id, (err, studentFound)=>{
+                console.log(">>>>>>>>>>>>>", [studentFound]);
+              if (studentFound.length === 0) {
+                bot.reply(message, `Sorry, I could not find you on recruitBot`);
+              }else{
+                const attachment = attachmentCtrl.createAttachment( [studentFound] );
+                console.log("CREATE >>>>>>>>", attachment);
+                // convo.say( attachment[ 0 ] )
+              }
+              convo.next();
+            })
+
+
+
+
+
+
+
+
             }
           });
 
-
-
         }else if(response.text === 'n'){
-
+          bot.reply(message, `Ok, I won't add your profile to recruitBot`);
+          convo.stop();
         }else{
           saveProfileConfirmation(response, convo);
+          convo.next();
         }
       })
       // bot.reply(message, `Awesome, thank you. I saved you as a candidate in recruitBot. \n Here is your profile...`)
@@ -337,7 +359,7 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
       
       console.log(locationsToArray);
       
-      let locationsArray = [];
+      let locationsFormatted = [];
       
       // turn array of locations into array of location objects
       for(let i=0; i<locationsToArray.length; i++){
@@ -348,15 +370,16 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
         locationsToArray[i][0] = locationsToArray[i][0].trim();
         locationsToArray[i][1] = locationsToArray[i][1].trim();
         
+        // put each string locations into location objects
         let newLocationObj = {};
-        
         newLocationObj.city = locationsToArray[i][0];
         newLocationObj.state = locationsToArray[i][1];
-        
-        locationsArray.push(newLocationObj);
+
+        // push newLocationObj into locationsFormatted
+        locationsFormatted.push(newLocationObj);
       }
       
-      return locationsArray;
+      return locationsFormatted;
     }
 
     // string.charAt(0).toUpperCase() + string.slice(1);
