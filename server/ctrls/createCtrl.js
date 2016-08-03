@@ -101,7 +101,6 @@ controller.hears( ['job','looking for a job', 'I need a job','connect me with em
           
         }
         emailTaken( response, convo, response.text );
-        
       })
     }
     askGithub = ( response, convo ) => {
@@ -204,18 +203,15 @@ controller.hears( ['job','looking for a job', 'I need a job','connect me with em
             if ( err ) {
               console.log(err);
             }else{
-              // Students.findById(newStudent._id, (err, studentFound)=>{
-              //   if (studentFound.length === 0) {
-              //     bot.reply(message, `Sorry, I could not find you on recruitBot`);
-              //   }else{
-              //     const attachment = attachmentCtrl.createAttachment( [studentFound] );
-              //     convo.say(attachment[0]);
-              //   }
-              //   convo.next();
-              // })
-              console.log("NEW STUDENT", newStudent)
-              const attachment = attachmentCtrl.createAttachment( [newStudent] );
-              convo.say(attachment[0]);
+              Students.findById(newStudent._id, (err, studentFound)=>{
+                if (studentFound.length === 0) {
+                  bot.reply(message, `Sorry, I could not find you on recruitBot`);
+                }else{
+                  const attachment = attachmentCtrl.createAttachment( [studentFound] );
+                  convo.say(attachment[0]);
+                }
+                convo.next();
+              })
             }
           });
 
@@ -264,18 +260,19 @@ controller.hears( ['job','looking for a job', 'I need a job','connect me with em
       }
       return true;
     }
-    emailTaken = ( response, convo, email)=>{
-      email = emailFormatter(email);
-      Students.find({email: email.toLowerCase()}, (err, emailExists)=>{
+    emailTaken = ( response, convo, candEmail)=>{
+      candEmail = emailFormatter(candEmail);
+      Students.find({email: candEmail.toLowerCase()}, (err, emailExists)=>{
         if (err) {
           return false;
         }
         if( emailExists.length === 0 ){
-          convo.say(`Ok, the email I have saved is [${ email }]` )
+          email = candEmail;
+          convo.say(`Ok, the email I have saved is [${ candEmail }]` )
           askGithub ( response, convo );
           convo.next();
         } else {
-          bot.reply(message, `[Oops!] ${email} is aleady taken. Enter a different email...`);
+          bot.reply(message, `[Oops!] ${candEmail} is aleady taken. Enter a different email...`);
           convo.stop();
           setTimeout(function(){ 
             bot.startConversation( message, askEmail ); 
@@ -313,14 +310,20 @@ controller.hears( ['job','looking for a job', 'I need a job','connect me with em
 
     formatCandidateProfile = ()=>{
        let candidate = {};
-       candidate.name = {};
-       candidate.name.firstName = firstName
-       candidate.name.lastName = lastName
+       candidate.name = {}; 
+       candidate.name.firstName = firstName;
+       candidate.name.lastName = lastName;
        candidate.locations = locationsFormatter(locations);
        candidate.email = email;
-       candidate.gitHub = githubUrl;
-       candidate.linkedIn = linkedinUrl;
+       if (githubUrl.length > 0) {
+          candidate.gitHub = githubUrl;
+       }
+       if (linkedinUrl.length > 0) {
+          candidate.linkedIn = linkedinUrl;
+       }
+       if (persoanlWebsiteUrl.length > 0) {
        candidate.personalWebsite = persoanlWebsiteUrl;
+       }
        candidate.skills = skillsFormatter(skills);
        candidate.yearsExperience = parseInt(yearsOfExperience);
 
