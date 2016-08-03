@@ -3,8 +3,8 @@
 const express = require ( 'express' );
 const mongoose = require( 'mongoose' );
 const session = require('express-session');
-const { json } = require( 'body-parser' );
-const { urlencoded } = require ( 'body-parser' );
+const json = require( 'body-parser' ).json;
+const urlencoded = require ( 'body-parser' ).urlencoded;
 const MR = require( './server/masterRoutes' );
 const Sophie = require( './server/ctrls/sophieCtrl' );
 const Botkit = require( 'botkit' )
@@ -28,7 +28,7 @@ app.use( session({
 	saveUninitialized: true	
 }) )
 app.use( json() );
-app.use( express.static( `${ __dirname }/public`) );// public contains static assets and these are getting served up to express middleware
+app.use( express.static( __dirname + '/public') );// public contains static assets and these are getting served up to express middleware
 
 // use Master Routes //
 

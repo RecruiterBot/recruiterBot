@@ -6,7 +6,7 @@ module.exports = {
 
     //create skills as string
 
-          const skills = Object.keys( value.skills ).join(", ");
+          const skills = Object.keys( value.skills ).join(", ").replace(/\b\w/g, l => l.toUpperCase() );
 
     //function to build and format the websites and assign title link website.
 
@@ -40,7 +40,7 @@ module.exports = {
         const createLocations = ( arr ) => {
           const locs = [];
           arr.forEach( loc => {
-            locs.push( loc.city + ", " + loc.state );
+            locs.push( loc.city.replace(/\b\w/g, l => l.toUpperCase() ) + ", " + loc.state.toUpperCase() );
           } );
           return locs.join( "\n" )
         }
@@ -58,6 +58,13 @@ module.exports = {
               value.sponsored = "";
             }
     //format the attachment reply
+
+		    capitalizeFirstLetterOfName = ( name ) => {
+		      return name.charAt( 0 ).toUpperCase() + name.slice( 1 );
+		    }
+
+    	value.name.firstName = capitalizeFirstLetterOfName( value.name.firstName );
+    	value.name.lastName = capitalizeFirstLetterOfName( value.name.lastName );
 
         const messageContent = {
             "attachments": [
@@ -97,9 +104,11 @@ module.exports = {
 
     // arrange responses
 
+    console.log( 'message', messageContent );
 
             if( value.devMountain === true ){
               reply.unshift( messageContent );
+              console.log("unshift", reply)
               // console.log( 'unshift', reply[0].attachments[0].pretext );
             }
             else if (!value.devMountain) {
@@ -108,8 +117,57 @@ module.exports = {
             }
 
         } )
-        console.log("REPLY ....", reply);
         return reply;
+      },
+      checkResponse( response, convo ){
+      	const attachment = {
+			"attachments": [
+				{
+					"pretext": "_*Conversation Options*_",
+					"mrkdwn_in": [ "pretext", "fields[0].title" ],
+					"color": "#36a64f",
+					"fields": [
+						{
+							"title": "Recruiters Options",
+							"value": "-------\nFill a position.\nHire someone.\nFind a candidate.\nI'm looking for a developer."
+						},
+						{
+							"title": "Candidates looking for a job options",
+							"value": "-------\nI'm looking for a job.\nConnect me with a recruiter.\nAdd me to the system.",
+							"short": true
+						},
+						{
+							"title": "Candidate, no longer looking for a job",
+							"value": "-------\nRemove me from the system.\nDelete my profile.",
+							"short": true
+						},
+						{
+							"title": "Canceling conversations Options",
+							"value": "-------\nCancel\tEnd\nStop\t\tQuit\nDone"
+						}
+					]
+				}
+			]
+		};
+      	if( response.text.toLowerCase() === "help" ){
+      		convo.say( attachment );
+      		return response;
+      	}
+      	let check = [];
+      	if( response.text.indexOf( " " ) === -1 ) {
+	      	check.push( response.text.toLowerCase() );
+	      } else {
+	      	check = response.text.toLowerCase().split( " " );
+	      }
+      	check.forEach( value => {
+      		if( value === "cancel" || value === "quit" || value === "end" || value === "restart" || value === "over" || value === "mistake" || value === "done" || value === "stop" ) {
+      			return check = true;
+      		}
+      	} )
+      	if ( check === true ) {
+      		return false;
+      	}
+      	return response
       }
 
 }

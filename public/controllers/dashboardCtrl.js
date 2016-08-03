@@ -2,8 +2,9 @@ angular.module('recruiterBot')
 	.controller('dashboardCtrl', function($scope, dashboardService, homeService, $state){
 		
 		// //////////////////////////////// recruiterBot global variables //////////////////////////////////////////
+
 		$scope.states = [ 'AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MI','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WI','WV','WY'];
-		$scope.skills = [ 'html5','css3','javascript','git','github','jquery','angularjs','node','express','module management','react','webpack','flux','browserify','gulp','mongodb','firebase','bootstrap' ];
+		$scope.skills = [ 'html5','css3','javascript','git','github','jquery','angular','node','express','module management','react','webpack','flux','browserify','gulp','mongodb','firebase','bootstrap' ];
 		$scope.selectedSkills = [];
 		$scope.selectedLocations = [];
 
