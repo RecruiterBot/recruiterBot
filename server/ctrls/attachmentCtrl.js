@@ -102,7 +102,7 @@ module.exports = {
               reply.unshift( messageContent );
               // console.log( 'unshift', reply[0].attachments[0].pretext );
             }
-            else if (value.devMountain === false) {
+            else if (!value.devMountain) {
               reply.push( messageContent );
               // console.log( 'push', reply[1].attachments[0].pretext )
             }

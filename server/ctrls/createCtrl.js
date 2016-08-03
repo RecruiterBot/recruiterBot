@@ -40,6 +40,7 @@ controller.hears( ['job','looking for a job', 'I need a job','connect me with em
         }else{
            firstName = capitalizeFirstLetterOfName(response.text)
            convo.say(`Ok, the first name I have saved is [${firstName}]`)
+           firstName = response.text.toLowerCase();
            askLastName( response, convo );
            convo.next();
         }
@@ -61,6 +62,7 @@ controller.hears( ['job','looking for a job', 'I need a job','connect me with em
         }else{
            lastName = capitalizeFirstLetterOfName(response.text)
            convo.say(`Ok, the last name I have saved is [${lastName}]`)
+           lastName = response.text.toLowerCase();
            askLocations( response, convo );
            convo.next();
         }
@@ -97,14 +99,8 @@ controller.hears( ['job','looking for a job', 'I need a job','connect me with em
             bot.startConversation( message, askEmail ); 
           }, 1000);
           
-        }else{
-          email = emailFormatter(response.text);
-          convo.say(`Ok, the email I have saved is [${ email }]` )
-          askGithub ( response, convo );
-          convo.next();
         }
-
-
+        emailTaken( response, convo, response.text );
         
       })
     }
@@ -208,33 +204,18 @@ controller.hears( ['job','looking for a job', 'I need a job','connect me with em
             if ( err ) {
               console.log(err);
             }else{
-              // console.log(newStudent);
-              // console.log([newStudent]);
-              // const attachment = attachmentCtrl.createAttachment( [newStudent] );
-              // console.log(attachment[0]);
-
-
-
-
-              Students.findById(newStudent._id, (err, studentFound)=>{
-                console.log(">>>>>>>>>>>>>", [studentFound]);
-              if (studentFound.length === 0) {
-                bot.reply(message, `Sorry, I could not find you on recruitBot`);
-              }else{
-                const attachment = attachmentCtrl.createAttachment( [studentFound] );
-                console.log("CREATE >>>>>>>>", attachment);
-                // convo.say( attachment[ 0 ] )
-              }
-              convo.next();
-            })
-
-
-
-
-
-
-
-
+              // Students.findById(newStudent._id, (err, studentFound)=>{
+              //   if (studentFound.length === 0) {
+              //     bot.reply(message, `Sorry, I could not find you on recruitBot`);
+              //   }else{
+              //     const attachment = attachmentCtrl.createAttachment( [studentFound] );
+              //     convo.say(attachment[0]);
+              //   }
+              //   convo.next();
+              // })
+              console.log("NEW STUDENT", newStudent)
+              const attachment = attachmentCtrl.createAttachment( [newStudent] );
+              convo.say(attachment[0]);
             }
           });
 
@@ -246,18 +227,6 @@ controller.hears( ['job','looking for a job', 'I need a job','connect me with em
           convo.next();
         }
       })
-      // bot.reply(message, `Awesome, thank you. I saved you as a candidate in recruitBot. \n Here is your profile...`)
-      // console.log(` STUDENT PROFILE >>>>>>>>> 
-      //     ${firstName}\n
-      //     ${lastName} \n
-      //     ${locations} \n
-      //     ${email} \n
-      //     ${githubUrl} \n
-      //     ${linkedinUrl} \n
-      //     ${persoanlWebsiteUrl} \n 
-      //     ${skills} \n 
-      //     ${yearsOfExperience} \n 
-      // `);
     }
 
 
@@ -295,6 +264,26 @@ controller.hears( ['job','looking for a job', 'I need a job','connect me with em
       }
       return true;
     }
+    emailTaken = ( response, convo, email)=>{
+      email = emailFormatter(email);
+      Students.find({email: email.toLowerCase()}, (err, emailExists)=>{
+        if (err) {
+          return false;
+        }
+        if( emailExists.length === 0 ){
+          convo.say(`Ok, the email I have saved is [${ email }]` )
+          askGithub ( response, convo );
+          convo.next();
+        } else {
+          bot.reply(message, `[Oops!] ${email} is aleady taken. Enter a different email...`);
+          convo.stop();
+          setTimeout(function(){ 
+            bot.startConversation( message, askEmail ); 
+          }, 1000);
+        
+        }
+      })
+    }
 
     emailFormatter = (email)=>{
       let orIndex =  email.indexOf('|');
@@ -323,7 +312,7 @@ controller.hears( ['job','looking for a job', 'I need a job','connect me with em
     }
 
     formatCandidateProfile = ()=>{
-      let candidate = {};
+       let candidate = {};
        candidate.name = {};
        candidate.name.firstName = firstName
        candidate.name.lastName = lastName
@@ -335,6 +324,7 @@ controller.hears( ['job','looking for a job', 'I need a job','connect me with em
        candidate.skills = skillsFormatter(skills);
        candidate.yearsExperience = parseInt(yearsOfExperience);
 
+       console.log("CANDIDATE", candidate);
        return candidate;
     }
 
