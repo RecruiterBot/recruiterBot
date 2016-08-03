@@ -3,8 +3,8 @@
 const express = require ( 'express' );
 const mongoose = require( 'mongoose' );
 const session = require('express-session');
-const json = require( 'body-parser' ).json();
-const urlencoded = require ( 'body-parser' ).urlendcoded();
+const json = require( 'body-parser' ).json;
+const urlencoded = require ( 'body-parser' ).urlendcoded;
 const MR = require( './server/masterRoutes' );
 const Sophie = require( './server/ctrls/sophieCtrl' );
 const Botkit = require( 'botkit' )
