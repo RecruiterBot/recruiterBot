@@ -112,13 +112,11 @@ module.exports = {
               // console.log( 'unshift', reply[0].attachments[0].pretext );
             }
             else if (!value.devMountain) {
-            	console.log("shift", reply)
               reply.push( messageContent );
               // console.log( 'push', reply[1].attachments[0].pretext )
             }
 
         } )
-        console.log("reply", reply)
         return reply;
       },
       checkResponse( response, convo ){

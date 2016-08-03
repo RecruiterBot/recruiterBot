@@ -49,6 +49,7 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
         }else{
            firstName = capitalizeFirstLetterOfName(response.text)
            convo.say(`Ok, the first name I have saved is [${firstName}]`)
+           firstName = response.text.toLowerCase();
            askLastName( response, convo );
            convo.next();
         }
@@ -73,6 +74,7 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
         }else{
            lastName = capitalizeFirstLetterOfName(response.text)
            convo.say(`Ok, the last name I have saved is [${lastName}]`)
+           lastName = response.text.toLowerCase();
            askLocations( response, convo );
            convo.next();
         }
@@ -115,15 +117,8 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
             bot.startConversation( message, askEmail ); 
           }, 1000);
           
-        }else{
-          email = emailFormatter(response.text);
-          convo.say(`Ok, the email I have saved is [${ email }]` )
-          askGithub ( response, convo );
-          convo.next();
         }
-
-
-        
+        emailTaken( response, convo, response.text );
       })
     }
     askGithub = ( response, convo ) => {
@@ -244,33 +239,15 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
             if ( err ) {
               console.log(err);
             }else{
-              // console.log(newStudent);
-              // console.log([newStudent]);
-              // const attachment = attachmentCtrl.createAttachment( [newStudent] );
-              // console.log(attachment[0]);
-
-
-
-
               Students.findById(newStudent._id, (err, studentFound)=>{
-                console.log(">>>>>>>>>>>>>", [studentFound]);
-              if (studentFound.length === 0) {
-                bot.reply(message, `Sorry, I could not find you on recruitBot`);
-              }else{
-                const attachment = attachmentCtrl.createAttachment( [studentFound] );
-                console.log("CREATE >>>>>>>>", attachment);
-                // convo.say( attachment[ 0 ] )
-              }
-              convo.next();
-            })
-
-
-
-
-
-
-
-
+                if (studentFound.length === 0) {
+                  bot.reply(message, `Sorry, I could not find you on recruitBot`);
+                }else{
+                  const attachment = attachmentCtrl.createAttachment( [studentFound] );
+                  convo.say(attachment[0]);
+                }
+                convo.next();
+              })
             }
           });
 
@@ -282,18 +259,6 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
           convo.next();
         }
       })
-      // bot.reply(message, `Awesome, thank you. I saved you as a candidate in recruitBot. \n Here is your profile...`)
-      // console.log(` STUDENT PROFILE >>>>>>>>> 
-      //     ${firstName}\n
-      //     ${lastName} \n
-      //     ${locations} \n
-      //     ${email} \n
-      //     ${githubUrl} \n
-      //     ${linkedinUrl} \n
-      //     ${persoanlWebsiteUrl} \n 
-      //     ${skills} \n 
-      //     ${yearsOfExperience} \n 
-      // `);
     }
 
 
@@ -331,6 +296,27 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
       }
       return true;
     }
+    emailTaken = ( response, convo, candEmail)=>{
+      candEmail = emailFormatter(candEmail);
+      Students.find({email: candEmail.toLowerCase()}, (err, emailExists)=>{
+        if (err) {
+          return false;
+        }
+        if( emailExists.length === 0 ){
+          email = candEmail;
+          convo.say(`Ok, the email I have saved is [${ candEmail }]` )
+          askGithub ( response, convo );
+          convo.next();
+        } else {
+          bot.reply(message, `[Oops!] ${candEmail} is aleady taken. Enter a different email...`);
+          convo.stop();
+          setTimeout(function(){ 
+            bot.startConversation( message, askEmail ); 
+          }, 1000);
+        
+        }
+      })
+    }
 
     emailFormatter = (email)=>{
       let orIndex =  email.indexOf('|');
@@ -359,18 +345,25 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
     }
 
     formatCandidateProfile = ()=>{
-      let candidate = {};
-       candidate.name = {};
-       candidate.name.firstName = firstName
-       candidate.name.lastName = lastName
+       let candidate = {};
+       candidate.name = {}; 
+       candidate.name.firstName = firstName;
+       candidate.name.lastName = lastName;
        candidate.locations = locationsFormatter(locations);
        candidate.email = email;
-       candidate.gitHub = githubUrl;
-       candidate.linkedIn = linkedinUrl;
+       if (githubUrl.length > 0) {
+          candidate.gitHub = githubUrl;
+       }
+       if (linkedinUrl.length > 0) {
+          candidate.linkedIn = linkedinUrl;
+       }
+       if (persoanlWebsiteUrl.length > 0) {
        candidate.personalWebsite = persoanlWebsiteUrl;
+       }
        candidate.skills = skillsFormatter(skills);
        candidate.yearsExperience = parseInt(yearsOfExperience);
 
+       console.log("CANDIDATE", candidate);
        return candidate;
     }
 

@@ -51,10 +51,10 @@ module.exports = ( bot, controller ) => {
             const email = convo.extractResponse(emailQuestion);
 
             let orIndex =  email.indexOf('|');
-            let emailTrimmed = email.slice(8, orIndex);
+            let emailTrimmed = email.slice(8, orIndex).toLowerCase();
 
 
-            Students.find({$and: [{"name.firstName" : firstName }, {"name.lastName" : lastName }, {email: emailTrimmed}]}, (err, studentFound)=>{
+            Students.find({$and: [{"name.firstName" : firstName.toLowerCase() }, {"name.lastName" : lastName.toLowerCase() }, {email: emailTrimmed}]}, (err, studentFound)=>{
 
               if (studentFound.length === 0) {
                 bot.reply(message, `Sorry, I could not find [${firstName} ${lastName}] on recruitBot`);
@@ -62,7 +62,7 @@ module.exports = ( bot, controller ) => {
                 let studentFoundId = studentFound[0]._id;
                 console.log("DELETE >>>>>>>>>>>", studentFound);
                 const attachment = attachmentCtrl.createAttachment( studentFound );
-
+                console.log(attachment);
                 convo.say( attachment[ 0 ] )
                 confirmDeletion( response, convo, studentFoundId )
               }
