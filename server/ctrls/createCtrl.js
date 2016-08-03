@@ -40,7 +40,7 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
         response.text = response.text.trim();
 
         if (response.text.indexOf(' ') !== -1) {
-          bot.reply(message, `[Oops!] Your first name must not contain any spaces`);
+          bot.reply(message, `Oops! Your first name must not contain any spaces`);
           convo.stop();
           setTimeout(function(){ 
             bot.startConversation( message, askFirstName ); 
@@ -48,7 +48,7 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
           
         }else{
            firstName = capitalizeFirstLetterOfName(response.text)
-           convo.say(`Ok, the first name I have saved is [${firstName}]`)
+           convo.say(`Ok, the first name I have saved is ${firstName}`)
            firstName = response.text.toLowerCase();
            askLastName( response, convo );
            convo.next();
@@ -65,7 +65,7 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
         response.text = response.text.trim();
 
         if (response.text.indexOf(' ') !== -1) {
-          bot.reply(message, `[Oops!] Your last name must not contain any spaces`);
+          bot.reply(message, `Oops! Your last name must not contain any spaces`);
           convo.stop();
           setTimeout(function(){ 
             bot.startConversation( message, askLastName ); 
@@ -73,7 +73,7 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
           
         }else{
            lastName = capitalizeFirstLetterOfName(response.text)
-           convo.say(`Ok, the last name I have saved is [${lastName}]`)
+           convo.say(`Ok, the last name I have saved is ${lastName}`)
            lastName = response.text.toLowerCase();
            askLocations( response, convo );
            convo.next();
@@ -89,7 +89,7 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
         }
 
          if (!locationsIsFormatted(response.text)) {
-          bot.reply(message, `[Oops!] Please enter locations in the correct format`);
+          bot.reply(message, `Oops! Please enter locations in the correct format`);
           convo.stop();
           setTimeout(function(){ 
             bot.startConversation( message, askLocations ); 
@@ -97,7 +97,7 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
           
         }else{
           locations = locationsFormatted(response.text);
-          convo.say(`Ok, the locations I have saved are [${locations}]`)
+          convo.say(`Ok, the locations I have saved are ${locations}`)
           askEmail (response, convo );
           convo.next();
         }
@@ -111,7 +111,7 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
         }
 
         if (!isEmailFormat(response.text)) {
-          bot.reply(message, `[Oops!] Please enter your email in the correct format`);
+          bot.reply(message, `Oops! Please enter your email in the correct format`);
           convo.stop();
           setTimeout(function(){ 
             bot.startConversation( message, askEmail ); 
@@ -131,14 +131,14 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
           convo.next();
         } else {
             if (!response.text.includes('http') || response.text.indexOf(' ') !== -1) {
-              bot.reply(message, `[Oops!] Please enter the github url in correct format`);
+              bot.reply(message, `Oops! Please enter the github url in correct format`);
               convo.stop();
               setTimeout(function(){ 
                 bot.startConversation( message, askGithub ); 
               }, 1000);
             }else{
               githubUrl = linkFormatter(response.text);
-              convo.say(`Great, the github URL I have of you is [${ githubUrl }]`)
+              convo.say(`Great, the github URL I have of you is ${ githubUrl }`)
                 askLinkedin ( response, convo );
                 convo.next();
               }
@@ -155,14 +155,14 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
           convo.next();
         } else {
             if (!response.text.includes('http') || response.text.indexOf(' ') !== -1) {
-              bot.reply(message, `[Oops!] Please enter the linkedin url in correct format`);
+              bot.reply(message, `Oops! Please enter the linkedin url in correct format`);
               convo.stop();
               setTimeout(function(){ 
                 bot.startConversation( message, askLinkedin ); 
               }, 1000);
             }else{
               linkedinUrl = linkFormatter(response.text);
-              convo.say(`Great, the linkedin URL I have of you is [${ linkedinUrl }]`)
+              convo.say(`Great, the linkedin URL I have of you is ${ linkedinUrl }`)
                 askPersonalWebsite ( response, convo );
                 convo.next();
               }
@@ -179,14 +179,14 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
             convo.next();
           } else {
               if (!response.text.includes('http') || response.text.indexOf(' ') !== -1) {
-                bot.reply(message, `[Oops!] Please enter the personal website url in correct format`);
+                bot.reply(message, `Oops! Please enter the personal website url in correct format`);
                 convo.stop();
                 setTimeout(function(){ 
                   bot.startConversation( message, askPersonalWebsite ); 
                 }, 1000);
               }else{
                 persoanlWebsiteUrl = linkFormatter(response.text);
-                convo.say(`Great, the personal website URL I have of you is [${ persoanlWebsiteUrl }]`)
+                convo.say(`Great, the personal website URL I have of you is ${ persoanlWebsiteUrl }`)
                   askSkills ( response, convo );
                   convo.next();
                 }
@@ -199,11 +199,11 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
           return endConvo( convo );
         }
           if(!skillsIsFormatted(response.text)){
-            bot.reply(message, `[Oops!] Please list your skills in the correct format`);
+            bot.reply(message, `Oops! Please list your skills in the correct format`);
             convo.next();
           }else{
             skills = response.text.trim();
-            convo.say(`Great, skills I have of you are [${ skills }]`)
+            convo.say(`Great, skills I have of you are ${ skills }`)
             askYearsOfExperience(response, convo);
             convo.next();
           }
@@ -215,11 +215,11 @@ controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direc
           return endConvo( convo );
         }
           if(!yearsOfExperienceFormatted(response.text)){
-            bot.reply(message, `[Oops!] Please enter an interger for your years of experience`);
+            bot.reply(message, `Oops! Please enter an interger for your years of experience`);
             convo.next();
           }else{
             yearsOfExperience = response.text.trim();
-            convo.say(`Great, the years of expererience you indicated is [${ yearsOfExperience }]`)
+            convo.say(`Great, the years of expererience you indicated is ${ yearsOfExperience }`)
             saveProfileConfirmation(response, convo);
             convo.next();
           }
