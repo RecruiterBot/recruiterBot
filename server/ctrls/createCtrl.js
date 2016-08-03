@@ -3,7 +3,7 @@ const attachmentCtrl = require( './attachmentCtrl' );
 
 module.exports = ( bot, controller ) => {
 
-controller.hears( ['job','looking for a job', 'I need a job','connect me with employer'],'direct_message,direct_mention,mention', ( bot, message ) => {
+controller.hears( ['job', 'recruiter', 'connect me with employer', 'add'],'direct_message,direct_mention,mention', ( bot, message ) => {
     // convo.say(`Excellent I can help you with that I'll ask you some questions and save that information so a recruiter can contact you with open positions.`);
     const firstNameQuestion = `Excellent, I can help you with that. I'll need to ask you some questions and save that information, so a recruiter can contact you with open positions. Let's get started... \n What is your first name? (e.g., 'Jack')`;
     const lastNameQuestion = `What is your last name? (e.g., 'Daniels')`;

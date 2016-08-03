@@ -3,6 +3,7 @@ const attachmentCtrl = require( './attachmentCtrl' );
 const searchCtrl = require( './searchCtrl' );
 const deleteCtrl = require( './deleteCtrl' );
 const createCtrl = require( './createCtrl' );
+const helpCtrl = require( './helpCtrl' );
 
 module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
 
@@ -16,6 +17,7 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
   searchCtrl( bot, controller );
   deleteCtrl( bot, controller );
   createCtrl( bot, controller );
+  helpCtrl( bot, controller );
 
   // const apiai = ApiaiBotkit( apiToken );
 

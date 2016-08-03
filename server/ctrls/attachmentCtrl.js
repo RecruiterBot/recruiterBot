@@ -97,18 +97,72 @@ module.exports = {
 
     // arrange responses
 
+    console.log( 'message', messageContent );
 
             if( value.devMountain === true ){
               reply.unshift( messageContent );
+              console.log("unshift", reply)
               // console.log( 'unshift', reply[0].attachments[0].pretext );
             }
-            else if (value.devMountain === false) {
+            else if (!value.devMountain) {
+            	console.log("shift", reply)
               reply.push( messageContent );
               // console.log( 'push', reply[1].attachments[0].pretext )
             }
 
         } )
+        console.log("reply", reply)
         return reply;
+      },
+      checkResponse( response, convo ){
+      	const attachment = {
+			"attachments": [
+				{
+					"pretext": "_*Conversation Options*_",
+					"mrkdwn_in": [ "pretext", "fields[0].title" ],
+					"color": "#36a64f",
+					"fields": [
+						{
+							"title": "Recruiters Options",
+							"value": "-------\nFill a position.\nHire someone.\nFind a candidate.\nI'm looking for a developer."
+						},
+						{
+							"title": "Candidates looking for a job options",
+							"value": "-------\nI'm looking for a job.\nConnect me with a recruiter.\nAdd me to the system.",
+							"short": true
+						},
+						{
+							"title": "Candidate, no longer looking for a job",
+							"value": "-------\nRemove me from the system.\nDelete my profile.",
+							"short": true
+						},
+						{
+							"title": "Canceling conversations Options",
+							"value": "-------\nCancel\tEnd\nStop\t\tQuit\nDone"
+						}
+					]
+				}
+			]
+		};
+      	if( response.text.toLowerCase() === "help" ){
+      		convo.say( attachment );
+      		return response;
+      	}
+      	let check = [];
+      	if( response.text.indexOf( " " ) === -1 ) {
+	      	check.push( response.text.toLowerCase() );
+	      } else {
+	      	check = response.text.toLowerCase().split( " " );
+	      }
+      	check.forEach( value => {
+      		if( value === "cancel" || value === "quit" || value === "end" || value === "restart" || value === "over" || value === "mistake" || value === "done" || value === "stop" ) {
+      			return check = true;
+      		}
+      	} )
+      	if ( check === true ) {
+      		return false;
+      	}
+      	return response
       }
 
 }

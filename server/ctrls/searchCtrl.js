@@ -3,7 +3,7 @@ const attachmentCtrl = require( './attachmentCtrl' );
 
 module.exports = ( bot, controller ) => {
 
-	controller.hears( [ 'fill', 'position', 'dev', 'developer', 'web developer', 'hire' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
+	controller.hears( [ 'fill', 'position', 'dev', 'developer', 'web developer', 'hire', 'candidate' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
     const locQuestion = `In which city and state is the position located?  Please separate the city and state with a comma.  e.g. Dallas, TX`;
     const skillQuestion = `What skills does the ideal candidate possess?  Please separate each skill with a comma.  e.g. React, Express, Node`;
     const expQuestion = `How many minimum years experience does the ideal candidate need?`;
@@ -13,8 +13,16 @@ module.exports = ( bot, controller ) => {
     let locArr = "";
     let skillsStrngToArr = "";
 
+    const endConvo = () => {
+      bot.reply( message, `Have a nice day!`)
+      return convo.stop();
+    }
+
     askLocation = ( response, convo ) => {
       convo.ask( locQuestion, ( response, convo ) => {
+        if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
+          endConvo();
+        }
         if ( response.text.indexOf(",") === -1 ){
           convo.say( cityState );
           setTimeout( () => {
@@ -30,6 +38,9 @@ module.exports = ( bot, controller ) => {
     }
     askSkills = ( response, convo ) => {
       convo.ask( skillQuestion, ( response, convo ) => {
+        if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
+          endConvo();
+        }
       if ( response.text.indexOf(",") === -1 ){
           locArr = convo.extractResponse( locQuestion ).split(', ');
           convo.say( useComma );
@@ -44,6 +55,9 @@ module.exports = ( bot, controller ) => {
     }
     askYearsExperience = ( response, convo ) => {
       convo.ask( expQuestion, ( response, convo ) => {
+        if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
+          endConvo();
+        }
         const number = Number( response.text );
         if ( isNaN( number ) ) {
           bot.reply( message, expectNumber );
@@ -99,13 +113,12 @@ module.exports = ( bot, controller ) => {
                   console.log( 'err', err );
                 }
                 else if( students.length === 0 ){
-                  console.log( 'students', students );
                   bot.reply( message, `I was unable to find any candidates matching those criteria.  You can try broadening your search.`)
                 }
 
             // create the attachment
-
                 const attachment = attachmentCtrl.createAttachment( students );
+                
 
             // // loop through the attachment and send a reply
 
