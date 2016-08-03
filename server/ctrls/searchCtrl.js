@@ -13,7 +13,7 @@ module.exports = ( bot, controller ) => {
     let locArr = "";
     let skillsStrngToArr = "";
 
-    const endConvo = () => {
+    const endConvo = ( convo ) => {
       bot.reply( message, `Have a nice day!`)
       return convo.stop();
     }
@@ -21,7 +21,7 @@ module.exports = ( bot, controller ) => {
     askLocation = ( response, convo ) => {
       convo.ask( locQuestion, ( response, convo ) => {
         if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
-          endConvo();
+          return endConvo( convo );
         }
         if ( response.text.indexOf(",") === -1 ){
           convo.say( cityState );

@@ -6,7 +6,7 @@ module.exports = {
 
     //create skills as string
 
-          const skills = Object.keys( value.skills ).join(", ");
+          const skills = Object.keys( value.skills ).join(", ").replace(/\b\w/g, l => l.toUpperCase() );
 
     //function to build and format the websites and assign title link website.
 
@@ -40,7 +40,7 @@ module.exports = {
         const createLocations = ( arr ) => {
           const locs = [];
           arr.forEach( loc => {
-            locs.push( loc.city + ", " + loc.state );
+            locs.push( loc.city.replace(/\b\w/g, l => l.toUpperCase() ) + ", " + loc.state.toUpperCase() );
           } );
           return locs.join( "\n" )
         }
@@ -58,6 +58,13 @@ module.exports = {
               value.sponsored = "";
             }
     //format the attachment reply
+
+		    capitalizeFirstLetterOfName = ( name ) => {
+		      return name.charAt( 0 ).toUpperCase() + name.slice( 1 );
+		    }
+
+    	value.name.firstName = capitalizeFirstLetterOfName( value.name.firstName );
+    	value.name.lastName = capitalizeFirstLetterOfName( value.name.lastName );
 
         const messageContent = {
             "attachments": [
