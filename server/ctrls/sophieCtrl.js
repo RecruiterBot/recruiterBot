@@ -11,7 +11,7 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
   const controller = Botkit.slackbot();
 
   const bot = controller.spawn( {
-    token: require( '../sophiebot/config' ).botToken
+    token: require( '../sophiebot/config' ).botToken || process.env.token
   } );
 
   searchCtrl( bot, controller );
