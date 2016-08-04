@@ -104,11 +104,9 @@ module.exports = {
 
     // arrange responses
 
-    console.log( 'message', messageContent );
 
             if( value.devMountain === true ){
               reply.unshift( messageContent );
-              console.log("unshift", reply)
               // console.log( 'unshift', reply[0].attachments[0].pretext );
             }
             else if (!value.devMountain) {
