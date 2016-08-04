@@ -41,7 +41,7 @@ module.exports = ( bot, controller ) => {
         if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
           endConvo();
         }
-      if ( response.text.indexOf(",") === -1 ){
+      if ( response.text.indexOf(",") === -1 && response.text.trim().indexOf( " " ) !== -1 ){
           locArr = convo.extractResponse( locQuestion ).split(', ');
           convo.say( useComma );
           setTimeout( () => {
@@ -70,11 +70,9 @@ module.exports = ( bot, controller ) => {
             return bot.startConversation( message, askYearsExperience )
           }, 1000);
         } else if( !isNaN( number) ) {
-          console.log( 'exp response', response.text );
           convo.next();
           convo.on( 'end', ( convo ) => {
             if ( convo.status === `completed` ){
-              console.log( 'convo', convo.responses );
               if( !locArr ) {
                 locArr = convo.extractResponse( locQuestion ).split(', ');
               }
@@ -114,6 +112,23 @@ module.exports = ( bot, controller ) => {
                 }
                 else if( students.length === 0 ){
                   bot.reply( message, `I was unable to find any candidates matching those criteria.  You can try broadening your search.`)
+                } else if ( students.length > 10 ){
+                  const devStudents = [];
+                  students.forEach( ( value, index ) =>  {
+                    if( value.devMountain ) {
+                      devStudents.push( value );
+                      students.splice( index, 1 );
+                      if( devStudents.length === 3 ){
+                        students.unshift( ...devStudents )
+                        students.splice( 9, students.length - 10 )
+                        return;
+                      }
+                    }
+                  } )
+                  if( devStudents.length < 3 ) {
+                    students.unshift( ...devStudents );
+                    students.splice( 9, students.length - 10 )
+                  }
                 }
 
             // create the attachment

@@ -104,11 +104,9 @@ module.exports = {
 
     // arrange responses
 
-    console.log( 'message', messageContent );
 
             if( value.devMountain === true ){
               reply.unshift( messageContent );
-              console.log("unshift", reply)
               // console.log( 'unshift', reply[0].attachments[0].pretext );
             }
             else if (!value.devMountain) {
@@ -160,7 +158,7 @@ module.exports = {
 	      	check = response.text.toLowerCase().split( " " );
 	      }
       	check.forEach( value => {
-      		if( value === "cancel" || value === "quit" || value === "end" || value === "restart" || value === "over" || value === "mistake" || value === "done" || value === "stop" ) {
+      		if( value === "cancel" || value === "quit" || value === "end" || value === "restart" || value === "over" || value === "mistake" || value === "done" || value === "stop" || value === "finished" ) {
       			return check = true;
       		}
       	} )
