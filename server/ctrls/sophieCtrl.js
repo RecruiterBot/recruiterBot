@@ -11,10 +11,11 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
     token: require( '../sophiebot/config' ).botToken || process.env.token
   } );
 
-  searchCtrl( bot, controller );
-  // deleteCtrl( bot, controller );
-  // createCtrl( bot, controller );
-  helpCtrl( bot, controller );
+  // searchCtrl( bot, controller );
+  deleteCtrl( bot, controller );
+  createCtrl( bot, controller );
+  // helpCtrl( bot, controller );
+
 
   bot.startRTM( ( err, bot, payload ) => {
     if ( err ) {
