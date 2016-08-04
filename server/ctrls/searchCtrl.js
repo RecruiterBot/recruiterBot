@@ -15,7 +15,7 @@ module.exports = ( bot, controller ) => {
 
     const endConvo = ( convo ) => {
       bot.reply( message, `Have a nice day!`)
-      return convo.stop();
+      convo.stop();
     }
 
     askLocation = ( response, convo ) => {
@@ -39,7 +39,7 @@ module.exports = ( bot, controller ) => {
     askSkills = ( response, convo ) => {
       convo.ask( skillQuestion, ( response, convo ) => {
         if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
-          endConvo();
+          return endConvo();
         }
       if ( response.text.indexOf(",") === -1 && response.text.trim().indexOf( " " ) !== -1 ){
           locArr = convo.extractResponse( locQuestion ).split(', ');
@@ -56,7 +56,7 @@ module.exports = ( bot, controller ) => {
     askYearsExperience = ( response, convo ) => {
       convo.ask( expQuestion, ( response, convo ) => {
         if ( attachmentCtrl.checkResponse( response, convo ) === false ) {
-          endConvo();
+          return endConvo();
         }
         const number = Number( response.text );
         if ( isNaN( number ) ) {
@@ -114,20 +114,31 @@ module.exports = ( bot, controller ) => {
                   bot.reply( message, `I was unable to find any candidates matching those criteria.  You can try broadening your search.`)
                 } else if ( students.length > 10 ){
                   const devStudents = [];
-                  students.forEach( ( value, index ) =>  {
+                  const randomStudents = [];
+                  do{
+                    let int = Math.floor( Math.random() * students.length );
+                    if( randomStudents.indexOf( students[ int ] ) === -1 ){
+                      randomStudents.push( students[ int ] );
+                      console.log( 'random student', randomStudents );
+                    }
+                  } while ( students.length !== randomStudents.length );
+                  randomStudents.forEach( ( value, index ) =>  {
                     if( value.devMountain ) {
                       devStudents.push( value );
-                      students.splice( index, 1 );
+                      randomStudents.splice( index, 1 );
                       if( devStudents.length === 3 ){
-                        students.unshift( ...devStudents )
-                        students.splice( 9, students.length - 10 )
+                        randomStudents.unshift( ...devStudents )
+                        randomStudents.splice( 9, students.length - 10 )
+                        students = randomStudents;
                         return;
                       }
                     }
                   } )
                   if( devStudents.length < 3 ) {
-                    students.unshift( ...devStudents );
-                    students.splice( 9, students.length - 10 )
+                    randomStudents.unshift( ...devStudents )
+                    randomStudents.splice( 9, students.length - 10 )
+                    students = randomStudents;
+                    console.log( 'students', randomStudents );
                   }
                 }
 
