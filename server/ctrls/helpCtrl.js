@@ -9,7 +9,7 @@ module.exports = ( bot, controller ) => {
 					"color": "#36a64f",
 					"fields": [
 						{
-							"title": "Recruiters Options",
+							"title": "Recruiters options",
 							"value": "-------\nFill a position.\nHire someone.\nFind a candidate.\nI'm looking for a developer."
 						},
 						{
@@ -18,12 +18,12 @@ module.exports = ( bot, controller ) => {
 							"short": true
 						},
 						{
-							"title": "Candidate, no longer looking for a job",
+							"title": "Candidate no longer looking for a job",
 							"value": "-------\nRemove me from the system.\nDelete my profile.",
 							"short": true
 						},
 						{
-							"title": "Canceling conversations Options",
+							"title": "Canceling conversation options",
 							"value": "-------\nCancel\tEnd\nStop\t\tQuit\nDone"
 						}
 					]

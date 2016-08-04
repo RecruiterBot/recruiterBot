@@ -160,7 +160,7 @@ module.exports = {
 	      	check = response.text.toLowerCase().split( " " );
 	      }
       	check.forEach( value => {
-      		if( value === "cancel" || value === "quit" || value === "end" || value === "restart" || value === "over" || value === "mistake" || value === "done" || value === "stop" ) {
+      		if( value === "cancel" || value === "quit" || value === "end" || value === "restart" || value === "over" || value === "mistake" || value === "done" || value === "stop" || value === "finished" ) {
       			return check = true;
       		}
       	} )
