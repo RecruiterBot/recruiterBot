@@ -1,11 +1,19 @@
 angular.module('recruiterBot', ['ui.router'])
 	.config(function ($stateProvider, $urlRouterProvider) {
-		
+
 		$urlRouterProvider.otherwise('/');
 
 		$stateProvider
-			.state('home', {
+			.state('entry',{
 				url:'/',
+				templateUrl:'./views/entry.html'
+			})
+			.state('how_works',{
+				url:'/how_works',
+				templateUrl:'./views/howItWorks.html'
+			})
+			.state('home', {
+				url:'/home',
 				templateUrl: './views/home.html',
 				controller: 'homeCtrl'
 			})
@@ -14,8 +22,8 @@ angular.module('recruiterBot', ['ui.router'])
 				templateUrl: './views/dashboard.html',
 				controller: 'dashboardCtrl'
 			})
-			
 
 
-// end of config		
+
+// end of config
 	})
