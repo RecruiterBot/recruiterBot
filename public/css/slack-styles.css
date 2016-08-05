@@ -29,10 +29,16 @@ body {
   }
 
 .slack-header {
-  height: 5VH;
+  height: 10VH;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
+}
+.slack-header img{
+  width: 10VH;
+  height: 10VH;
+  border-radius: 50%;
+  z-index: -2;
 }
 .slack-inner-banner{
   height: 45VH;
@@ -63,6 +69,9 @@ body {
 .slack-nav {
   justify-content: flex-end;
   color: white;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
 }
 .slack-nav li {
   display: inline-block;
@@ -96,7 +105,7 @@ body {
 }
 .slack-main h2 {
   justify-content: center;
-  font-weight: 500;
+  font-weight: 200;
   display: flex;
   margin: 10px;
 }
