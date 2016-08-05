@@ -65,16 +65,16 @@ body{
 	background-color: white;
 }
 .dashboard .header-tabs{
-	display: flex;
+	/*display: flex;
 	flex-flow: row;
-	justify-content: flex-start;
+	justify-content: flex-start;*/
 	margin-top: 15px;
 	margin-bottom: 15px;
 	/*border-bottom: 1px solid lightgray;*/
 }
-.dashboard .border-underneath{
+/*.dashboard .border-underneath{
 	border-bottom: 1px solid lightgray;
-}
+}*/
 .dashboard .header-tabs a{
 	text-decoration: none;
 	color: #00A6F1;
@@ -98,8 +98,8 @@ body{
 	color: #00A6F1;
 }
 .dashboard .header-tabs .bordered{
-	border-left: 1px solid lightgray;
-	border-right: 1px solid lightgray;
+	/*border-left: 1px solid lightgray;
+	border-right: 1px solid lightgray;*/
 }
 .dashboard .filter-sort-buttons{
 	display: flex;
@@ -152,9 +152,9 @@ body{
 	padding-bottom: 15px;
 }
 .dashboard .dashboard-jumbotron .student-thumbnail{
-	display: flex;
+	/*display: flex;
 	flex-flow: row;
-	justify-content: space-around;
+	justify-content: space-around;*/
 	padding-top: 15px;
 	padding-bottom: 15px;
 	/*border-bottom: 1px solid lightgray;*/

@@ -16,9 +16,9 @@
 		<div class="dashboard-jumbotron col-lg-12 col-md-12 col-sm-12 col-xs-12 animated slideInUp" ng-show="showDashboard">
 			<h1 class="page-header jumbotron-headers">Dashboard</h1>
 			<div class="filter-sort-buttons">
-				<a ng-click="filterSort()">Filter</a>
+				<a ng-click="filter()">Filter</a>
 				<p> | </p>
-				<a>Sort</a>
+				<a ng-click="sort()">Sort</a>
 			</div>
 
 
@@ -46,21 +46,21 @@
 
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="student in students | filter:search:strict">
 				<div class="student-thumbnail student-moreinfo col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div ng-click="collapsedMoreInfo=!collapsedMoreInfo" class="student col-lg-10 col-md-10 col-sm-10 col-xs-12">
-						<img src="https://pixabay.com/static/uploads/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-responsive img-rounded" alt="student-photo" style="width:140px; height:150px;">
-						<div class="student-info">
+					<div ng-click="collapsedMoreInfo=!collapsedMoreInfo" class="student col-lg-10 col-md-10 col-sm-12 col-xs-12">
+						<img src="./img/user-avatar.jpeg" class="img-responsive img-rounded" alt="student-photo" style="width:140px; height:150px;">
+						<div class="student-info hidden-xs">
 						<!-- ng-class="showEditStudentProfile ? 'red' : 'green'" -->
 							<h3>{{student.name.firstName}} {{student.name.lastName}}</h3>
 							<p><strong>Location:</strong> <span ng-repeat="location in student.locations">
-							<i class="fa fa-chevron-circle-right" aria-hidden="true"></i> {{location.city}} (<em>{{location.state}}</em>) &nbsp;</span> </p>
+							<i class="fa fa-chevron-circle-right" aria-hidden="true"></i> {{location.city}} ({{location.state}}) &nbsp;</span> </p>
 							<p><strong>DevMountain:</strong> {{student.devMountain}}</p>
 							<p><strong>Years of Experience:</strong> {{student.yearsExperience}}</p>
 						</div>
 					</div>
-					<div class="admin-actions col-lg-2 col-md-2 col-sm-2 col-xs-12">
+					<div class="admin-actions col-lg-2 col-md-2 col-sm-12 col-xs-12">
 						<a ng-click="collapsed=!collapsed" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
 						<!-- <a href="#" class="btn btn-block btn-success"><span class="glyphicon glyphicon-ok"></span> Save</a> -->
-						<a ng-click="deleteStudent(student._id)" class="btn btn-block btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove</a>
+						<a ng-click="deleteStudent(student)" class="btn btn-block btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove</a>
 					</div>
 
 				</div>
@@ -81,7 +81,7 @@
 					</div>
 				</div>
 
-				<div class="edit-profile col-lg-10 col-lg-offset-1 animated slideInUp" ng-show="collapsed">
+				<div class="edit-profile col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12 col-xs-12 animated slideInUp" ng-show="collapsed">
 					<div class="col-lg-10 col-lg-offset-1 animated fadeIn text-right">
 						<i ng-click="collapsed=!collapsed" class="fa fa-times fa-2x hide-times" aria-hidden="true"></i>
 					</div>
@@ -103,7 +103,7 @@
 									<h1 class="page-header">Locations</h1>
 									<div class="form-group col-lg-6">
 									    <span class="input-group-addon form-headers">City</span>
-									    <input type="text" ng-model="updatedCity" class="form-control" id="exampleInputEmail1" placeholder="Dallas" required>
+									    <input type="text" ng-model="updatedCity" class="form-control text-center" id="exampleInputEmail1" placeholder="Dallas" required>
 									</div>
 									<div class="form-group col-lg-6">
 									    <span class="input-group-addon form-headers">State</span>
@@ -196,7 +196,7 @@
 								
 							</div>
 
-							<a ng-click="updateStudentById(student)" type="submit" class="btn btn-success col-lg-6 col-lg-offset-3 add-student"><i class="fa fa-check" aria-hidden="true"></i> Update </a>
+							<a ng-click="updateStudentById(student)" type="submit" class="btn btn-success col-lg-6 col-lg-offset-3 col-md-12 col-sm-12 col-xs-12 add-student"><i class="fa fa-check" aria-hidden="true"></i> Update </a>
 
 						</form>
 					</div>
@@ -230,7 +230,7 @@
 							<h1 class="page-header">Locations</h1>
 							<div class="form-group col-lg-6">
 							    <span class="input-group-addon form-headers">City</span>
-							    <input type="text" ng-model="selectedCity" class="form-control" id="exampleInputEmail1" placeholder="Dallas" required>
+							    <input type="text" ng-model="selectedCity" class="form-control text-center" id="exampleInputEmail1" placeholder="Dallas" required>
 							</div>
 							<div class="form-group col-lg-6">
 							    <span class="input-group-addon form-headers">State</span>
@@ -323,9 +323,7 @@
 							
 						</div>
 
-						<a ng-click="createStudent(newStudent)" type="submit" class="btn btn-success col-lg-6 col-lg-offset-3 add-student" ><i class="fa fa-plus" aria-hidden="true"></i> Add Student </a>
-
-			
+						<a ng-click="createStudent(newStudent)" type="submit" class="btn btn-success col-lg-6 col-lg-offset-3 col-md-12 col-sm-12 col-xs-12 add-student" ><i class="fa fa-plus" aria-hidden="true"></i> Add Student </a>
 
 					</form>
 				</div>
