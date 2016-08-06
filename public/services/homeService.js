@@ -3,23 +3,20 @@ angular.module('recruiterBot')
 		
 		this.adminVerified = false;
 
+		
 		this.login = (admin)=>{
 			console.log(admin);
 			return $http.put('/api/admin/login', admin)
-			// .then((response)=>{
-			// 	console.log(response);
-			// 	if (response) {
-			// 		console.log(response);
-			// 		return response.data;
-			// 	}else{
-			// 		return { err : 'Incorrect username or password'}
-			// 	}
-			// })
 		}
 
-		this.createAdmin = (admin)=>{
-			admin.email = ['matt.devmtn.com']
-			return $http.post('/api/admin', admin)
+		this.createUser = (newAdmin) =>{
+			console.log(newAdmin);
+			return $http.put(`/api/admin`, newAdmin)
+		}
+
+		this.checkEmailDuplicate = (newAdminEmail)=>{
+			console.log(newAdminEmail);
+			return $http.put(`/api/admin/checkEmailDublicate`, {email: newAdminEmail})
 		}
 
 // end of homeService		
