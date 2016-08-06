@@ -301,7 +301,7 @@ body{
 }
 .student-jumbotron .add-student-box .form .form-headers{
 	border-radius: 0px;
-	background-color: #00A6F1; 
+	background-color: #00A6F1;
 	color: white;
 }
 .student-jumbotron .add-student-box .skills a{
@@ -405,11 +405,59 @@ body{
 	color: #00A6F1 !important;
 }
 
+.utility-menu a {
+		position: absolute;
+		top: 0;
+		right: 0;
+	  color: inherit;
+    display: inline;
+    font: 200 12px "Open Sans",sans-serif;
+    padding: 5px;
+}
 
+/*#main1{
+	text-align: center;
+	background-color: #fffff;
+	font-family: 'Arial', 'serif';
+}
+header{
+	height: 100px;
+	background: #dbdbdb;
+	width: 100%;
+	z-index: 10;
+	position: fixed;
+}
+#banner{
+	background: url('https://www.nps.gov/nr/twhp/wwwlps/lessons/101space/101images/101img3bl.jpg');
+	background-size: cover;
+	width:100%;
+	height:500px;
+	position: fixed;
+}
 
+#content{
+	width: 100%;
+	position: relative;
+	top:400px;
+	backgroud:#ebebeb;
+	height:1500px;
+}
 
-
-
-
-
-
+.nav {
+	background-color: #595959;
+	color: #ffffff;
+	list-style: none;
+	text-align: center;
+	padding: 20px 0 20px 0;
+}
+.nav > li {
+	display: inline-block;
+	padding-right: 50px;
+}
+.nav >li > a{
+	text-decoration: none;
+	color: #ffffff;
+}
+.nav > li > a:hover {
+	color: #c1c1c1;
+}*/
