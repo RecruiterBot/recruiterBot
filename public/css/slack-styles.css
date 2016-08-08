@@ -1,0 +1,149 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after{
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+* {
+  font-family: 'Roboto Condensed', sans-serif;
+
+}
+body {
+  background: white;
+  display: flex;
+}
+
+.slack-banner {
+  height: 55VH;
+  width:100%;
+  background:linear-gradient(rgba(66,73,88,.8),rgba(66,73,88,.8)), url('https://www.nps.gov/nr/twhp/wwwlps/lessons/101space/101images/101img3bl.jpg');
+  background-size: cover;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  padding-top: 25px;
+  z-index: -2;
+  padding-left: 50px;
+  padding-right: 50px;
+  }
+
+.slack-header {
+  height: 5VH;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+.slack-inner-banner{
+  height: 40VH;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  /*background-color: lightgreen;*/
+}
+.slack-inner-banner p{
+  text-align: center;
+  font-size: 250%;
+  color: white;
+}
+.slack-banner a{
+  margin: 0 auto;
+  padding: 15px;
+  font-size: 17.5px;
+  text-decoration: none;
+  color: white;
+}
+.slack-banner .slack-nav a:hover{
+  color: black;
+  background-color: white;
+  transition-property: background;
+  transition-duration: 1s;
+  transition-timing-function: linear;
+}
+
+.slack-nav {
+  justify-content: flex-end;
+  color: white;
+}
+.slack-nav li {
+  display: inline-block;
+  font: 400 14px 'Roboto Condensed', sans-serif;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      font-stretch: normal;
+      font-size: 14px;
+      line-height: normal;
+      color: white;
+}
+.slack-logo {
+  justify-content: flex-start;
+  color: white;
+}
+.slack-inner-banner a {
+  align-items: flex-end;
+}
+
+.main-content{
+  height: 100VH;
+  /*width: 100VW;*/
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+.slack-main {
+  display: flex;
+  justify-content: space-between;
+}
+.slack-main h2 {
+  justify-content: center;
+  font-weight: 500;
+  display: flex;
+  margin: 10px;
+}
+.slack-main p {
+  justify-content: center;
+  display: flex;
+  margin: 20px;
+  z-index: -2;
+}
+.slack-main img {
+  margin: 20px;
+  z-index: -2
+}
+
+.slack-footer {
+  display: flex
+  align-items: flex-end;
+}
+.slack-nav-footer {
+  display: flex;
+  flex-flow: column;
+  flex-grow: 1;
+  justify-content: center;
+  padding: 15px;
+  background-color: #efefef;
+}
+.vertical-center{
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+.slack-nav-footer a{
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+}
+.slack-nav-footer a:hover{
+  text-decoration: none;
+  color: black;
+  transition-property: background;
+  transition-duration: .05s;
+  transition-timing-function: linear;
+}
+#instructions{
+  margin: 5;
+
+}
