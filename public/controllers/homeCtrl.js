@@ -3,21 +3,15 @@ angular.module('recruiterBot')
 
 		$scope.showCreateNewAccountForm = false;
 
-		$scope.login = (admin)=>{
-			if (checkLoginRequiredFields(admin)) {
-				homeService.login(admin)
-				.then((response)=>{
-					$scope.adminInfo = response.data;
-					if ($scope.adminInfo.error) {
-						alert($scope.adminInfo.error)
-					}else{
-						homeService.adminVerified = true;
-						$state.go('dashboard');
+		$scope.login = ( user ) => {
+				homeService.login( user )
+				.then( ( response ) => {
+					if ( !response ) {
+						return console.log( 'unable to login' )
 					}
-				})
-			}else{
-				alert ("Please fill in username & password")
-			}
+					console.log( 'res user', response )
+					$state.go( 'dashboard' );
+				} )
 		}
 		$scope.showCreateNewAccount = ()=>{
 			$scope.showCreateNewAccountForm = true;
@@ -25,7 +19,6 @@ angular.module('recruiterBot')
 		$scope.hideCreateNewAccount = ()=>{
 			$scope.showCreateNewAccountForm = false;
 		}
-
 		
 		$scope.createUser = (newAdmin)=>{
 			if (isFormFilled(newAdmin)) {
@@ -59,6 +52,7 @@ angular.module('recruiterBot')
 				return true;
 			}return false;
 		}
+
 		let isFormFilled = (newAdmin)=>{
 			let lengthRequirement = 5;
 			if(newAdmin.username && newAdmin.password && newAdmin.email) {

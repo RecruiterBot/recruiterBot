@@ -1,12 +1,13 @@
 angular.module('recruiterBot')
-	.service('homeService', function($http){
+	.service('homeService', function( $http ){
 		
-		this.adminVerified = false;
-
-		
-		this.login = (admin)=>{
-			console.log(admin);
-			return $http.put('/api/admin/login', admin)
+		this.login = ( user ) => {
+			console.log( user );
+			return $http.put('/api/admin/login', user)
+			.then( ( response ) => {
+				console.log( 'response', response);
+				return response.data;
+			} )
 		}
 
 		this.createUser = (newAdmin) =>{
