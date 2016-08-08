@@ -63,28 +63,22 @@ angular.module('recruiterBot')
 		// //////////////////////////////// dashboard-jumbotron ///////////////////////////////////////////////////
 		$scope.students;
 
-		// verifies if an admin is logged in or not
-		let verifyAuth = ()=>{
-			if (homeService.adminVerified === true) {
-				getStudents();
-			}else{
-				$state.go('home');
-			}
-		}
-		// gets all students from the database
+
+
 		let getStudents = ()=>{
 			dashboardService.getStudents()
 			.then((response)=>{
 				let data = response.data;
 				let allStudents = response.data;
 				allStudents = convertToReadableData(allStudents);
-				console.log("STUDENTS >>>>>>>>>", allStudents);
 				$scope.students = allStudents;
 			})
 		}
 		$scope.logout = ()=>{
-			homeService.adminVerified === false;
-			$state.go('home');
+			dashboardService.logout()
+				.then( response => {
+					$state.go('home');
+				} )
 		}
 		$scope.updateStudentById = (updatedStudent)=>{
 			updatedStudent.yearsExperience = convertYearsExperienceToNumber(updatedStudent.yearsExperience);
@@ -382,7 +376,25 @@ angular.module('recruiterBot')
 			return locations;
 		}
 
-		verifyAuth();
+		let skillsCapitalizer = (skills)=>{
+			for(let prop in skills){
+				console.log(skills[prop]);
+				let currSkill = skills[prop].split(' '); // ["module", "management"]
+				let skillsCapitalized = "";
+				for(let i = 0; i<currSkill.length; i++){
+					skillsCapitalized = skillsCapitalized + currSkill[i].charAt(0).toUpperCase() + currSkill[i].slice(1);
+					if(i !== currSkill.length-1){
+						skillsCapitalized = skillsCapitalized + " ";
+					}
+				}
+				skills[prop] = skillsCapitalized;
+			}
+			return skills;
+		}
+
+
+		getStudents();
+
 
 // end of dashboardCtrl		
 	})

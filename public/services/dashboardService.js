@@ -27,5 +27,10 @@ angular.module('recruiterBot')
 		this.updateStudentById = (updatedStudent)=>{
 			return $http.put(`/api/students/${updatedStudent._id}`, updatedStudent);
 		}
+
+		//logout
+		this.logout = () => {
+			return $http.get( `/api/logout` );
+		}
 // end of dashboardService		
 	})
