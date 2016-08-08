@@ -9,7 +9,6 @@ angular.module('recruiterBot')
 
 		// sends newStudent info to server side
 		this.createStudent = (newStudent)=>{
-			console.log(newStudent);
 			return $http.post(`/api/students`, newStudent);
 		}
 
