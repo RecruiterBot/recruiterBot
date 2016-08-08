@@ -27,5 +27,10 @@ angular.module('recruiterBot')
 		this.updateStudentById = (updatedStudent)=>{
 			return $http.put(`/api/students/${updatedStudent._id}`, updatedStudent);
 		}
+
+		this.checkStudentEmailDuplicate = (studentEmail)=>{
+			console.log(studentEmail);
+			return $http.put(`/api/student/checkStudentEmailDuplicate`, {email: studentEmail});
+		}
 // end of dashboardService		
 	})
