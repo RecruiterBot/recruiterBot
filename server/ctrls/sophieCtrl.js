@@ -3,7 +3,7 @@ const deleteCtrl = require( './deleteCtrl' );
 const createCtrl = require( './createCtrl' );
 const helpCtrl = require( './helpCtrl' );
 
-module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
+module.exports = ( Botkit, app, mongoURI ) => {
 
   const controller = Botkit.slackbot();
 
@@ -12,8 +12,8 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
   } );
 
   searchCtrl( bot, controller );
-  // deleteCtrl( bot, controller );
-  // createCtrl( bot, controller );
+  deleteCtrl( bot, controller );
+  createCtrl( bot, controller );
   helpCtrl( bot, controller );
 
 
@@ -25,33 +25,6 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
 
   } );
 
-  
-  // const apiToken = require( '../sophiebot/config' ).apiToken;
-  // const apiai = ApiaiBotkit( apiToken );
-
-  // controller.hears('.*', 'direct_message,direct_mention,mention', ( bot, message ) => {
-  //   console.log( 'ctrl message', message );
-  //   apiai.process( message, bot );
-  // } );
-
-  // apiai.action( 'candidate.search.findSkills', ( message, resp, bot ) => {
-  //     console.log( 'message', message );
-  //     console.log( 'resp', resp );
-  //     console.log( 'bot', bot );
-  //     const responseText = resp.result.fullfillment.speech;
-
-
-  //   } )
-  //   .action( 'input.unkown', ( message, resp, bot ) => {
-  //     bot.reply( message, "Sorry, I don't understand" );
-  //     console.log( 'message', message );
-  //     console.log( 'resp', resp );
-  //     console.log( 'bot', bot );
-  //   } );
-
-
-
-  
   // controller.hears( [ 'find all students' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
   //   Students.find( {}, ( err, allStudents ) => {
   //     if ( err ) {

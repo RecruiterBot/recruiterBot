@@ -16,24 +16,31 @@ module.exports = {
 				return res.status( 500 ).json( err );
 			}
 			else if( !user ){
-				return res.status( 200 ).json( {error: `Username not found`} );
+				return res.status( 400 ).json( { error: `Username not found` } );
 			}
 			else if ( validPassword( req.body.password, user.password ) === false ) {
-				return res.status( 200 ).json( {error: `Incorrect password`} );
+				return res.status( 400 ).json( { error: `Incorrect password` } );
 			}
-			console.log( 'user', user )
-			return res.status( 200 ).json( user );
+			console.log( 'pre-login', user );
+			req.logIn( user, err => {
+				if( err ) { 
+					return res.status( 400 ).json( err ) 
+				}
+				console.log( 'login user', user )
+				return res.status( 200 ).json( user );
+			} )
+			// return res.status( 200 ).json( user );
 		} )
 	},
 
-	updateEmail( req, res ) {
-		User.findByIdAndUpdate( '57a2671bbed7c53698dacb5d', { $push: { 'email': req.body.email } }, { new: true }, ( err, user) => {
-			if ( err ) {
-				return res.status( 500 ).json( err );
-			}
-			return res.status( 200 ).json( user );
-		} )
-	},
+	// updateEmail( req, res ) {
+	// 	User.findByIdAndUpdate( '57a2671bbed7c53698dacb5d', { $push: { 'email': req.body.email } }, { new: true }, ( err, user) => {
+	// 		if ( err ) {
+	// 			return res.status( 500 ).json( err );
+	// 		}
+	// 		return res.status( 200 ).json( user );
+	// 	} )
+	// },
 
 	createUser( req, res ) {
 		req.body.password = generateHash( req.body.password );
@@ -44,6 +51,18 @@ module.exports = {
 			}
 			return res.status( 201 ).json( newUser );
 		} )
+	},
+	loggedIn( req, res, next ){
+		// console.log( 'req', req );
+		if ( req.isAuthenticated() ) {
+			return next();
+		}
+		console.log( 'authenticated', req.isAuthenticated() );
+		res.redirect( '/' )
+	},
+	logout( req, res ){
+		req.logout();
+		res.redirect( '/' )
 	}
 
 

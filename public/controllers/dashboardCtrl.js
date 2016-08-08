@@ -65,14 +65,6 @@ angular.module('recruiterBot')
 		// //////////////////////////////// dashboard-jumbotron ///////////////////////////////////////////////////
 		$scope.students;
 
-		let verifyAuth = ()=>{
-			console.log(homeService.adminVerified);
-			if (homeService.adminVerified === true) {
-				getStudents();
-			}else{
-				$state.go('home');
-			}
-		}
 
 		$scope.logout = ()=>{
 			homeService.adminVerified === false;
@@ -84,7 +76,7 @@ angular.module('recruiterBot')
 			.then((response)=>{
 				// console.log(response);
 				let data = response.data;
-				console.log(data);
+				// console.log(data);
 				let allStudents = response.data;
 				allStudents = convertToReadableData(allStudents);
 				console.log(allStudents);
@@ -92,7 +84,7 @@ angular.module('recruiterBot')
 				$scope.students = allStudents;
 			})
 		}
-
+		
 		$scope.updateStudentById = (updatedStudent)=>{
 			updatedStudent.yearsExperience = convertYearsExperienceToNumber(updatedStudent.yearsExperience);
 			if (updatedStudent['devMountain'] === "Yes") {
@@ -457,8 +449,9 @@ angular.module('recruiterBot')
 		// }
 
 
+		getStudents();
 
-		verifyAuth();
+		// verifyAuth();
 
 
 // end of dashboardCtrl		
