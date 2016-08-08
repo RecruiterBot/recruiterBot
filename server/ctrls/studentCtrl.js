@@ -40,8 +40,6 @@ module.exports = {
 	},
 
 	checkStudentEmailDuplicate(req, res, next){
-		console.log("LIFE IS GREAT!");
-		console.log("checkStudentEmailDuplicate", req.body);
 		Student.findOne({email: req.body.email}, (err, studentFound)=>{
 			if (err) {
 				console.log("ERROR", err);

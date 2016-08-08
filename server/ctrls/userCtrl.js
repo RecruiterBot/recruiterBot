@@ -12,12 +12,17 @@ module.exports = {
 	},
 
 	createUser( req, res ) {
-		req.body.password = generateHash( req.body.password );
+		// req.body.password = generateHash( req.body.password );
 		new User( req.body ).save( ( err, newUser ) => {
 			if ( err ) {
 				return res.status( 500 ).json( err );
 			}
-			return res.status( 201 ).json( newUser );
+			req.logIn( newUser, err => {
+				if( err ) { 
+					return res.status( 400 ).json( err ) 
+				}
+				return res.status( 200 ).json( newUser );
+			} )
 		} )
 	},
 
@@ -34,6 +39,7 @@ module.exports = {
 	},
 
 	checkEmailDuplicate(req, res, next){
+		console.log("checkEmailDuplicate", req.body);
 		User.findOne({email: req.body.email}, (err, userFound)=>{
 			if (err) {
 				return res.status(500).json(err);

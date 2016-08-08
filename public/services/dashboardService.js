@@ -32,6 +32,7 @@ angular.module('recruiterBot')
 		this.checkStudentEmailDuplicate = (studentEmail)=>{
 			console.log(studentEmail);
 			return $http.put(`/api/student/checkStudentEmailDuplicate`, {email: studentEmail});
+		}
 		
 		//logout
 		this.logout = () => {

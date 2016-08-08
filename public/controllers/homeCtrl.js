@@ -21,6 +21,7 @@ angular.module('recruiterBot')
 		}
 		
 		$scope.createUser = (newAdmin)=>{
+			console.log("newAdmin", newAdmin);
 			if (isFormFilled(newAdmin)) {
 				newAdmin.username = newAdmin.username.toLowerCase();
 				newAdmin.email = newAdmin.email.toLowerCase();
