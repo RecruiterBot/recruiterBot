@@ -11,6 +11,11 @@ body{
 	height: auto;
 	z-index: -99;
 }
+.copyright{
+	text-align: center;
+	font-size: 8px;
+	padding-top: 10px;
+}
 
 /* //////////////////////////////// home.html //////////////////////////////*/
 .home{
