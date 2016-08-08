@@ -24,13 +24,12 @@ module.exports = {
 		res.redirect( '/' )
 	},
 
-	checkEmailDuplicate(req, res, next){
-		console.log("checkEmailDuplicate", req.body);
-		User.findOne({email: req.body.email}, (err, userFound)=>{
-			if (err) {
-				return res.status(500).json(err);
+	checkEmailDuplicate( req, res, next ){
+		User.findOne( { email: req.body.email }, ( err, userFound ) => {
+			if ( err ) {
+				return res.status( 500 ).json( err );
 			}
-			return res.status(200).json(userFound);
+			return res.status( 200 ).json( userFound );
 		})
 	},
 
