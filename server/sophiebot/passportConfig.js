@@ -17,20 +17,12 @@ module.exports = passport => {
 			}
 			if ( !user.validPassword( password, user.password ) ) {
 				return done( null, false, { message: `Incorrect passowrd` } );
-			}
-			req.logIn( user, err => {
-				if( err ) { 
-					return res.status( 400 ).json( err ) 
-				}
-				console.log( 'login user', user )
-				return res.status( 200 ).json( user );
-			} )
-			// return done( null, user );
+			}			
+			return done( null, user );
 		} );
 	} ) );
 
 	passport.serializeUser( ( user, done ) => {
-		console.log( 'serialize user', user )
 		done( null, user._id );
 	} );
 
@@ -39,7 +31,6 @@ module.exports = passport => {
 			if( err ){
 				done( err, null );
 			}
-			console.log( 'deserialize user', user );
 			done( null, user );
 		} );
 	} );

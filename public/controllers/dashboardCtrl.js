@@ -84,7 +84,7 @@ angular.module('recruiterBot')
 				$scope.students = allStudents;
 			})
 		}
-		
+
 		$scope.updateStudentById = (updatedStudent)=>{
 			updatedStudent.yearsExperience = convertYearsExperienceToNumber(updatedStudent.yearsExperience);
 			if (updatedStudent['devMountain'] === "Yes") {
@@ -450,8 +450,6 @@ angular.module('recruiterBot')
 
 
 		getStudents();
-
-		// verifyAuth();
 
 
 // end of dashboardCtrl		

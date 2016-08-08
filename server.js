@@ -9,7 +9,6 @@ const MR = require( './server/masterRoutes' );
 const Sophie = require( './server/ctrls/sophieCtrl' );
 const Botkit = require( 'botkit' );
 const passport = require( 'passport' );
-const cookieSession = require( 'cookie-session' );
 
 //  config //
 
@@ -32,7 +31,6 @@ app.use( urlencoded( { extended: true } ) );
 app.use( json() );
 app.use( express.static( __dirname + '/public') );
 app.use( session( sessionConfig ) );
-// app.use( cookieSession( { secret: 'tobo!', maxAge: 360*5, secure: false } ) );
 app.use( passport.initialize() );
 app.use( passport.session() );
 
