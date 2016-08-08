@@ -93,10 +93,21 @@ angular.module('recruiterBot')
 				updatedStudent.locations[i].state = updatedStudent.locations[i].state.toLowerCase();
 			}	
 
-			dashboardService.updateStudentById(updatedStudent)
+
+			dashboardService.checkStudentEmailDuplicate(updatedStudent.email)
 			.then((response)=>{
-				getStudents();
-			})
+				console.log("RESPONSE", response);
+				if (response.data !== null) {
+					console.log("IF");
+					alert(`${updatedStudent.email} is already taken! Please enter a different email`);
+				}else{
+					dashboardService.updateStudentById(updatedStudent)
+					.then((response)=>{
+						getStudents();
+					})
+				}
+			});
+			
 		}
 		$scope.deleteStudent = (student)=>{
 			if (confirm(`Delete '${student.name.firstName} ${student.name.lastName}' from recruitBot?`) == true){
@@ -197,6 +208,8 @@ angular.module('recruiterBot')
 		// creates a new student by using New Student Form
 		$scope.createStudent = ( newStudent ) => {
 
+
+
 			let alertMessage = "Please enter the following:\n";
 			let alertMessageDetails = alertMessage;
 			let counter = 1;
@@ -214,11 +227,6 @@ angular.module('recruiterBot')
 				counter++;
 			}
 			
-			if (!newStudent.email || (newStudent.email.split('').indexOf('@') === -1)) {
-				alertMessageDetails = alertMessageDetails + counter + ". Email (i.e., 'jrobinson@gmail.com')\n";
-				counter++;
-			}
-			
 			if ($scope.selectedLocations.length === 0) {
 				alertMessageDetails = alertMessageDetails + counter + ". Location (at least 1 location)\n";
 				counter++;
@@ -231,6 +239,11 @@ angular.module('recruiterBot')
 			
 			if (!newStudent.yearsExperience ) {
 				alertMessageDetails = alertMessageDetails + counter + ". Years of Experience\n";
+				counter++;
+			}
+
+			if (!newStudent.email || (newStudent.email.split('').indexOf('@') === -1)) {
+				alertMessageDetails = alertMessageDetails + counter + ". Email (i.e., 'jrobinson@gmail.com')\n";
 				counter++;
 			}
 			
@@ -281,12 +294,22 @@ angular.module('recruiterBot')
 			$scope.selectedState = "";
 			$scope.selectedCity = ""
 
-			dashboardService.createStudent( newStudent )
-			.then( ( response ) => {
-				$scope.newStudent = "";
-				$scope.selectedSkills = [];
-				getStudents();
-				$scope.showDashboardView();
+			dashboardService.checkStudentEmailDuplicate(newStudent.email)
+			.then((response)=>{
+				console.log("RESPONSE", response);
+				if (response.data !== null) {
+					console.log("IF");
+					alert(`${newStudent.email} is already taken! Please enter a different email`);
+				}else{
+					console.log("ELSE");
+					dashboardService.createStudent( newStudent )
+					.then( ( response ) => {
+						$scope.newStudent = "";
+						$scope.selectedSkills = [];
+						getStudents();
+						$scope.showDashboardView();
+					})
+				}
 			})
 		}
 

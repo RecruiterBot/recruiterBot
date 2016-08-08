@@ -31,6 +31,11 @@ angular.module('recruiterBot')
 			return $http.put(`/api/students/${updatedStudent._id}`, updatedStudent);
 		}
 
+		// before submitting/updating student forms, checks email duplicates for new students
+		this.checkStudentEmailDuplicate = (studentEmail)=>{
+			console.log(studentEmail);
+			return $http.put(`/api/student/checkStudentEmailDuplicate`, {email: studentEmail});
+		
 		//logout
 		this.logout = () => {
 			return $http.get( `/api/logout` );
