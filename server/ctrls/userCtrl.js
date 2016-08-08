@@ -2,26 +2,12 @@ const User = require( '../schemas/Users' );
 
 module.exports = {
 
-	updateEmail( req, res ) {
-		User.findByIdAndUpdate( req.body._id, { $push: { 'email': req.body.email } }, { new: true }, ( err, user) => {
-			if ( err ) {
-				return res.status( 500 ).json( err );
-			}
-			return res.status( 200 ).json( user );
-		} )
-	},
-
 	createUser( req, res ) {
 		new User( req.body ).save( ( err, newUser ) => {
 			if ( err ) {
 				return res.status( 500 ).json( err );
 			}
-			req.logIn( newUser, err => {
-				if( err ) { 
-					return res.status( 400 ).json( err ) 
-				}
-				return res.status( 200 ).json( newUser );
-			} )
+			return res.status(201).json(newUser);
 		} )
 	},
 
@@ -45,6 +31,17 @@ module.exports = {
 			}
 			return res.status( 200 ).json( userFound );
 		})
+	},
+
+	updateAdminInfo(req, res, next){
+		console.log(req.body);
+		User.findByIdAndUpdate( req.body._id, req.body, { new: true }, ( err, student ) => {
+			console.log("STUDENT", student);
+			if ( err ) {
+				return res.status( 500 ).json( err );
+			}
+			return res.status( 200 ).json( student );
+		} )
 	}
 
 

@@ -17,29 +17,10 @@
 				<button ng-click="login(admin)" class="btn btn-block btn-success">Login</button>
 				<div class="alternatives-to-login">
 					<!-- <a type="button" class="btn btn-block btn-link">Forgot password?</a> -->
-					<a type="button" ng-click="showCreateNewAccount()" class="btn btn-block btn-link">Create New Account</a>
+					<!-- <a type="button" ng-click="showCreateNewAccount()" class="btn btn-block btn-link">Create New Account</a> -->
 				</div>
 			</form>
-			<div class="create-admin col-lg-12 col-md-12 col-sm-12 col-xs-12 animated bounceInUp" ng-show="showCreateNewAccountForm" >
-				<p class="text-right"><i ng-click="hideCreateNewAccount()" class="fa fa-times" aria-hidden="true"></i><p>
-				<h2 class="page-header">Create New Account</h2>
-				<form class="form-inline">
-					<div class="form-group">
-					    <label class="sr-only" for="exampleInputPassword3">Username</label>
-					    <input type="text" ng-model="newAdmin.username" class="form-control" id="exampleInputPassword3" placeholder="Username">
-					</div>
-					<div class="form-group">
-					    <label class="sr-only" for="exampleInputEmail3">Email</label>
-					    <input type="email" ng-model="newAdmin.email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-					</div>
-					<div class="form-group">
-					    <label class="sr-only" for="exampleInputPassword3">Password</label>
-					    <input type="password" ng-model="newAdmin.password" class="form-control" id="exampleInputPassword3" placeholder="Password">
-					</div>
-					<button type="submit" ng-click="createUser(newAdmin)" class="btn btn-primary col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-3 col-md-offset-3 col-sm-offset-3">Create New Account</button>
-				</form>
-			</div>
-
+			
 		</div>
 
 	</div>

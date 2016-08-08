@@ -41,5 +41,23 @@ angular.module('recruiterBot')
 		this.logout = () => {
 			return $http.get( `/api/logout` );
 		}
+
+		// create new admin
+		this.createUser = (newAdmin) =>{
+			return $http.put(`/api/admin`, newAdmin)
+		}
+
+		// checks for admin email duplicates
+		this.checkEmailDuplicate = (newAdminEmail)=>{
+			console.log(newAdminEmail);
+			return $http.put(`/api/admin/checkEmailDuplicate`, {email: newAdminEmail})
+		}
+
+		// requests to update admin info
+		this.updateAdminInfo = (updateAdmin) =>{
+			console.log(updateAdmin);
+			return $http.put(`/api/admin/updateAdminInfo`, updateAdmin);
+		}
+
 // end of dashboardService		
 	})

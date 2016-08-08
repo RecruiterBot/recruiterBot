@@ -13,6 +13,9 @@ angular.module('recruiterBot')
 		$scope.showAdmin = false;
 		$scope.showFilter = false;
 
+		$scope.showCreateNewAccountForm = false;
+		$scope.showEditProfileForm = false;
+
 		let alreadySorted = false;
 
 		// //////////////////////////////// header-tabs ////////////////////////////////////////////////////////////
@@ -22,6 +25,8 @@ angular.module('recruiterBot')
 			$scope.showAdmin = false;
 			$scope.selectedSkill = "";
 			getStudents();
+			// $scope.updateAdmin = homeService.admin;
+			// console.log(homeService.admin);
 		}
 		$scope.showStudentView = ()=>{
 			$scope.showDashboard = false;
@@ -32,6 +37,7 @@ angular.module('recruiterBot')
 			$scope.showDashboard = false;
 			$scope.showStudent = false;
 			$scope.showAdmin = true;
+			$scope.updateAdmin = homeService.admin;
 		}
 		$scope.filter = ()=>{
 			$scope.showFilter = true;
@@ -326,6 +332,86 @@ angular.module('recruiterBot')
 		//     	$scope.newAdmin = "";
 		//     }
 		// }
+		$scope.showCreateNewAccount = ()=>{
+			$scope.showCreateNewAccountForm = !$scope.showCreateNewAccountForm;
+		}
+
+		$scope.showEditProfile = ()=>{
+			$scope.showEditProfileForm = !$scope.showEditProfileForm;
+		}
+
+		$scope.createUser = (newAdmin)=>{
+			console.log("newAdmin", newAdmin);
+			if (isFormFilled(newAdmin)) {
+				newAdmin.username = newAdmin.username.toLowerCase();
+				newAdmin.email = newAdmin.email.toLowerCase();
+
+				dashboardService.checkEmailDuplicate(newAdmin.email)
+				.then((response)=>{
+					if (response.data !== null) {
+						alert(`${newAdmin.email} is already taken! Please enter a different email`);
+						$scope.newAdmin.email = "";
+					}else{
+						dashboardService.createUser(newAdmin)
+						.then((response)=>{
+							// homeService.adminVerified = true;
+							// $state.go('dashboard');
+							alert(`${newAdmin.email} has been added to recruitBot`);
+							$scope.newAdmin = "";
+							console.log(response);
+						})
+					}
+					
+				})
+			}else{
+				alert("Requirements: \n 1. Username, email & password must be longer than 5 characters")
+			}
+		}
+
+		$scope.updateAdminInfo = (updateAdmin)=>{
+			if (isUpdatedFormFilled(updateAdmin)) {
+				updateAdmin.email = updateAdmin.email.toLowerCase();
+				updateAdmin.username = updateAdmin.username.toLowerCase();
+				dashboardService.updateAdminInfo(updateAdmin)
+				.then((response)=>{
+					homeService.admin.email = $scope.response.data.email;
+					homeService.admin.username = $scope.response.data.username;
+					homeService.admin._id = $scope.response.data._id;
+					$scope.showAdminView();
+				})
+			}
+			else{
+				alert("Requirements: \n 1. Username, email & passwords must be longer than 5 characters \n 2. Confirm password and new password must match")
+			}
+		}
+
+		let isFormFilled = (newAdmin)=>{
+			let lengthRequirement = 5;
+			if(newAdmin.username && newAdmin.password && newAdmin.email) {
+				if ( (newAdmin.username.length >= lengthRequirement) && 
+				   (newAdmin.password.length >= lengthRequirement) && 
+				   (newAdmin.email.length >= lengthRequirement)) {
+					return true;
+				}	
+					
+			}
+			return false;
+		}
+
+		let isUpdatedFormFilled = (updateAdmin)=>{
+			let lengthRequirement = 5;
+			if(updateAdmin.username && updateAdmin.password && updateAdmin.confirmPassword && updateAdmin.email) {
+				if ( (updateAdmin.username.length >= lengthRequirement) && 
+				   (updateAdmin.password.length >= lengthRequirement) && 
+				   (updateAdmin.password === updateAdmin.confirmPassword) &&
+				   (updateAdmin.email.length >= lengthRequirement) &&
+				   (updateAdmin.email.indexOf('@') !== -1)) {
+					return true;
+				}	
+					
+			}
+			return false;
+		}
 
 
 		// local functions

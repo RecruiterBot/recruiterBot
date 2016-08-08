@@ -11,6 +11,7 @@ module.exports = ( app, passport ) => {
 				if( err ) { 
 					return res.status( 400 ).json( err ) 
 				}
+        	console.log("authenticateERR", user);
 				return res.status( 200 ).json( user );
 			} ) 
 	      }
@@ -20,5 +21,5 @@ module.exports = ( app, passport ) => {
 	app.put( `/api/admin/email`, userCtrl.loggedIn, userCtrl.updateEmail );
 	app.put( `/api/admin`, userCtrl.createUser );
 	app.put( `/api/admin/checkEmailDuplicate`, userCtrl.checkEmailDuplicate);
-
+	app.put( `/api/admin/updateAdminInfo`, userCtrl.updateAdminInfo )
 }
