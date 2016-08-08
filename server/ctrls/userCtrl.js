@@ -29,8 +29,9 @@ module.exports = {
 	loggedIn( req, res, next ){
 		if ( req.isAuthenticated() ) {
 			return next();
+		} else {
+			return res.status( '401' ).send( 'user not logged in' )
 		}
-		res.redirect( '/' )
 	},
 
 	logout( req, res ){

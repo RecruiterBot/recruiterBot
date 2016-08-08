@@ -9,7 +9,6 @@ angular.module('recruiterBot')
 					if ( !response ) {
 						return console.log( 'unable to login' )
 					}
-					console.log( 'res user', response )
 					$state.go( 'dashboard' );
 				} )
 		}
@@ -28,7 +27,6 @@ angular.module('recruiterBot')
 
 				homeService.checkEmailDuplicate(newAdmin.email)
 				.then((response)=>{
-					console.log(response);
 					if (response.data !== null) {
 						alert(`${newAdmin.email} is already taken! Please enter a different email`);
 						$scope.newAdmin.email = "";
