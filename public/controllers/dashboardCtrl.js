@@ -2,7 +2,6 @@ angular.module('recruiterBot')
 	.controller('dashboardCtrl', function($scope, dashboardService, homeService, $state){
 		
 		// //////////////////////////////// recruiterBot global variables //////////////////////////////////////////
-
 		$scope.states = [ 'AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY','LA','MA','MD','ME','MI','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VA','VT','WA','WI','WV','WY'];
 		$scope.skills = [ 'html5','css3','javascript','git','github','jquery','angular','node','express','module management','react','webpack','flux','browserify','gulp','mongodb','firebase','bootstrap' ];
 		$scope.selectedSkills = [];
@@ -12,10 +11,9 @@ angular.module('recruiterBot')
 		$scope.showDashboard = true;
 		$scope.showStudent = false;
 		$scope.showAdmin = false;
-		// $scope.showEditStudentProfile = false;
 		$scope.showFilter = false;
+
 		let alreadySorted = false;
-		// let originalStudentsOrder;
 
 		// //////////////////////////////// header-tabs ////////////////////////////////////////////////////////////
 		$scope.showDashboardView = ()=>{
@@ -41,7 +39,7 @@ angular.module('recruiterBot')
 		$scope.hideFilter = ()=>{
 			$scope.showFilter = false;
 		}
-
+		// sorts dadhboard students in alphabetical order
 		$scope.sort = ()=>{
 			if (alreadySorted === true) {
 				alreadySorted = false;
@@ -66,25 +64,22 @@ angular.module('recruiterBot')
 		$scope.students;
 
 
-		$scope.logout = ()=>{
-			homeService.adminVerified === false;
-			$state.go('home');
-		}
 
 		let getStudents = ()=>{
 			dashboardService.getStudents()
 			.then((response)=>{
-				// console.log(response);
 				let data = response.data;
-				// console.log(data);
 				let allStudents = response.data;
 				allStudents = convertToReadableData(allStudents);
-				console.log(allStudents);
-				// originalStudentsOrder = allStudents;
 				$scope.students = allStudents;
 			})
 		}
-
+		$scope.logout = ()=>{
+			dashboardService.logout()
+				.then( response => {
+					$state.go('home');
+				} )
+		}
 		$scope.updateStudentById = (updatedStudent)=>{
 			updatedStudent.yearsExperience = convertYearsExperienceToNumber(updatedStudent.yearsExperience);
 			if (updatedStudent['devMountain'] === "Yes") {
@@ -93,21 +88,16 @@ angular.module('recruiterBot')
 				updatedStudent['devMountain'] = false;
 			}
 			
-			console.log("Before", updatedStudent.locations);
-
 			for (let i = 0; i < updatedStudent.locations.length; i++) {
 				updatedStudent.locations[i].city = updatedStudent.locations[i].city.toLowerCase();
 				updatedStudent.locations[i].state = updatedStudent.locations[i].state.toLowerCase();
 			}	
-
-			console.log("After", updatedStudent.locations);
 
 			dashboardService.updateStudentById(updatedStudent)
 			.then((response)=>{
 				getStudents();
 			})
 		}
-
 		$scope.deleteStudent = (student)=>{
 			if (confirm(`Delete '${student.name.firstName} ${student.name.lastName}' from recruitBot?`) == true){
 				dashboardService.deleteStudent(student._id)
@@ -116,17 +106,13 @@ angular.module('recruiterBot')
 				});
 			};
 		}
-
 		$scope.removeUpdatedSkill = (studentId, skill)=>{
 			for (var i = 0; i < $scope.students.length; i++) {
 				if ($scope.students[i]._id === studentId) {
-					console.log($scope.students[i].skills);
 					delete $scope.students[i].skills[skill];
-					console.log($scope.students[i].skills);
 				}
 			}
 		}
-
 		$scope.addToUpdatedSkillsBox = (studentId, selectedSkill)=>{
 			for (var i = 0; i < $scope.students.length; i++) {
 				if ($scope.students[i]._id === studentId){
@@ -134,7 +120,6 @@ angular.module('recruiterBot')
 				}
 			}
 		}
-
 		$scope.removeUpdatedLocation = (studentId, locationId)=>{
 			for (var i = 0; i < $scope.students.length; i++) {
 				if ($scope.students[i]._id === studentId) {
@@ -146,7 +131,6 @@ angular.module('recruiterBot')
 				}
 			}
 		}
-
 		$scope.addUpdatedLocationToLocationBox = (studentId, updatedCity, updatedState)=>{
 			for (var i = 0; i < $scope.students.length; i++) {
 				if ($scope.students[i]._id === studentId) {
@@ -184,17 +168,12 @@ angular.module('recruiterBot')
 			if ($scope.selectedSkills.indexOf(skillFormatted) === -1) {
 				$scope.selectedSkills.push(skillFormatted);
 			}
-			// $scope.selectedSkill = "";
 		}
-
 		// removes a specific skill added in the New Student Form
 		$scope.removeSkill = (skill)=>{
 			let skillIndex = $scope.selectedSkills.indexOf(skill);
 			$scope.selectedSkills.splice(skillIndex, 1);
 		}
-
-
-
 		// adds a specific location in the New Student Form
 		$scope.addLocationToLocationBox = (selectedCity, selectedState)=>{
 			let location = {
@@ -211,15 +190,10 @@ angular.module('recruiterBot')
 				$scope.selectedLocations.push(location);
 			}
 		}	
-
 		$scope.removeLocation = ( location ) => {
 			let locationIndex = $scope.selectedLocations.indexOf( location.city );
 			$scope.selectedLocations.splice( locationIndex, 1 );
 		}
-
-
-
-
 		// creates a new student by using New Student Form
 		$scope.createStudent = ( newStudent ) => {
 
@@ -255,10 +229,6 @@ angular.module('recruiterBot')
 				counter++;
 			}
 			
-			// if (!newStudent.campus ) {
-			// 	alertMessageDetails = alertMessageDetails + counter + ". DevMountain Campus\n";
-			// 	counter++;
-			// }
 			if (!newStudent.yearsExperience ) {
 				alertMessageDetails = alertMessageDetails + counter + ". Years of Experience\n";
 				counter++;
@@ -313,40 +283,26 @@ angular.module('recruiterBot')
 
 			dashboardService.createStudent( newStudent )
 			.then( ( response ) => {
-				console.log( "response", response );
 				$scope.newStudent = "";
 				$scope.selectedSkills = [];
 				getStudents();
 				$scope.showDashboardView();
 			})
-
 		}
 
 		// ///////////////////////////////////// admin-jumbotron /////////////////////////////////////////////////
-
 		// updates email for a new admin
-		$scope.updateEmail = (newAdmin)=>{
+		// $scope.updateEmail = (newAdmin)=>{
 
-			if (confirm(`Authorize '${newAdmin.email}' as admin?`) == true) {
-		         dashboardService.updateEmail(newAdmin)
-				.then((response)=>{
-					console.log(response);
-					$scope.newAdmin = "";
-				})
-		    }else{
-		    	$scope.newAdmin = "";
-		    }
-		}
-
-		
-
-
-
-
-
-
-
-
+		// 	if (confirm(`Authorize '${newAdmin.email}' as admin?`) == true) {
+		//          dashboardService.updateEmail(newAdmin)
+		// 		.then((response)=>{
+		// 			$scope.newAdmin = "";
+		// 		})
+		//     }else{
+		//     	$scope.newAdmin = "";
+		//     }
+		// }
 
 
 		// local functions
@@ -404,7 +360,6 @@ angular.module('recruiterBot')
 			str = str.replace(/\s+/g, " ");
 			return str;
 		}
-
 		let locationsCapitalizer = (locations)=>{
 			for(let l=0; l<locations.length; l++){
 				let city = locations[l].city.split(" ");
@@ -416,37 +371,26 @@ angular.module('recruiterBot')
 					}
 				}
 				locations[l].city = cityCapitalized;
-				
-				// let state = locations[l].state.split(" ");
-				// let stateCapitalized = "";
-				// for(let s=0; s<state.length; s++){
-				// 	stateCapitalized = stateCapitalized + state[s].charAt(0).toUpperCase() + state[s].slice(1);
-				// 	if(s !== state.length-1){
-				// 		stateCapitalized = stateCapitalized + " ";
-				// 	}
-				// }
-
 				locations[l].state = locations[l].state.toUpperCase();
-			
 			}
 			return locations;
 		}
 
-		// let skillsCapitalizer = (skills)=>{
-		// 	for(let prop in skills){
-		// 		console.log(skills[prop]);
-		// 		let currSkill = skills[prop].split(' '); // ["module", "management"]
-		// 		let skillsCapitalized = "";
-		// 		for(let i = 0; i<currSkill.length; i++){
-		// 			skillsCapitalized = skillsCapitalized + currSkill[i].charAt(0).toUpperCase() + currSkill[i].slice(1);
-		// 			if(i !== currSkill.length-1){
-		// 				skillsCapitalized = skillsCapitalized + " ";
-		// 			}
-		// 		}
-		// 		skills[prop] = skillsCapitalized;
-		// 	}
-		// 	return skills;
-		// }
+		let skillsCapitalizer = (skills)=>{
+			for(let prop in skills){
+				console.log(skills[prop]);
+				let currSkill = skills[prop].split(' '); // ["module", "management"]
+				let skillsCapitalized = "";
+				for(let i = 0; i<currSkill.length; i++){
+					skillsCapitalized = skillsCapitalized + currSkill[i].charAt(0).toUpperCase() + currSkill[i].slice(1);
+					if(i !== currSkill.length-1){
+						skillsCapitalized = skillsCapitalized + " ";
+					}
+				}
+				skills[prop] = skillsCapitalized;
+			}
+			return skills;
+		}
 
 
 		getStudents();

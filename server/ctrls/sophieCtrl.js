@@ -1,3 +1,4 @@
+
 const searchCtrl = require( './searchCtrl' );
 const deleteCtrl = require( './deleteCtrl' );
 const createCtrl = require( './createCtrl' );
@@ -10,6 +11,7 @@ module.exports = ( Botkit, app, mongoURI ) => {
   const bot = controller.spawn( {
     token: require( '../sophiebot/config' ).botToken || process.env.token
   } );
+
 
   searchCtrl( bot, controller );
   deleteCtrl( bot, controller );
@@ -45,5 +47,3 @@ module.exports = ( Botkit, app, mongoURI ) => {
   // } )
 
 }
-
-

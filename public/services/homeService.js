@@ -10,9 +10,14 @@ angular.module('recruiterBot')
 			} )
 		}
 
-		this.createAdmin = (admin)=>{
-			admin.email = ['matt.devmtn.com']
-			return $http.post('/api/admin', admin)
+		this.createUser = (newAdmin) =>{
+			console.log(newAdmin);
+			return $http.put(`/api/admin`, newAdmin)
+		}
+
+		this.checkEmailDuplicate = (newAdminEmail)=>{
+			console.log(newAdminEmail);
+			return $http.put(`/api/admin/checkEmailDublicate`, {email: newAdminEmail})
 		}
 
 // end of homeService		
