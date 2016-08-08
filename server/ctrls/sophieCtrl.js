@@ -13,10 +13,10 @@ module.exports = ( Botkit, app, mongoURI ) => {
   } );
 
 
-  // searchCtrl( bot, controller );
-  // deleteCtrl( bot, controller );
-  // createCtrl( bot, controller );
-  // helpCtrl( bot, controller );
+  searchCtrl( bot, controller );
+  deleteCtrl( bot, controller );
+  createCtrl( bot, controller );
+  helpCtrl( bot, controller );
 
 
   bot.startRTM( ( err, bot, payload ) => {
@@ -40,7 +40,7 @@ module.exports = ( Botkit, app, mongoURI ) => {
 
   // // // loop through the attachment and send a reply
 
-  //     for (var i = 0; i < attachment.length; i++) {
+  //     for (var i = 0; i < 20; i++) {
   //       bot.reply( message, attachment[i] )
   //     }
   //   } )
