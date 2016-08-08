@@ -13,7 +13,8 @@ angular.module('recruiterBot')
 		}
 
 		this.checkEmailDuplicate = (newAdminEmail)=>{
-			return $http.put(`/api/admin/checkEmailDublicate`, {email: newAdminEmail})
+			console.log(newAdminEmail);
+			return $http.put(`/api/admin/checkEmailDuplicate`, {email: newAdminEmail})
 		}
 
 // end of homeService		
