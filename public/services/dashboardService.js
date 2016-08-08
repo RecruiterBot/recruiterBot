@@ -1,5 +1,5 @@
 angular.module('recruiterBot')
-	.service('dashboardService', function($http){
+	.service('dashboardService', function($http, $state){
 		
 		// sends newAdmin email to server side 
 		// this.updateEmail = (newAdmin)=>{
@@ -15,6 +15,10 @@ angular.module('recruiterBot')
 		// requests for all students from the server side
 		this.getStudents = ()=>{
 			return $http.get(`/api/students`)
+				.error( data => {
+					$state.go( 'home' )
+					return;
+				} )
 		}
 
 		// sends request to delete a student from server side

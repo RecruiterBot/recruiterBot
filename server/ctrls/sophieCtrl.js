@@ -13,10 +13,10 @@ module.exports = ( Botkit, app, mongoURI ) => {
   } );
 
 
-  searchCtrl( bot, controller );
-  deleteCtrl( bot, controller );
-  createCtrl( bot, controller );
-  helpCtrl( bot, controller );
+  // searchCtrl( bot, controller );
+  // deleteCtrl( bot, controller );
+  // createCtrl( bot, controller );
+  // helpCtrl( bot, controller );
 
 
   bot.startRTM( ( err, bot, payload ) => {
