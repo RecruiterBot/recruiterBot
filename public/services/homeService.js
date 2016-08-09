@@ -1,20 +1,17 @@
 angular.module('recruiterBot')
 	.service('homeService', function( $http ){
 		
+		this. admin = {};
+		
 		this.login = ( user ) => {
 			return $http.put('/api/admin/login', user)
 			.then( ( response ) => {
+				console.log(response);
+				this.admin.username = response.data.username;
+				this.admin.email = response.data.email;
+				this.admin._id = response.data._id;
 				return response.data;
 			} )
-		}
-
-		this.createUser = (newAdmin) =>{
-			return $http.put(`/api/admin`, newAdmin)
-		}
-
-		this.checkEmailDuplicate = (newAdminEmail)=>{
-			console.log(newAdminEmail);
-			return $http.put(`/api/admin/checkEmailDuplicate`, {email: newAdminEmail})
 		}
 
 // end of homeService		
