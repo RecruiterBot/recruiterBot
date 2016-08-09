@@ -56,7 +56,12 @@ angular.module('recruiterBot')
 		// requests to update admin info
 		this.updateAdminInfo = (updateAdmin) =>{
 			console.log(updateAdmin);
-			return $http.put(`/api/admin/updateAdminInfo`, updateAdmin);
+			return $http.put(`/api/admin/updateAdminInfo`, {
+				_id: updateAdmin._id,
+				username: updateAdmin.username,
+				password: updateAdmin.password,
+				email: updateAdmin.email
+			});
 		}
 
 // end of dashboardService		
