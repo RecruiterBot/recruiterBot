@@ -119,10 +119,12 @@ flex-direction: column;
 }
  .astronaut {
   background: url(../img/recruiterbot.png) no-repeat center;
-  background-size: 80%;
-  width: 200px;
-  height: 63px;
+  background-size: 100%;
   margin: 0;
+}
+.small-container{
+  width: 145px;
+  height: 145px;
 }
 .slack-footer {
   display: flex;

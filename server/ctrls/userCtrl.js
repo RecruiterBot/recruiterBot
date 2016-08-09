@@ -3,6 +3,7 @@ const User = require( '../schemas/Users' );
 module.exports = {
 
 	createUser( req, res ) {
+
 		let newUser = new User( req.body );
 		newUser.password = newUser.generateHash(req.body.password);
 		newUser.save( ( err, userCreated ) => {
