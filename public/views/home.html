@@ -4,26 +4,26 @@
 
 <div class="row home">
 	<div class="home col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<div class="login-box col-lg-6 col-md-6 col-sm-8 col-xs-12
-							col-lg-offset-3 col-md-offset-3 col-sm-offset-2">
+		<div class="login-box col-lg-10 col-md-10 col-sm-10 col-xs-12
+							col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
 
+		
 			<img src="" class="zachy-boy">
 			<!-- <p class="text-center" ng-show={{adminInfo.error}}>{{adminInfo.error}}</p> -->
+
 			<form class="col-lg-6 col-md-6 col-sm-8 col-xs-12
 							col-lg-offset-3 col-md-offset-3 col-sm-offset-2">
 				<input ng-model="admin.username" type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Username" required>
 				<input ng-model="admin.password" type="password" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status" placeholder="Password" required>
 				<br>
 				<button ng-click="login(admin)" class="btn btn-block btn-success">Login</button>
-				<!-- <a type="button" class="btn btn-block btn-link">Forgot password?</a> -->
+				<div class="alternatives-to-login">
+					<!-- <a type="button" class="btn btn-block btn-link">Forgot password?</a> -->
+					<!-- <a type="button" ng-click="showCreateNewAccount()" class="btn btn-block btn-link">Create New Account</a> -->
+				</div>
 			</form>
 
 		</div>
 
 	</div>
-	<div class="slack-nav-footer">
-      <a ui-sref="home">Admin Login</a>
-      <a ui-sref="entry">Support</a>
-      <a ui-sref="how_works">How It Works</a>
-  </div>
 </div>

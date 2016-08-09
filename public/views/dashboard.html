@@ -1,8 +1,6 @@
 <div class="row">
 	<div class="dashboard col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		
-		<!-- <navigation-dir></navigation-dir> -->
-
 		<div class="header-tabs col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<a ng-click="showDashboardView()" ng-class="showDashboard ? 'devmtn-tab' : 'regular-tab'" class="text-center col-lg-4 col-md-4 col-sm-12 col-xs-12 border-underneath">Dashboard</a>
 			<a ng-click="showStudentView()" ng-class="showStudent ? 'devmtn-tab' : 'regular-tab'" class="bordered text-center col-lg-4 col-md-4 col-sm-12 col-xs-12 border-underneath"><span class="glyphicon glyphicon-plus"></span> Student</a>
@@ -15,41 +13,38 @@
 
 		<div class="dashboard-jumbotron col-lg-12 col-md-12 col-sm-12 col-xs-12 animated slideInUp" ng-show="showDashboard">
 			<h1 class="page-header jumbotron-headers">Dashboard</h1>
+
 			<div class="filter-sort-buttons">
 				<a ng-click="filter()">Filter</a>
 				<p> | </p>
 				<a ng-click="sort()">Sort</a>
 			</div>
 
-
 			<div class="filter-sort col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center animated slideInRight" ng-show="showFilter">
-					<p class="text-right"><i class="fa fa-times fa-lg" aria-hidden="true" ng-click="hideFilter()"></i></p>
-					<h1 class="page-header text-left">Filter</h1>
-					<div class="form">
-						<div class="form-group col-lg-6 col-md-6">
-						    <label for="exampleInputEmail1" class="text-center">Name</label>
-						    <input ng-model="search.name.$" type="text" class="form-control text-center" id="exampleInputEmail1" placeholder="e.g., matt">
-						</div>
-						<div class="form-group col-lg-6 col-md-6">
-						    <label for="exampleInputEmail1" class="text-center">DevMountain Campus</label>
-						    <input ng-model="search.campus" class="awesomplete form-control text-center"  list="devmtnCampus" placeholder="e.g., Dallas, TX"/>
-							<datalist id="devmtnCampus">
-								<option>Provo, UT</option>
-								<option>Salt Lake City, UT</option>
-								<option>Dallas, TX</option>
-							</datalist>
-						</div>
+				<p class="text-right"><i class="fa fa-times fa-lg" aria-hidden="true" ng-click="hideFilter()"></i></p>
+				<h1 class="page-header text-left">Filter</h1>
+				<div class="form">
+					<div class="form-group col-lg-6 col-md-6">
+					    <label for="exampleInputEmail1" class="text-center">Name</label>
+					    <input ng-model="search.name.$" type="text" class="form-control text-center" id="exampleInputEmail1" placeholder="e.g., matt">
 					</div>
+					<div class="form-group col-lg-6 col-md-6">
+					    <label for="exampleInputEmail1" class="text-center">DevMountain Campus</label>
+					    <input ng-model="search.campus" class="awesomplete form-control text-center"  list="devmtnCampus" placeholder="e.g., Dallas, TX"/>
+						<datalist id="devmtnCampus">
+							<option>Provo, UT</option>
+							<option>Salt Lake City, UT</option>
+							<option>Dallas, TX</option>
+						</datalist>
+					</div>
+				</div>
 			</div>
-
-
 
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-repeat="student in students | filter:search:strict">
 				<div class="student-thumbnail student-moreinfo col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div ng-click="collapsedMoreInfo=!collapsedMoreInfo" class="student col-lg-10 col-md-10 col-sm-12 col-xs-12">
+					<div ng-click="collapsedMoreInfo=!collapsedMoreInfo" class="student col-lg-8 col-md-8 col-sm-12 col-xs-12">
 						<img src="./img/user-avatar.jpeg" class="img-responsive img-rounded" alt="student-photo" style="width:140px; height:150px;">
 						<div class="student-info hidden-xs">
-						<!-- ng-class="showEditStudentProfile ? 'red' : 'green'" -->
 							<h3>{{student.name.firstName}} {{student.name.lastName}}</h3>
 							<p><strong>Location:</strong> <span ng-repeat="location in student.locations">
 							<i class="fa fa-chevron-circle-right" aria-hidden="true"></i> {{location.city}} ({{location.state}}) &nbsp;</span> </p>
@@ -57,14 +52,16 @@
 							<p><strong>Years of Experience:</strong> {{student.yearsExperience}}</p>
 						</div>
 					</div>
-					<div class="admin-actions col-lg-2 col-md-2 col-sm-12 col-xs-12">
-						<a ng-click="collapsed=!collapsed" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-						<!-- <a href="#" class="btn btn-block btn-success"><span class="glyphicon glyphicon-ok"></span> Save</a> -->
-						<a ng-click="deleteStudent(student)" class="btn btn-block btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove</a>
+					<div class="admin-actions col-lg-4 col-md-4 col-sm-12 col-xs-12">
+						<div class="col-lg-6 col-lg-offset-6 col-md-6 col-md-offset-6 col-sm-12 col-xs-12">
+							<a ng-click="collapsed=!collapsed" class="btn btn-block btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+							<a ng-click="deleteStudent(student)" class="btn btn-block btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove</a>
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 registered-on">
+							<p>Registered on {{student.createdAt | date:'longDate'}}</p>
+						</div>
 					</div>
-
 				</div>
-
 
 				<div ng-show="collapsedMoreInfo" class="well more-info col-lg-10 col-lg-offset-1 animated fadeIn">
 					<div class="details col-lg-6">
@@ -87,7 +84,6 @@
 					</div>
 					<div class="form">
 						<form class="col-lg-10 col-lg-offset-1">
-							
 							<div class="personal-info col-lg-12">
 								<h1 class="page-header">Personal Information</h1>
 								<div class="form-group col-lg-6">
@@ -208,13 +204,8 @@
 			<h1 class="page-header jumbotron-headers">New Student Form</h1>
 			<div class="add-student-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-				<!-- <div class="form-title col-lg-12">
-					<a class="col-lg-6 text-center new-student">New Student Form</a>
-				</div> -->
-
 				<div class="form">
 					<form class="col-lg-10 col-lg-offset-1" >
-						
 						<div class="personal-info col-lg-12">
 							<h1 class="page-header">Personal Information</h1>
 							<div class="form-group col-lg-6">
@@ -245,7 +236,6 @@
 							<div class="skills-chosen col-lg-12" >
 								<a ng-repeat="location in selectedLocations" class="btn btn-sm btn-primary btn-danger">{{location.city}}, {{location.state}}<i ng-click="removeLocation(location)" class="fa fa-times fa-lg btn" aria-hidden="true"></i></a>
 							</div>
-
 						</div>
 
 						<div class="devmtn-association col-lg-12">
@@ -320,29 +310,79 @@
 								    </div>
 								</div>
 							</form>
-							
 						</div>
 
 						<a ng-click="createStudent(newStudent)" type="submit" class="btn btn-success col-lg-6 col-lg-offset-3 col-md-12 col-sm-12 col-xs-12 add-student" ><i class="fa fa-plus" aria-hidden="true"></i> Add Student </a>
 
 					</form>
 				</div>
-
 			</div>
 		</div>
 
 		<div class="admin-jumbotron col-lg-12 col-md-12 col-sm-12 col-xs-12 animated slideInUp" ng-show="showAdmin">
 			<h1 class="page-header jumbotron-headers">Admins</h1>
-			<div class="well">
-				<form name="newAdminForm">
-					<div class="form-group">
-					    <label for="exampleInputEmail1">Register Administrator</label>
-					    <input ng-model="newAdmin.email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" required>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h2 class="text-left">Create New Account</h2>
+					<p><i ng-click="showCreateNewAccount()" class="fa fa-chevron-down fa-2x" aria-hidden="true"></i></p>
+				</div>	
+
+			    <div class="panel-body animated slideInUp" ng-show="showCreateNewAccountForm">
+					<div class="create-admin col-lg-12 col-md-12 col-sm-12 col-xs-12 animated bounceInUp" >
+						<form class="form-inline">
+							<div class="form-group">
+							    <label class="sr-only" for="exampleInputPassword3">Username</label>
+							    <input type="text" ng-model="newAdmin.username" class="form-control" id="exampleInputPassword3" placeholder="Username">
+							</div>
+							<div class="form-group">
+							    <label class="sr-only" for="exampleInputEmail3">Email</label>
+							    <input type="email" ng-model="newAdmin.email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+							</div>
+							<div class="form-group">
+							    <label class="sr-only" for="exampleInputPassword3">Password</label>
+							    <input type="password" ng-model="newAdmin.password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+							</div>
+							<button type="submit" ng-click="createUser(newAdmin)" class="btn btn-success col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-3">Create New Account</button>
+						</form>
 					</div>
-				  <button ng-click="updateEmail(newAdmin)" ng-disabled="newAdminForm.$invalid" type="submit" class="btn btn-danger"><i class="fa fa-plus" aria-hidden="true"></i> Add Admin</button>
-				</form>
+				</div>
+				
 			</div>
-			<hr>
+
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h2 class="text-left">Edit Profile</h2>
+					<p><i ng-click="showEditProfile()" class="fa fa-chevron-down fa-2x" aria-hidden="true"></i></p>
+				</div>	
+
+			    <div class="panel-body animated slideInUp" ng-show="showEditProfileForm">
+					<div class="edit-admin col-lg-12 col-md-12 col-sm-12 col-xs-12 animated bounceInUp" >
+						<form class="form-inline text-center">
+							<div class="form-group">
+							    <label class="sr-only" for="exampleInputPassword3">Username</label>
+							    <input type="text" ng-model="updateAdmin.username" class="form-control" id="exampleInputPassword3" placeholder="Username">
+							</div>
+							<div class="form-group">
+							    <label class="sr-only" for="exampleInputEmail3">Email</label>
+							    <input type="email" ng-model="updateAdmin.email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+							</div>
+							<div class="form-group">
+							    <label class="sr-only" for="exampleInputPassword3">New Password</label>
+							    <input type="password" ng-model="updateAdmin.password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+							</div>
+							<div class="form-group">
+							    <label class="sr-only" for="exampleInputPassword3">Confirm Password</label>
+							    <input type="password" ng-model="updateAdmin.confirmPassword" class="form-control" id="exampleInputPassword3" placeholder="Confirm Password">
+							</div>
+							<button type="submit" ng-click="updateAdminInfo(updateAdmin)" class="btn btn-success col-lg-4 col-md-4 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-4 col-sm-offset-3">Update</button>
+						</form>
+					</div>
+				</div>
+				
+			</div>	
+
+
 
 		</div>
 

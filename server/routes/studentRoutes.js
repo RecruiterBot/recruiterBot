@@ -1,10 +1,12 @@
 const studentCtrl = require( '../ctrls/studentCtrl' );
+const userCtrl = require( '../ctrls/userCtrl' );
 
 module.exports = app => {
 
-	app.get( `/api/students`, studentCtrl.getStudents );
-	app.put( `/api/students/:id`, studentCtrl.updateStudentById );
-	app.post( `/api/students`, studentCtrl.createStudent );
-	app.delete( `/api/students/:id`, studentCtrl.deleteStudent );
+	app.get( `/api/students`, userCtrl.loggedIn, studentCtrl.getStudents );
+	app.put( `/api/student/checkStudentEmailDuplicate`, userCtrl.loggedIn, studentCtrl.checkStudentEmailDuplicate);
+	app.put( `/api/students/:id`, userCtrl.loggedIn, studentCtrl.updateStudentById );
+	app.post( `/api/students`, userCtrl.loggedIn, studentCtrl.createStudent );
+	app.delete( `/api/students/:id`, userCtrl.loggedIn, studentCtrl.deleteStudent );
 
 }

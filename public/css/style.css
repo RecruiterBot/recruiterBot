@@ -11,6 +11,11 @@ body{
 	height: auto;
 	z-index: -99;
 }
+.copyright{
+	text-align: center;
+	font-size: 8px;
+	padding-top: 10px;
+}
 
 /* //////////////////////////////// home.html //////////////////////////////*/
 .home{
@@ -49,16 +54,42 @@ body{
 	padding-bottom: 10px;
 	box-shadow: 0px 0px 10px gray;
 }
+.home .login-box .alternatives-to-login{
+	margin: 15px;
+}
 .home .login-box a{
 	color: gray;
 	font-family: "Raleway";
 	font-weight: 300;
-	text-decoration: none;
+	/*text-decoration: none;*/
+	padding: 0px;
+	margin: 0px;
 }
 .home .login-box a:hover{
 	color: #00A6F1;
 }
-
+/*.home .create-admin {
+	background-color: white;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.home .create-admin button{
+	margin-top: 15px;
+}
+.home .create-admin i{
+	cursor: pointer;
+	color: gray;
+}
+.home .create-admin i:hover{
+	color: black;
+}
+.home .create-admin h2{
+	font-family: "Raleway";
+	font-weight: 600;
+	color: gray;
+	margin-top: 0px;
+}*/
 /* //////////////////////////////// dashboard.html //////////////////////////////*/
 .dashboard{
 	overflow: auto;
@@ -159,6 +190,11 @@ body{
 	padding-bottom: 15px;
 	/*border-bottom: 1px solid lightgray;*/
 }
+.dashboard .dashboard-jumbotron .registered-on{
+	margin-top: 25px;
+	color: gray;
+	text-align: right;
+}
 .dashboard .dashboard-jumbotron .student-moreinfo{
 	cursor: pointer;
 }
@@ -212,7 +248,7 @@ body{
 .dashboard .dashboard-jumbotron .admin-actions{
 	display: flex;
 	flex-flow: column;
-	justify-content: flex-start;
+	justify-content: space-between;
 }
 .dashboard .dashboard-jumbotron .admin-actions a{
 	border-radius: 0px;
@@ -301,6 +337,19 @@ body{
 .admin-jumbotron button{
 	color: white;
 }
+.admin-jumbotron .panel-heading{
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+.admin-jumbotron .panel-heading h2{
+	margin-top: 10px;
+}
+.admin-jumbotron .panel-heading p{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+}
 .dashboard-jumbotron .jumbotron-headers, .student-jumbotron .jumbotron-headers, .admin-jumbotron .jumbotron-headers{
 	font-family: "Raleway";
 	font-weight: 200;
@@ -372,6 +421,34 @@ body{
 }
 .dashboard-jumbotron .well h3{
 	color: #00A6F1 !important;
+}
+.dashboard .create-admin {
+	background-color: white;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.dashboard .create-admin input, .dashboard .edit-admin input{
+	background-color: black;
+	color: #00A6F1;
+	border-radius: 0px;
+	padding: 20px;
+	text-align: center;
+}
+.dashboard .create-admin button, .dashboard .edit-admin button{
+	margin-top: 15px;
+}
+.dashboard .create-admin i{
+	cursor: pointer;
+	color: gray;
+}
+.dashboard .create-admin i:hover{
+	color: black;
+}
+.dashboard .admin-jumbotron h2{
+	font-family: "Raleway";
+	font-weight: 600;
+	color: color;
 }
 
 .utility-menu a {

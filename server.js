@@ -7,8 +7,14 @@ const json = require( 'body-parser' ).json;
 const urlencoded = require ( 'body-parser' ).urlencoded;
 const MR = require( './server/masterRoutes' );
 const Sophie = require( './server/ctrls/sophieCtrl' );
-const Botkit = require( 'botkit' )
-const ApiaiBotkit = require( 'api-ai-botkit' )
+const Botkit = require( 'botkit' );
+const passport = require( 'passport' );
+
+//  config //
+
+const passportConfig = require( './server/sophiebot/passportConfig' );
+const sessionConfig = require ( './server/sophiebot/sessionConfig' );
+passportConfig( passport );
 
 // setup app //
 
@@ -21,19 +27,17 @@ const mongoURI = 'mongodb://Student:devmountain@ds031965.mlab.com:31965/recruite
 
 // app pre-processors //
 
-app.use( urlencoded( { extended: true } ) ); //
-app.use( session({
-	secret: 'jdjfgfdg-dfgdgskfg-dfgfdgj643Y7Z-nasdsmcfhajsb4-zayN',
-	resave: true,
-	saveUninitialized: true	
-}) )
+app.use( urlencoded( { extended: true } ) );
 app.use( json() );
-app.use( express.static( __dirname + '/public') );// public contains static assets and these are getting served up to express middleware
+app.use( express.static( __dirname + '/public') );
+app.use( session( sessionConfig ) );
+app.use( passport.initialize() );
+app.use( passport.session() );
 
 // use Master Routes //
 
-MR( app );
-Sophie( ApiaiBotkit, Botkit, app, mongoURI );
+MR( app, passport );
+Sophie( Botkit, app, mongoURI );
 
 // mongoose connection //
 

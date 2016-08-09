@@ -37,6 +37,16 @@ module.exports = {
 			}
 			return res.status( 200 ).json( deletedStudent );
 		} )
+	},
+
+	checkStudentEmailDuplicate(req, res, next){
+		Student.findOne({email: req.body.email}, (err, studentFound)=>{
+			if (err) {
+				console.log("ERROR", err);
+				return res.status(500).json(err);
+			}
+			return res.status(200).json(studentFound);
+		})
 	}
 
 }

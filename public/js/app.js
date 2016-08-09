@@ -21,6 +21,7 @@ angular.module('recruiterBot', ['ui.router'])
 				url:'/dashboard',
 				templateUrl: './views/dashboard.html',
 				controller: 'dashboardCtrl'
+
 			})
 			.state('privacy', {
 				url:'/privacy',

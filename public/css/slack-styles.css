@@ -49,12 +49,6 @@ flex-direction: column;
     flex: 1 1 50%;
     background-color: white;
   }
-  .slack-footer {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    background: grey;
-  }
   .slack-button {
     align-self: center;
     margin-bottom: 20px;
@@ -130,10 +124,20 @@ flex-direction: column;
   height: 63px;
   margin: 0;
 }
+.slack-footer {
+  display: flex;
+  padding: 10px;
+  background: #bdbdbd;
+  flex-direction: column;
+}
 .slack-footer a{
   text-decoration: none;
   color: white;
   padding: 10px;
+}
+.slack-nav-footer {
+  display: flex;
+  justify-content: center;
 }
 .slack-footer a:hover{
   text-decoration: none;
@@ -141,6 +145,11 @@ flex-direction: column;
   transition-property: background;
   transition-duration: .05s;
   transition-timing-function: linear;
+}
+.copyright-container {
+text-align: center;
+color: white;
+
 }
 /*how it works CSS/ support */
 .how-works-container{

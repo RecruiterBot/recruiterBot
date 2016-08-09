@@ -4,8 +4,7 @@ const deleteCtrl = require( './deleteCtrl' );
 const createCtrl = require( './createCtrl' );
 const helpCtrl = require( './helpCtrl' );
 
-
-module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
+module.exports = ( Botkit, app, mongoURI ) => {
 
   const controller = Botkit.slackbot();
 
@@ -28,20 +27,23 @@ module.exports = ( ApiaiBotkit, Botkit, app, mongoURI ) => {
 
   } );
 
+  // controller.hears( [ 'find all students' ], 'direct_message,direct_mention,mention', ( bot, message ) => {
+  //   Students.find( {}, ( err, allStudents ) => {
+  //     if ( err ) {
+  //       console.log( 'err', err )
+  //     }
 
-  // const apiToken = require( '../sophiebot/config' ).apiToken;
+  //     // create the attachment
 
-  // const apiai = ApiaiBotkit( apiToken );
+  //     const attachment = createAttachment( allStudents );
+  //     // console.log( 'attachment', attachment )
 
-  // controller.hears('.*', 'direct_message,direct_mention,mention', ( bot, message ) => {
-  //   console.log( 'ctrl message', message );
-  //   apiai.process( message, bot );
-  // } );
+  // // // loop through the attachment and send a reply
 
-  // apiai.action( 'candidate.search.findSkills', ( message, resp, bot ) => {
-  //     console.log( 'message', message );
-  //     console.log( 'resp', resp );
-  //     console.log( 'bot', bot );
-  //     const responseText = resp.result.fullfillment.speech;
+  //     for (var i = 0; i < 20; i++) {
+  //       bot.reply( message, attachment[i] )
+  //     }
+  //   } )
+  // } )
 
 }
