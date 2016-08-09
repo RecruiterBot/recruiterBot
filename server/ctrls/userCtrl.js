@@ -12,15 +12,17 @@ module.exports = {
 	},
 
 	createUser( req, res ) {
-		new User( req.body ).save( ( err, newUser ) => {
+		let newUser = new User( req.body )
+		newUser.password = newUser.generateHash( req.body.password );
+		newUser.save( ( err, createdUser ) => {
 			if ( err ) {
 				return res.status( 500 ).json( err );
 			}
-			req.logIn( newUser, err => {
+			req.logIn( createdUser, err => {
 				if( err ) { 
 					return res.status( 400 ).json( err ) 
 				}
-				return res.status( 200 ).json( newUser );
+				return res.status( 200 ).json( createdUser );
 			} )
 		} )
 	},
