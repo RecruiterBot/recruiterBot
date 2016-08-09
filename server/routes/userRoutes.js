@@ -18,7 +18,7 @@ module.exports = ( app, passport ) => {
 	    } )( req, res, next ); 
 	  });
 	app.get( `/api/logout`, userCtrl.logout );
-	app.put( `/api/admin/email`, userCtrl.loggedIn, userCtrl.updateEmail );
+	// app. put( `/api/admin/email`, userCtrl.loggedIn, userCtrl.updateEmail );
 	app.put( `/api/admin`, userCtrl.createUser );
 	app.put( `/api/admin/checkEmailDuplicate`, userCtrl.checkEmailDuplicate);
 	app.put( `/api/admin/updateAdminInfo`, userCtrl.updateAdminInfo )

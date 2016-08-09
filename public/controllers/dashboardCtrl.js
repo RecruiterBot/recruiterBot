@@ -38,6 +38,7 @@ angular.module('recruiterBot')
 			$scope.showStudent = false;
 			$scope.showAdmin = true;
 			$scope.updateAdmin = homeService.admin;
+			console.log($scope.updateAdmin);
 		}
 		$scope.filter = ()=>{
 			$scope.showFilter = true;
@@ -372,13 +373,39 @@ angular.module('recruiterBot')
 			if (isUpdatedFormFilled(updateAdmin)) {
 				updateAdmin.email = updateAdmin.email.toLowerCase();
 				updateAdmin.username = updateAdmin.username.toLowerCase();
-				dashboardService.updateAdminInfo(updateAdmin)
-				.then((response)=>{
-					homeService.admin.email = $scope.response.data.email;
-					homeService.admin.username = $scope.response.data.username;
-					homeService.admin._id = $scope.response.data._id;
-					$scope.showAdminView();
-				})
+
+				if (updateAdmin.email !== homeService.admin.email) {
+					dashboardService.checkEmailDuplicate(updateAdmin.email)
+					.then((response)=>{
+						if (response.data !== null) {
+							alert(`${updateAdmin.email} is already taken! Please enter a different email`);
+							$scope.updateAdmin.email = "";
+						}else{
+							dashboardService.updateAdminInfo(updateAdmin)
+							.then((response)=>{
+								console.log(response);
+								homeService.admin.email = response.data.email;
+								homeService.admin.username = response.data.username;
+								homeService.admin._id = response.data._id;
+								$scope.updateAdmin.password = "";
+								$scope.updateAdmin.confirmPassword = "";
+								$scope.showAdminView();
+							})
+						}
+					});
+				}else{
+					dashboardService.updateAdminInfo(updateAdmin)
+						.then((response)=>{
+							console.log(response);
+							homeService.admin.email = response.data.email;
+							homeService.admin.username = response.data.username;
+							homeService.admin._id = response.data._id;
+							$scope.updateAdmin.password = "";
+							$scope.updateAdmin.confirmPassword = "";
+							$scope.showAdminView();
+						})
+				}
+				
 			}
 			else{
 				alert("Requirements: \n 1. Username, email & passwords must be longer than 5 characters \n 2. Confirm password and new password must match")
